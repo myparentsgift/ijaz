@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive Scientific Miracles in the Holy Quran and Sunnah - دليل شامل على الإعجازات العلمية في القرآن والسنة">
+    <title>Scientific Miracles in the Quran & Sunnah | الإعجاز العلمي في القرآن والسنة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d4f2e;
+            --primary-light: #1a7a4a;
+            --secondary: #1565c0;
+            --gold: #d4af37;
+            --gold-light: #f4d03f;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background: var(--light);
+            color: #333;
+            line-height: 1.9;
+        }
+
+        body.en {
+            direction: ltr;
+            font-family: 'Inter', 'Cairo', sans-serif;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 0.5rem;
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        body.en .lang-switcher {
+            right: auto;
+            left: 20px;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        body.en .hero h1 {
+            font-family: 'Amiri', serif;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 2rem;
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin: 2rem 0;
+        }
+
+        .hero-verse {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.95);
+            line-height: 2.2;
+            margin: 1.5rem 0;
+        }
+
+        .hero-verse-en {
+            font-family: 'Inter', serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gold-light);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: #fff;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.3rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .nav-divider {
+            color: var(--gold);
+            padding: 0 0.3rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .tab-btn.sunan {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .tab-btn.sunan.active, .tab-btn.sunan:hover {
+            background: var(--secondary);
+            color: #fff;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card */
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-header h3 i {
+            color: var(--gold);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .card-verse {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border-right: 4px solid var(--primary);
+        }
+
+        body.en .card-verse {
+            border-right: none;
+            border-left: 4px solid var(--primary);
+        }
+
+        .card-verse.arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--dark);
+        }
+
+        .card-verse.english {
+            font-style: italic;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .card-verse .source {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Evidence List */
+        .evidence-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .evidence-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .evidence-list li:last-child {
+            border-bottom: none;
+        }
+
+        .evidence-list li i {
+            color: var(--gold);
+            margin-top: 0.3rem;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .quote-box .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            line-height: 2;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-box .english {
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .quote-box .source {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Scholar Quote */
+        .scholar-quote {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #fff9c4 0%, #fffde7 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .scholar-quote i {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .scholar-quote blockquote {
+            font-style: italic;
+            color: var(--dark);
+        }
+
+        .scholar-quote cite {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        /* Hadith Box */
+        .hadith-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-right: 5px solid var(--secondary);
+        }
+
+        body.en .hadith-box {
+            border-right: none;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .hadith-box h5 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 2rem 0;
+        }
+
+        .accordion-item {
+            background: #fff;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .accordion-header:hover {
+            background: #f8f9fa;
+        }
+
+        .accordion-header i {
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s;
+        }
+
+        .accordion-item.active .accordion-body {
+            max-height: 2000px;
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 20px;
+            color: #fff;
+        }
+
+        .section-divider.sunnah {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1976d2 100%);
+        }
+
+        .section-divider h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-item .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gold-light);
+        }
+
+        .stat-item .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold-light);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Dedication */
+        .dedication-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .dedication-overlay.hidden {
+            display: none;
+        }
+
+        .dedication-popup {
+            background: #fff;
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            border: 4px solid var(--gold);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+        }
+
+        .dedication-popup .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .dedication-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 5px solid var(--gold);
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .dedication-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .dedication-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .dedication-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin: 1.5rem 0;
+            line-height: 2;
+        }
+
+        .dedication-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .toc h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .toc a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: all 0.3s;
+        }
+
+        .toc a:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .toc a i {
+            color: var(--gold);
+        }
+
+        .toc a:hover i {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero-stats { gap: 1.5rem; }
+            .nav-links { display: none; }
+            .content-grid { grid-template-columns: 1fr; }
+            .lang-switcher { top: 10px; right: 10px; }
+            body.en .lang-switcher { right: auto; left: 10px; }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Arabic Text */
+        .ar { font-family: 'Amiri', serif; }
+        .ar-bold { font-family: 'Cairo', sans-serif; font-weight: 700; }
+
+        /* Hidden for language */
+        [data-lang] { display: none; }
+        [data-lang="ar"] { display: block; }
+        body.en [data-lang] { display: none; }
+        body.en [data-lang="en"] { display: block; }
+
+        [data-lang-inline] { display: none; }
+        body.en [data-lang-inline="en"] { display: inline; }
+        [data-lang-inline="ar"] { display: inline; }
+        body.en [data-lang-inline="ar"] { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ar')">العربية</button>
+        <button class="lang-btn" onclick="setLang('en')">English</button>
+    </div>
+
+    <!-- Dedication Popup -->
+    <div class="dedication-overlay" id="dedicationOverlay">
+        <div class="dedication-popup">
+            <div class="bismillah" style="font-size: 1.5rem;">بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحيمِ</div>
+            <img src="photo.jpg" alt="صورة الوالدين" class="dedication-photo">
+            <h2 class="dedication-title">إهداء</h2>
+            <p class="dedication-name">
+                إلى روح أبي<br>
+                <strong>الحاج محمد خليل نشوان</strong><br>
+                أبو نايف الدوايمة
+            </p>
+            <p class="dedication-text">
+                رب اغفر لي ولوالدي<br>
+                رب ارحمهما كما ربياني صغيرا
+            </p>
+            <button class="dedication-btn" onclick="closeDedication()">
+                <span data-lang-inline="ar">دخول الموقع</span>
+                <span data-lang-inline="en">Enter Website</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>
+                <span data-lang-inline="ar">الإعجاز العلمي في القرآن والسنة</span>
+                <span data-lang-inline="en">Scientific Miracles in the Quran & Sunnah</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span data-lang-inline="ar">دليل شامل بالأدلة والبراهين العلمية</span>
+                <span data-lang-inline="en">A Comprehensive Guide with Scientific Evidence</span>
+            </p>
+            <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمٰنِ الرَّحيمِ</div>
+            <p class="hero-verse">
+                وَنَزَّلْنَا عَلَيْكَ الْكِتَابَ تِبْيَانًا لِكُلِّ شَيْءٍ وَ هُدًى وَ رَحْمَةً وَ بُشْرَىٰ لِلْمُسْلِمِينَ
+            </p>
+            <p class="hero-verse-en">
+                "And We have sent down upon you the Book as clarification for all things..."<br>
+                <small>Quran 16:89</small>
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">+1000</div>
+                    <div class="stat-label" data-lang-inline="ar">آية كونية</div>
+                    <div class="stat-label" data-lang-inline="en">Cosmic Verses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1400+</div>
+                    <div class="stat-label" data-lang-inline="ar">سنة على النزول</div>
+                    <div class="stat-label" data-lang-inline="en">Years Since Revelation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label" data-lang-inline="ar">إعجاز علمي مكتشف</div>
+                    <div class="stat-label" data-lang-inline="en">Discovered Miracles</div>
+                </div>
+            </div>
+        </div>
+        <a href="#main-content" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-book-quran"></i>
+                <span data-lang-inline="ar">الإعجاز العلمي</span>
+                <span data-lang-inline="en">Scientific Miracles</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#intro" class="active">
+                    <span data-lang-inline="ar">المقدمة</span>
+                    <span data-lang-inline="en">Introduction</span>
+                </a></li>
+                <li><span class="nav-divider">|</span></li>
+                <li><a href="#quran-miracles">
+                    <span data-lang-inline="ar">القرآن</span>
+                    <span data-lang-inline="en">Quran</span>
+                </a></li>
+                <li><a href="#sunnah-miracles">
+                    <span data-lang-inline="ar">السنة</span>
+                    <span data-lang-inline="en">Sunnah</span>
+                </a></li>
+                <li><span class="nav-divider">|</span></li>
+                <li><a href="#embryology">
+                    <span data-lang-inline="ar">الأجنة</span>
+                    <span data-lang-inline="en">Embryology</span>
+                </a></li>
+                <li><a href="#cosmos">
+                    <span data-lang-inline="ar">الفلك</span>
+                    <span data-lang-inline="en">Astronomy</span>
+                </a></li>
+                <li><a href="#medicine">
+                    <span data-lang-inline="ar">الطب</span>
+                    <span data-lang-inline="en">Medicine</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <div class="container">
+            <!-- Table of Contents -->
+            <div class="toc fade-in">
+                <h4><i class="fas fa-list"></i> 
+                    <span data-lang-inline="ar">فهرس المحتوى</span>
+                    <span data-lang-inline="en">Table of Contents</span>
+                </h4>
+                <div class="toc-grid">
+                    <a href="#intro"><i class="fas fa-book-open"></i>
+                        <span data-lang-inline="ar">المقدمة</span>
+                        <span data-lang-inline="en">Introduction</span>
+                    </a>
+                    <a href="#quran-miracles"><i class="fas fa-book-quran"></i>
+                        <span data-lang-inline="ar">إعجاز القرآن</span>
+                        <span data-lang-inline="en">Quran Miracles</span>
+                    </a>
+                    <a href="#sunnah-miracles"><i class="fas fa-mosque"></i>
+                        <span data-lang-inline="ar">إعجاز السنة</span>
+                        <span data-lang-inline="en">Sunnah Miracles</span>
+                    </a>
+                    <a href="#embryology"><i class="fas fa-baby"></i>
+                        <span data-lang-inline="ar">علم الأجنة</span>
+                        <span data-lang-inline="en">Embryology</span>
+                    </a>
+                    <a href="#cosmos"><i class="fas fa-globe-americas"></i>
+                        <span data-lang-inline="ar">علم الفلك</span>
+                        <span data-lang-inline="en">Astronomy</span>
+                    </a>
+                    <a href="#geology"><i class="fas fa-mountain"></i>
+                        <span data-lang-inline="ar">علم الأرض</span>
+                        <span data-lang-inline="en">Geology</span>
+                    </a>
+                    <a href="#ocean"><i class="fas fa-water"></i>
+                        <span data-lang-inline="ar">البحار</span>
+                        <span data-lang-inline="en">Oceans</span>
+                    </a>
+                    <a href="#atmosphere"><i class="fas fa-cloud"></i>
+                        <span data-lang-inline="ar">الغلاف الجوي</span>
+                        <span data-lang-inline="en">Atmosphere</span>
+                    </a>
+                    <a href="#bees"><i class="fas fa-paw"></i>
+                        <span data-lang-inline="ar">النحل</span>
+                        <span data-lang-inline="en">Honey Bees</span>
+                    </a>
+                    <a href="#iron"><i class="fas fa-cog"></i>
+                        <span data-lang-inline="ar">الحديد</span>
+                        <span data-lang-inline="en">Iron</span>
+                    </a>
+                    <a href="#medicine"><i class="fas fa-heartbeat"></i>
+                        <span data-lang-inline="ar">الإعجاز الطبي</span>
+                        <span data-lang-inline="en">Medical Miracles</span>
+                    </a>
+                    <a href="#conclusion"><i class="fas fa-check-circle"></i>
+                        <span data-lang-inline="ar">الخاتمة</span>
+                        <span data-lang-inline="en">Conclusion</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Introduction -->
+            <section id="intro" class="section fade-in">
+                <div class="section-header">
+                    <h2 data-lang-inline="ar">ما هو الإعجاز العلمي؟</h2>
+                    <h2 data-lang-inline="en">What is Scientific Miracles?</h2>
+                    <p>
+                        <span data-lang-inline="ar">الإعجاز العلمي هو إخبار القرآن والسنة بحقائق كونية أثبتها العلم الحديث</span>
+                        <span data-lang-inline="en">Scientific miracles are cosmic facts mentioned in the Quran and Sunnah that have been proven by modern science</span>
+                    </p>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-microscope"></i>
+                                <span data-lang-inline="ar">التعريف</span>
+                                <span data-lang-inline="en">Definition</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang-inline="ar">الإعجاز العلمي في القرآن والسنة هو إخبار النصوص الشرعية بحقائق كونية أثبتها العلم التجريبي، وثبت عدم إمكانية إدراكها بالوسائل البشرية في زمن النبي ﷺ.</p>
+                            <p data-lang-inline="en">Scientific miracles in the Quran and Sunnah refer to cosmic facts mentioned in the holy texts that have been proven by modern empirical science, facts that were impossible to know during the Prophet's ﷺ time.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-star"></i>
+                                <span data-lang-inline="ar">الأهمية</span>
+                                <span data-lang-inline="en">Importance</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang-inline="ar">يُعدّ الإعجاز العلمي من أهم وسائل الدعوة إلى الإسلام في العصر الحديث، حيث يربط بين الحقائق العلمية والنصوص الشرعية.</p>
+                            <p data-lang-inline="en">Scientific miracles are among the most important means of Dawah in modern times, connecting scientific facts with Islamic texts.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quran Miracles Section -->
+            <section class="section-divider" id="quran-miracles">
+                <h3><i class="fas fa-book-quran"></i>
+                    <span data-lang-inline="ar">إعجاز القرآن الكريم</span>
+                    <span data-lang-inline="en">Miracles of the Holy Quran</span>
+                </h3>
+            </section>
+
+            <!-- Embryology -->
+            <section id="embryology" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-baby"></i>
+                        <span data-lang-inline="ar">علم الأجنّة في القرآن</span>
+                        <span data-lang-inline="en">Embryology in the Quran</span>
+                    </h2>
+                </div>
+
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3><i class="fas fa-dna"></i>
+                            <span data-lang-inline="ar">مراحل خلق الإنسان الست</span>
+                            <span data-lang-inline="en">Six Stages of Human Creation</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="evidence-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">١. النطفة الأمشاج</strong>
+                                    <strong data-lang-inline="en">1. Nutfah (Mixed Drop)</strong>
+                                    <p>﴿إِنَّا خَلَقْنَا الْإِنسَانَ مِن نُّطْفَةٍ أَمْشَاجٍ نَّبْتَلِيهِ﴾ - الإنسان: 2</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">٢. العلقة</strong>
+                                    <strong data-lang-inline="en">2. Alaqah (Leech-like)</strong>
+                                    <p>﴿خَلَقْنَا النُّطْفَةَ عَلَقَةً﴾ - المؤمنون: 14</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">٣. المضغة</strong>
+                                    <strong data-lang-inline="en">3. Mudghah (Chewed-like)</strong>
+                                    <p>﴿فَخَلَقْنَا الْعَلَقَةَ مُضْغَةً﴾ - المؤمنون: 14</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">٤. العظام</strong>
+                                    <strong data-lang-inline="en">4. Bones</strong>
+                                    <p>﴿فَخَلَقْنَا الْمُضْغَةَ عِظَامًا﴾ - المؤمنون: 14</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">٥. كسو العظام لحماً</strong>
+                                    <strong data-lang-inline="en">5. Clothed with Flesh</strong>
+                                    <p>﴿فَكَسَوْنَا الْعِظَامَ لَحْمًا﴾ - المؤمنون: 14</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">٦. الخلق الآخر</strong>
+                                    <strong data-lang-inline="en">6. Another Creation</strong>
+                                    <p>﴿ثُمَّ أَنشَأْنَاهُ خَلْقًا آخَرَ﴾ - المؤمنون: 14</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scholar-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <blockquote>
+                        "The descriptions of embryology in the Quran could not have been based on the scientific knowledge of the 7th century. The only reasonable conclusion is that these descriptions were revealed to Muhammad ﷺ from God."
+                        <cite>— Dr. Keith Moore, Professor of Embryology, University of Toronto</cite>
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- Cosmos Section -->
+            <section id="cosmos" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-globe-americas"></i>
+                        <span data-lang-inline="ar">إعجاز علم الفلك</span>
+                        <span data-lang-inline="en">Astronomical Miracles</span>
+                    </h2>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-rocket"></i>
+                                <span data-lang-inline="ar">الانفجار العظيم</span>
+                                <span data-lang-inline="en">The Big Bang</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang-inline="ar">وصف القرآن الكريم خلق الكون: ﴿أَوَلَمْ يَرَ الَّذِينَ كَفَرُوا أَنَّ السَّمَاوَاتِ وَالْأَرْضَ كَانَتَا رَتْقًا فَفَتَقْنَاهُمَا﴾</p>
+                            <p data-lang-inline="en">"Do the disbelievers not see that the heavens and the earth were a joined entity, then We separated them?" - Quran 21:30</p>
+                            <p data-lang-inline="ar">"الرتق" تعني الضم والالتحام، و"الفتق" تعني الفصل - وهذا يطابق نظرية الانفجار العظيم تماماً.</p>
+                            <p data-lang-inline="en">"Ratq" means fusion, and "Fataq" means separation - this exactly matches the Big Bang theory.</p>
+                            <div class="card-verse">
+                                <p class="arabic">﴿أَوَلَمْ يَرَ الَّذِينَ كَفَرُوا أَنَّ السَّمَاوَاتِ وَالْأَرْضَ كَانَتَا رَتْقًا فَفَتَقْنَاهُمَا﴾</p>
+                                <p class="source">سورة الأنبياء: 30</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-expand-arrows-alt"></i>
+                                <span data-lang-inline="ar">تمدد الكون</span>
+                                <span data-lang-inline="en">Expansion of the Universe</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang-inline="ar">قال تعالى: ﴿وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ﴾ - الذاريات: 47</p>
+                            <p data-lang-inline="en">"And the heaven We constructed with might, and indeed, We are steadily expanding it." - Quran 51:47</p>
+                            <p data-lang-inline="ar">اكتشف هابل عام 1929 أن المجرات تبتعد عن بعضها، مما يعني أن الكون يتمدد.</p>
+                            <p data-lang-inline="en">Hubble discovered in 1929 that galaxies are moving away from each other, meaning the universe is expanding.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-sun"></i>
+                                <span data-lang-inline="ar">الشمس والقمر</span>
+                                <span data-lang-inline="en">Sun and Moon</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang-inline="ar">قال تعالى: ﴿وَالشَّمْسُ تَجْرِي لِمُسْتَقَرٍّ لَّهَا﴾ - يس: 38</p>
+                            <p data-lang-inline="en">"And the sun runs [in its course] to a destination..." - Quran 36:38</p>
+                            <p data-lang-inline="ar">الشمس تسير بسرعة 720,000 كم/ساعة نحو نقطة في كوكبة الجاثي.</p>
+                            <p data-lang-inline="en">The sun travels at 720,000 km/h toward a point in the constellation Hercules.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-moon"></i>
+                                <span data-lang-inline="ar">نور القمر</span>
+                                <span data-lang-inline="en">Moon's Light</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang-inline="ar">وصف القرآن نور القمر بشكل دقيق: ﴿وَجَعَلْنَا اللَّيْلَ وَالنَّهَارَ خِلْفَةً﴾ - الإسراء: 12</p>
+                            <p data-lang-inline="en">The Quran accurately describes the moon's light as reflected, not self-generated.</p>
+                            <p data-lang-inline="ar">القمر لا يُصدر نوراً خاصاً به، بل يعكس ضوء الشمس.</p>
+                            <p data-lang-inline="en">The moon does not produce its own light; it reflects sunlight.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Geology Section -->
+            <section id="geology" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-mountain"></i>
+                        <span data-lang-inline="ar">إعجاز علم الأرض والجبال</span>
+                        <span data-lang-inline="en">Geological Miracles</span>
+                    </h2>
+                </div>
+
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3><i class="fas fa-anchor"></i>
+                            <span data-lang-inline="ar">الجبال أوتاداً</span>
+                            <span data-lang-inline="en">Mountains as Pegs</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p data-lang-inline="ar">وصف القرآن الجبال بأنها أوتاد تثبت الأرض:</p>
+                        <p data-lang-inline="en">The Quran describes mountains as pegs that stabilize the earth:</p>
+                        <div class="card-verse">
+                            <p class="arabic">﴿أَلَمْ نَجْعَلِ الْأَرْضَ مِهَادًا * وَالْجِبَالَ أَوْتَادًا﴾</p>
+                            <p class="english">"Have We not made the earth a resting place? And the mountains as pegs?"</p>
+                            <p class="source">سورة النبأ: 6-7</p>
+                        </div>
+                        <ul class="evidence-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">جذور الجبال</strong>
+                                    <strong data-lang-inline="en">Mountain Roots</strong>
+                                    <p data-lang-inline="ar">اكتشف العلماء أن للجبال جذوراً تمتد في باطن الأرض أعمق من ارتفاعها الظاهر.</p>
+                                    <p data-lang-inline="en">Scientists discovered that mountains have roots extending deep into the earth, deeper than their visible height.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">تثبيت القشرة الأرضية</strong>
+                                    <strong data-lang-inline="en">Stabilizing Earth's Crust</strong>
+                                    <p data-lang-inline="ar">الجبال تمنع القشرة الأرضية من الحركة والاضطراب.</p>
+                                    <p data-lang-inline="en">Mountains prevent the earth's crust from moving and shaking.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">نظرية الصفائح التكتونية</strong>
+                                    <strong data-lang-inline="en">Plate Tectonics Theory</strong>
+                                    <p data-lang-inline="ar">أكدت نظرية الصفائح التكتونية أن الجبال تعمل كأوتاد.</p>
+                                    <p data-lang-inline="en">The plate tectonics theory confirmed that mountains act as pegs.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ocean Section -->
+            <section id="ocean" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-water"></i>
+                        <span data-lang-inline="ar">أسرار البحار والمياه</span>
+                        <span data-lang-inline="en">Secrets of Seas and Water</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-wave-square"></i>
+                            <span data-lang-inline="ar">البرزخ بين البحرين</span>
+                            <span data-lang-inline="en">Barrier Between Two Seas</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-verse">
+                            <p class="arabic">﴿هُوَ الَّذِي مَرَجَ الْبَحْرَيْنِ هَٰذَا عَذْبٌ فُرَاتٌ وَهَٰذَا مِلْحٌ أُجَاجٌ وَجَعَلَ بَيْنَهُمَا بَرْزَخًا وَحِجْرًا مَّحْجُورًا﴾</p>
+                            <p class="english">"He has released the two seas, meeting [side by side]; one is fresh and sweet, and the other is salty and bitter; and He made between them a barrier and partition."</p>
+                            <p class="source">سورة الفرقان: 53</p>
+                        </div>
+                        <ul class="evidence-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">اختلاف الكثافة</strong>
+                                    <strong data-lang-inline="en">Density Difference</strong>
+                                    <p data-lang-inline="ar">كثافة الماء المالح أعلى من العذب مما يمنع اختلاطهما بسهولة بسبب "التوتر السطحي".</p>
+                                    <p data-lang-inline="en">Salt water is denser than fresh water, preventing easy mixing due to "surface tension."</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">الفرق في درجة الحرارة</strong>
+                                    <strong data-lang-inline="en">Temperature Difference</strong>
+                                    <p data-lang-inline="ar">يوجد حاجز مائي بين البحرين عند التقائهما.</p>
+                                    <p data-lang-inline="en">There is a water barrier between the two seas when they meet.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">عدم الطغيان</strong>
+                                    <strong data-lang-inline="en">No Transgression</strong>
+                                    <p data-lang-inline="ar">الآيةؤكد أن أحد البحرين لا يطغى على الآخر.</p>
+                                    <p data-lang-inline="en">The verse confirms that neither sea transgresses the other.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Atmosphere Section -->
+            <section id="atmosphere" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-cloud"></i>
+                        <span data-lang-inline="ar">طبقات الغلاف الجوي</span>
+                        <span data-lang-inline="en">Atmosphere Layers</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-layer-group"></i>
+                            <span data-lang-inline="ar">السماوات السبع</span>
+                            <span data-lang-inline="en">Seven Heavens</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-verse">
+                            <p class="arabic">﴿أَلَمْ تَرَوْا كَيْفَ خَلَقَ اللَّهُ سَبْعَ سَمَاوَاتٍ طِبَاقًا﴾</p>
+                            <p class="english">"Do you not see how Allah has created seven heavens in layers?"</p>
+                            <p class="source">سورة نوح: 15</p>
+                        </div>
+                        <p data-lang-inline="ar">أثبت العلم الحديث أن الغلاف الجوي يتكون من سبع طبقات:</p>
+                        <p data-lang-inline="en">Modern science has proven that the atmosphere consists of seven layers:</p>
+                        <div class="content-grid" style="margin-top: 1rem;">
+                            <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px;">
+                                <strong>1. Troposphere</strong> - طبقة الطقس
+                            </div>
+                            <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px;">
+                                <strong>2. Stratosphere</strong> - طبقة الأوزون
+                            </div>
+                            <div style="background: #fff3e0; padding: 1rem; border-radius: 8px;">
+                                <strong>3. Mesosphere</strong> - طبقة الشهب
+                            </div>
+                            <div style="background: #f3e5f5; padding: 1rem; border-radius: 8px;">
+                                <strong>4. Thermosphere</strong> - طبقة الحرارة
+                            </div>
+                            <div style="background: #e0f7fa; padding: 1rem; border-radius: 8px;">
+                                <strong>5. Ionosphere</strong> - طبقة الأيونات
+                            </div>
+                            <div style="background: #fce4ec; padding: 1rem; border-radius: 8px;">
+                                <strong>6. Exosphere</strong> - الطبقة الخارجية
+                            </div>
+                            <div style="background: #f1f8e9; padding: 1rem; border-radius: 8px;">
+                                <strong>7. Magnetosphere</strong> - الحقل المغناطيسي
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bees Section -->
+            <section id="bees" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-paw"></i>
+                        <span data-lang-inline="ar">معجزة النحل</span>
+                        <span data-lang-inline="en">Miracle of Honey Bees</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-seedling"></i>
+                            <span data-lang-inline="ar">سلوك النحل في القرآن</span>
+                            <span data-lang-inline="en">Bee Behavior in the Quran</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-verse">
+                            <p class="arabic">﴿وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ أَنِ اتَّخِذِي مِنَ الْجِبَالِ بُيُوتًا وَمِنَ الشَّجَرِ وَمِمَّا يَعْرِشُونَ * ثُمَّ كُلِي مِن كُلِّ الثَّمَرَاتِ فَاسْلُكِي سُبُلَ رَبِّكِ ذُلُلًا ۚ يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ﴾</p>
+                            <p class="english">"And your Lord inspired to the bee: 'Take for yourself among the mountains, houses, and among the trees and [in] that which they construct. Then eat from all the fruits and go along the paths of your Lord, which have been made easy.' There emerges from their bellies a drink, varying in colors, in which there is healing for people."</p>
+                            <p class="source">سورة النحل: 68-69</p>
+                        </div>
+                        <ul class="evidence-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">بيوت النحل في الجبال</strong>
+                                    <strong data-lang-inline="en">Bees' Homes in Mountains</strong>
+                                    <p data-lang-inline="ar">النحل البري يسكن الكهوف والشقوق الصخرية في الجبال.</p>
+                                    <p data-lang-inline="en">Wild bees live in caves and rock crevices in mountains.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">ألوان العسل المختلفة</strong>
+                                    <strong data-lang-inline="en">Different Honey Colors</strong>
+                                    <p data-lang-inline="ar">عسل النحل يختلف لونه حسب نوع الأزهار.</p>
+                                    <p data-lang-inline="en">Honey color varies depending on the type of flowers.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">شفاء للناس</strong>
+                                    <strong data-lang-inline="en">Healing for People</strong>
+                                    <p data-lang-inline="ar">العسل يحتوي على خصائص مضادة للبكتيريا.</p>
+                                    <p data-lang-inline="en">Honey contains antibacterial properties.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">دقة الطيران</strong>
+                                    <strong data-lang-inline="en">Flight Precision</strong>
+                                    <p data-lang-inline="ar">النحلة تعود لخلية واحدة من بين آلاف الخلايا المتشابهة.</p>
+                                    <p data-lang-inline="en">Bees return to one specific hive among thousands of similar hives.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Iron Section -->
+            <section id="iron" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i>
+                        <span data-lang-inline="ar">نزول الحديد من السماء</span>
+                        <span data-lang-inline="en">Iron Sent Down from Heaven</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-meteor"></i>
+                            <span data-lang-inline="ar">الحديد أنزل من السماء</span>
+                            <span data-lang-inline="en">Iron Descended from the Sky</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-verse">
+                            <p class="arabic">﴿وَأَنزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِّلنَّاسِ﴾</p>
+                            <p class="english">"And We sent down iron, in which is great might and benefit for mankind."</p>
+                            <p class="source">سورة الحديد: 25</p>
+                        </div>
+                        <ul class="evidence-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">تكوين الحديد في النجوم</strong>
+                                    <strong data-lang-inline="en">Iron Formation in Stars</strong>
+                                    <p data-lang-inline="ar">الحديد لا يتكون في نجوم مثل الشمس، بل في انفجارات النجوم العظمى (المستعرات العظمى).</p>
+                                    <p data-lang-inline="en">Iron is not formed in stars like our sun, but in supernova explosions of massive stars.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">طاقة هائلة</strong>
+                                    <strong data-lang-inline="en">Enormous Energy</strong>
+                                    <p data-lang-inline="ar">تكوين ذرة حديد واحدة يحتاج طاقة تساوي 4 أضعاف طاقة المجموعة الشمسية.</p>
+                                    <p data-lang-inline="en">Forming one iron atom requires energy equal to 4 times the energy of the entire solar system.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">نيازك حديدية</strong>
+                                    <strong data-lang-inline="en">Iron Meteorites</strong>
+                                    <p data-lang-inline="ar">الحديد وصل للأرض عبر نيازك سقطت عليها.</p>
+                                    <p data-lang-inline="en">Iron reached Earth through meteorites.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUNNAH SECTION -->
+            <section class="section-divider sunnah" id="sunnah-miracles">
+                <h3><i class="fas fa-mosque"></i>
+                    <span data-lang-inline="ar">إعجاز السنة النبوية</span>
+                    <span data-lang-inline="en">Miracles of the Sunnah</span>
+                </h3>
+            </section>
+
+            <!-- Sunnah Medicine -->
+            <section id="medicine" class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-heartbeat"></i>
+                        <span data-lang-inline="ar">الإعجاز الطبي في السنة النبوية</span>
+                        <span data-lang-inline="en">Medical Miracles in the Sunnah</span>
+                    </h2>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-pills"></i>
+                                <span data-lang-inline="ar">علاج العسل</span>
+                                <span data-lang-inline="en">Honey as Medicine</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="hadith-box">
+                                <h5><i class="fas fa-quote-left"></i>
+                                    <span data-lang-inline="ar">حديث نبوي</span>
+                                    <span data-lang-inline="en">Prophetic Hadith</span>
+                                </h5>
+                                <p>"الشفاء في ثلاثة: شرطة محجم، أو شربة عسل، أو لذعة نار."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"Healing is in three things: cupping, a drink of honey, or cauterization." - Bukhari</p>
+                            </div>
+                            <p data-lang-inline="ar">أثبت العلم الحديث أن العسل يحتوي على خصائص مضادة للبكتيريا.</p>
+                            <p data-lang-inline="en">Modern science has proven that honey contains antibacterial properties.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-cut"></i>
+                                <span data-lang-inline="ar">الحجامة</span>
+                                <span data-lang-inline="en">Cupping (Hijama)</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="hadith-box">
+                                <h5><i class="fas fa-quote-left"></i>
+                                    <span data-lang-inline="ar">حديث نبوي</span>
+                                    <span data-lang-inline="en">Prophetic Hadith</span>
+                                </h5>
+                                <p>"نفع الله بك، وشفاء بك."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"May Allah benefit you through it and give you healing."</p>
+                            </div>
+                            <p data-lang-inline="ar">أثبتت الدراسات الحديثة فوائد الحجامة للصحة.</p>
+                            <p data-lang-inline="en">Modern studies have confirmed the health benefits of cupping therapy.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-teeth"></i>
+                                <span data-lang-inline="ar">السواك</span>
+                                <span data-lang-inline="en">Miswak (Siwak)</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="hadith-box">
+                                <h5><i class="fas fa-quote-left"></i>
+                                    <span data-lang-inline="ar">حديث نبوي</span>
+                                    <span data-lang-inline="en">Prophetic Hadith</span>
+                                </h5>
+                                <p>"لولا أن أشق على أمتي لأمرتهم بالسواك عند كل صلاة."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"If I did not fear difficulty for my people, I would have ordered them to use the miswak at every prayer." - Bukhari & Muslim</p>
+                            </div>
+                            <p data-lang-inline="ar">السواك يحتوي على مواد مطهرة ومضادة للبكتيريا.</p>
+                            <p data-lang-inline="en">Miswak contains natural antiseptic and antibacterial substances.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-wine-bottle"></i>
+                                <span data-lang-inline="ar">تحريم الخمر</span>
+                                <span data-lang-inline="en">Prohibition of Alcohol</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="hadith-box">
+                                <h5><i class="fas fa-quote-left"></i>
+                                    <span data-lang-inline="ar">حديث نبوي</span>
+                                    <span data-lang-inline="en">Prophetic Hadith</span>
+                                </h5>
+                                <p>"لا تشربوا الخمر، فإنها مفتاح كل شر."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"Do not drink alcohol, for it is the key to all evil."</p>
+                            </div>
+                            <p data-lang-inline="ar">أثبت العلم الحديث أضرار الكحول: تليف الكبد، سرطان الفم، أمراض القلب.</p>
+                            <p data-lang-inline="en">Modern science has proven alcohol's harms: liver cirrhosis, oral cancer, heart disease.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunnah Embryology -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-baby"></i>
+                        <span data-lang-inline="ar">علم الأجنّة في السنة النبوية</span>
+                        <span data-lang-inline="en">Embryology in the Sunnah</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-dna"></i>
+                            <span data-lang-inline="ar">حديث جمع الخلق</span>
+                            <span data-lang-inline="en">Hadith of Creation Assembly</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="hadith-box">
+                            <h5><i class="fas fa-quote-left"></i>
+                                <span data-lang-inline="ar">حديث نبوي شريف</span>
+                                <span data-lang-inline="en">Prophetic Hadith</span>
+                            </h5>
+                            <p>"إن أحدكم يُجمع في بطن أمه أربعين يوماً، ثم يكون علقة مثل ذلك، ثم يكون مضغة مثل ذلك..."</p>
+                            <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"Each one of you is gathered in his mother's womb for forty days, then he becomes a leech-like clot for a similar period..." - Bukhari & Muslim</p>
+                        </div>
+                        <ul class="evidence-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">النطفة</strong>
+                                    <strong data-lang-inline="en">The Nutfah Stage</strong>
+                                    <p data-lang-inline="ar">جمع خلايا الجنين في الأربعين يوماً الأولى.</p>
+                                    <p data-lang-inline="en">Assembly of embryo cells in the first forty days.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">العلقة</strong>
+                                    <strong data-lang-inline="en">The Alaqah Stage</strong>
+                                    <p data-lang-inline="ar">مرحلة الارتباط بجدار الرحم.</p>
+                                    <p data-lang-inline="en">Stage of attachment to the uterine wall.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <strong data-lang-inline="ar">المضغة</strong>
+                                    <strong data-lang-inline="en">The Mudghah Stage</strong>
+                                    <p data-lang-inline="ar">مرحلة التشكل والتخليق.</p>
+                                    <p data-lang-inline="en">Stage of formation and creation.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <p data-lang-inline="ar">ثبت بعلم الأجنة أن هذه المراحل لا تبدأ إلا بعد 42 يوماً من الحمل.</p>
+                        <p data-lang-inline="en">Embryology has confirmed that these stages begin only after 42 days of pregnancy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunnah Astronomy -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-star"></i>
+                        <span data-lang-inline="ar">الإعجاز الفلكي في السنة</span>
+                        <span data-lang-inline="en">Astronomical Miracles in Sunnah</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-meteor"></i>
+                            <span data-lang-inline="ar">النجوم أمان للسماء</span>
+                            <span data-lang-inline="en">Stars as Security for the Sky</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="hadith-box">
+                            <h5><i class="fas fa-quote-left"></i>
+                                <span data-lang-inline="ar">حديث نبوي شريف</span>
+                                <span data-lang-inline="en">Prophetic Hadith</span>
+                            </h5>
+                            <p>"النجوم أمانة للسماء، فإذا ذهبت النجوم أتى السماء ما توعد، وأنا أمانة لأصحابي، فإذا ذهبت أتى أصحابي ما يوعدون."</p>
+                            <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"The stars are a security for the sky; if the stars disappear, the sky will do what has been promised to it..." - Muslim</p>
+                        </div>
+                        <p data-lang-inline="ar">جاذبية النجوم تحافظ على توازن مدارات الكواكب ومنع اختلاط المجرات.</p>
+                        <p data-lang-inline="en">The gravitational force of stars maintains the balance of planetary orbits and prevents galaxies from mixing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunnah Earth -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-globe"></i>
+                        <span data-lang-inline="ar">الإعجاز في علوم الأرض</span>
+                        <span data-lang-inline="en">Geological Miracles in Sunnah</span>
+                    </h2>
+                </div>
+
+                <div class="content-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-layer-group"></i>
+                                <span data-lang-inline="ar">الأرضون السبع</span>
+                                <span data-lang-inline="en">Seven Earths</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="hadith-box">
+                                <h5><i class="fas fa-quote-left"></i>
+                                    <span data-lang-inline="ar">حديث نبوي</span>
+                                    <span data-lang-inline="en">Prophetic Hadith</span>
+                                </h5>
+                                <p>"من ظلم قيد شبر من الأرض طوقه من سبع أرضين."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"Whoever takes even a handspan of land unjustly, it will be made into a collar for him on the Day of Resurrection from seven earths." - Bukhari</p>
+                            </div>
+                            <p data-lang-inline="ar">تؤيد الأحاديث النبوية تركيب الأرض الداخلي.</p>
+                            <p data-lang-inline="en">The hadiths support the internal structure of the earth.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-seedling"></i>
+                                <span data-lang-inline="ar">أرض العرب مروجاً وأنهاراً</span>
+                                <span data-lang-inline="en">Arabia Becoming Meadows</span>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="hadith-box">
+                                <h5><i class="fas fa-quote-left"></i>
+                                    <span data-lang-inline="ar">حديث نبوي</span>
+                                    <span data-lang-inline="en">Prophetic Hadith</span>
+                                </h5>
+                                <p>"لن تقوم الساعة حتى تعود أرض العرب مروجاً وأنهاراً."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"The Hour will not come until the land of Arabia becomes meadows and rivers." - Muslim</p>
+                            </div>
+                            <p data-lang-inline="ar">يشير إلى تغير مناخي سيحدث في الجزيرة العربية.</p>
+                            <p data-lang-inline="en">This refers to a climate change that will occur on the Arabian Peninsula.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Water Miracles -->
+            <section class="section fade-in">
+                <div class="section-header">
+                    <h2><i class="fas fa-tint"></i>
+                        <span data-lang-inline="ar">إعجاز الماء في السنة</span>
+                        <span data-lang-inline="en">Water Miracles in the Sunnah</span>
+                    </h2>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-glass-whiskey"></i>
+                            <span data-lang-inline="ar">ماء زمزم</span>
+                            <span data-lang-inline="en">Zamzam Water</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="hadith-box">
+                            <h5><i class="fas fa-quote-left"></i>
+                                <span data-lang-inline="ar">حديث نبوي</span>
+                                <span data-lang-inline="en">Prophetic Hadith</span>
+                            </h5>
+                                <p>"ماء زمزم لما شرب له."</p>
+                                <p style="font-size: 0.9rem; font-style: italic; margin-top: 0.5rem;">"Zamzam water is for whatever purpose it is drunk."</p>
+                        </div>
+                        <p data-lang-inline="ar">ماء زمزم agua unique contiene minerales únicos que no se evaporan.科学研究表明，赞赞水的化学成分具有独特的特性。</p>
+                        <p data-lang-inline="en">Zamzam water contains unique minerals that do not evaporate, with unique chemical properties.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section id="conclusion" class="section fade-in">
+                <div class="section-header">
+                    <h2>
+                        <span data-lang-inline="ar">الخاتمة والنتائج</span>
+                        <span data-lang-inline="en">Conclusion</span>
+                    </h2>
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item active">
+                        <button class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-lang-inline="ar">١. التأكيد على المصدر الإلهي</span>
+                            <span data-lang-inline="en">1. Confirmation of Divine Source</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p data-lang-inline="ar">جميع الحقائق العلمية المذكورة في القرآن والسنة قد أثبتها العلم الحديث، مما يؤكد مصدرها الإلهي.</p>
+                                <p data-lang-inline="en">All scientific facts mentioned in the Quran and Sunnah have been proven by modern science, confirming their divine source.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-lang-inline="ar">٢. عالمية الرسالة</span>
+                            <span data-lang-inline="en">2. Universality of the Message</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p data-lang-inline="ar">القرآن والسنة يتضمنان إشارات علمية تصلح لكل زمان ومكان.</p>
+                                <p data-lang-inline="en">The Quran and Sunnah contain scientific references suitable for all times and places.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" onclick="toggleAccordion(this)">
+                            <span data-lang-inline="ar">٣. عدم التعارض</span>
+                            <span data-lang-inline="en">3. No Contradiction</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-content">
+                                <p data-lang-inline="ar">لم يثبت علمياً أي تعارض بين الحقائق العلمية في القرآن والسنة والعلم الحديث.</p>
+                                <p data-lang-inline="en">No scientific contradiction has been established between the Quran, Sunnah, and modern science.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <p class="arabic">"وَلَوْ كَانَ مِنْ عِندِ غَيْرِ اللَّهِ لَوَجَدُوا فِيهِ اخْتِلَافًا كَثِيرًا"</p>
+                    <p class="english">"And if it had been from other than Allah, they would have found within it much contradiction."</p>
+                    <p class="source">Quran 4:82 | سورة النساء: 82</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 data-lang-inline="ar">عن الموقع</h4>
+                <h4 data-lang-inline="en">About</h4>
+                <p data-lang-inline="ar">موسوعة شاملة توثق الإعجاز العلمي في القرآن والسنة النبوية.</p>
+                <p data-lang-inline="en">A comprehensive encyclopedia documenting scientific miracles in the Quran and Sunnah.</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gold-light);">
+                    <i class="fas fa-heart"></i>
+                    <span data-lang-inline="ar">مهدى إلى روح الحاج محمد خليل نشوان</span>
+                    <span data-lang-inline="en">Dedicated to the soul of Al-Hajj Muhammad Khalil Nashwan</span>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4 data-lang-inline="ar">روابط سريعة</h4>
+                <h4 data-lang-inline="en">Quick Links</h4>
+                <ul>
+                    <li><a href="#intro" data-lang-inline="ar">المقدمة</a><a href="#intro" data-lang-inline="en">Introduction</a></li>
+                    <li><a href="#quran-miracles" data-lang-inline="ar">إعجاز القرآن</a><a href="#quran-miracles" data-lang-inline="en">Quran Miracles</a></li>
+                    <li><a href="#sunnah-miracles" data-lang-inline="ar">إعجاز السنة</a><a href="#sunnah-miracles" data-lang-inline="en">Sunnah Miracles</a></li>
+                    <li><a href="#conclusion" data-lang-inline="ar">الخاتمة</a><a href="#conclusion" data-lang-inline="en">Conclusion</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 data-lang-inline="ar">المراجع</h4>
+                <h4 data-lang-inline="en">References</h4>
+                <ul>
+                    <li><a href="#">القرآن الكريم | Holy Quran</a></li>
+                    <li><a href="#">صحيح البخاري | Sahih Bukhari</a></li>
+                    <li><a href="#">صحيح مسلم | Sahih Muslim</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 
+                <span data-lang-inline="ar">الإعجاز العلمي في القرآن والسنة</span>
+                <span data-lang-inline="en">Scientific Miracles in the Quran & Sunnah</span>
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <span data-lang-inline="ar">صُنع بحب لخدمة كتاب الله وسنة نبيه ﷺ</span>
+                <span data-lang-inline="en">Made with love to serve the Book of Allah and the Sunnah of His Prophet ﷺ</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Language Switcher
+        function setLang(lang) {
+            if (lang === 'en') {
+                document.body.classList.add('en');
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+            } else {
+                document.body.classList.remove('en');
+                document.documentElement.lang = 'ar';
+                document.documentElement.dir = 'rtl';
+            }
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+        }
+
+        // Dedication Popup
+        function closeDedication() {
+            document.getElementById('dedicationOverlay').classList.add('hidden');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeDedication();
+        });
+
+        // Accordion
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        }
+
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.main-nav').offsetHeight;
+                    window.scrollTo({
+                        top: target.offsetTop - navHeight - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade In Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Scroll Indicator
+        document.querySelector('.scroll-down').addEventListener('click', () => {
+            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
