@@ -1,0 +1,2848 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="موسوعة ثنائية اللغة للإعجاز العلمي في القرآن والسنة — A bilingual encyclopedia of scientific signs in the Quran and Sunnah" />
+  <meta name="theme-color" content="#0b3d2e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>الإعجاز العلمي في القرآن والسنة</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%230b3d2e' width='64' height='64' rx='12'/><text x='32' y='44' text-anchor='middle' font-size='32' fill='%23c9a227'>ق</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+:root {
+  --primary: #0b3d2e;
+  --primary-mid: #146b4a;
+  --primary-light: #1e8a5e;
+  --gold: #c9a227;
+  --gold-soft: #e8d48b;
+  --ink: #1b2430;
+  --muted: #5b6573;
+  --paper: #f6f1e7;
+  --card: #ffffff;
+  --line: #e6ddd0;
+  --sunnah: #1a4f8b;
+  --sunnah-soft: #e8f1fb;
+  --quran-soft: #e8f5ee;
+  --shadow: 0 18px 50px rgba(11, 61, 46, 0.12);
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Cairo", "Inter", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.85;
+  min-width: 0;
+}
+
+body.en {
+  font-family: "Inter", "Cairo", system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+.amiri, .verse-ar, .bismillah, .dedication-title {
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a { color: inherit; }
+
+button, input, select {
+  font-family: inherit;
+  max-width: 100%;
+}
+
+button, .chip, .lang-btn, .nav-links a, .btn-enter {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(11, 61, 46, .12);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: #fff;
+  padding: 8px 14px;
+  z-index: 10000;
+}
+.skip-link:focus { left: 8px; }
+
+/* Language */
+.lang-switcher {
+  position: fixed;
+  top: max(10px, env(safe-area-inset-top));
+  inset-inline-end: max(10px, env(safe-area-inset-right));
+  z-index: 1200;
+  display: flex;
+  gap: 4px;
+  background: rgba(255,255,255,.94);
+  padding: 4px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+.lang-btn {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  min-height: 40px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--primary);
+}
+.lang-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Dedication */
+.dedication-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 22, 18, .88);
+  display: grid;
+  place-items: center;
+  z-index: 2000;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  overflow: auto;
+}
+.dedication-overlay.hidden { display: none; }
+.dedication-popup {
+  background: linear-gradient(180deg, #fff 0%, #f8f3e8 100%);
+  border: 3px solid var(--gold);
+  border-radius: 28px;
+  padding: 2.2rem 1.4rem 1.8rem;
+  max-width: 520px;
+  width: min(100%, 520px);
+  text-align: center;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+  max-height: min(92dvh, 920px);
+  overflow: auto;
+}
+.dedication-popup .close-x {
+  position: absolute;
+  top: 12px;
+  inset-inline-start: 12px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+.dedication-photo {
+  width: 168px;
+  height: 168px;
+  margin: .6rem auto 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 5px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(201,162,39,.35);
+}
+.bismillah { color: var(--gold); font-size: 1.55rem; }
+.dedication-title { color: var(--primary); font-size: 2rem; margin: .4rem 0; }
+.dedication-name { font-size: 1.15rem; font-weight: 800; }
+.dedication-name strong { display: block; font-size: 1.35rem; color: var(--primary); margin-top: .2rem; }
+.dedication-dua {
+  font-family: "Amiri", serif;
+  font-size: 1.25rem;
+  color: var(--primary-mid);
+  margin: 1rem 0 1.4rem;
+  line-height: 2.1;
+}
+.btn-enter {
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 32px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Hero */
+.hero {
+  min-height: 100svh;
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(201,162,39,.18), transparent 50%),
+    linear-gradient(160deg, #07261c 0%, #0b3d2e 45%, #146b4a 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  padding: 5.8rem max(1rem, env(safe-area-inset-right)) 4.2rem max(1rem, env(safe-area-inset-left));
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L48 32L80 40L48 48L40 80L32 48L0 40L32 32Z' fill='%23ffffff' fill-opacity='.5'/%3E%3C/svg%3E");
+}
+.hero-inner { position: relative; z-index: 1; text-align: center; max-width: 920px; width: 100%; }
+.hero-kicker {
+  letter-spacing: .12em;
+  color: var(--gold-soft);
+  font-weight: 700;
+  margin-bottom: .6rem;
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+.hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.35; }
+.hero-sub { font-size: 1.15rem; opacity: .92; margin: .8rem 0 1.4rem; }
+.hero-verse {
+  font-family: "Amiri", serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  line-height: 2.15;
+  max-width: 760px;
+  margin: 0 auto 0.4rem;
+}
+.hero-verse-tr { opacity: .85; font-style: italic; font-size: .98rem; }
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 2.4rem;
+}
+.stat {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  min-width: min(150px, 42vw);
+  flex: 1 1 140px;
+  max-width: 220px;
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+}
+.stat b { display: block; color: var(--gold-soft); font-size: 1.8rem; }
+.scroll-hint {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  background: none;
+  border: 0;
+  font-size: 1.6rem;
+  cursor: pointer;
+  animation: bob 2s infinite;
+}
+@keyframes bob {
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Nav */
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-wrap {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .7rem max(1rem, env(safe-area-inset-right)) .7rem max(1rem, env(safe-area-inset-left));
+  gap: 1rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  min-width: 0;
+}
+.logo span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.logo i { color: var(--gold); }
+.nav-links {
+  display: flex;
+  gap: .2rem;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.nav-links a {
+  text-decoration: none;
+  padding: .45rem .75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--ink);
+}
+.nav-links a:hover, .nav-links a.active {
+  background: var(--primary);
+  color: #fff;
+}
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Layout */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 max(1rem, env(safe-area-inset-right)) 0 max(1rem, env(safe-area-inset-left));
+}
+.section { padding: 3.4rem 0; }
+.section-head { text-align: center; margin-bottom: 2rem; }
+.section-head h2 {
+  color: var(--primary);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin-bottom: .5rem;
+}
+.section-head p { color: var(--muted); max-width: 720px; margin: 0 auto; }
+
+.method-grid, .about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 1rem;
+}
+.method-card, .info-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.04);
+}
+.method-card h3, .info-card h3 {
+  color: var(--primary);
+  margin-bottom: .45rem;
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+.method-card h3 i { color: var(--gold); }
+
+/* Toolbar */
+.toolbar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 1rem;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.04);
+}
+.search-row { display: flex; gap: .7rem; margin-bottom: .8rem; }
+.search-row input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .85rem 1rem;
+  font-size: 16px;
+  background: #fbfaf7;
+}
+.chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.chip {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 999px;
+  padding: .45rem .85rem;
+  min-height: 40px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: .86rem;
+  color: var(--ink);
+}
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.chip.sunnah.active {
+  background: var(--sunnah);
+  border-color: var(--sunnah);
+}
+.results-meta {
+  color: var(--muted);
+  font-size: .92rem;
+  margin: .4rem 0 1rem;
+}
+
+/* Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1.15rem;
+}
+.miracle {
+  background: var(--card);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition: transform .25s, box-shadow .25s;
+}
+.miracle:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+.miracle-top {
+  padding: 1.1rem 1.2rem .7rem;
+  display: flex;
+  justify-content: space-between;
+  gap: .6rem;
+  align-items: flex-start;
+}
+.miracle-top h3 {
+  font-size: 1.12rem;
+  color: var(--primary);
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+  line-height: 1.45;
+}
+.miracle-top h3 i { color: var(--gold); }
+.badge {
+  font-size: .72rem;
+  font-weight: 800;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badge.quran { background: var(--quran-soft); color: var(--primary); }
+.badge.sunnah { background: var(--sunnah-soft); color: var(--sunnah); }
+.miracle-body { padding: 0 1.2rem 1.2rem; }
+.verse-box {
+  background: linear-gradient(135deg, #eef8f2, #f7f3e6);
+  border-inline-start: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  margin: .7rem 0;
+}
+.miracle.sunnah .verse-box {
+  background: linear-gradient(135deg, #eef4fb, #f7f3e6);
+  border-inline-start-color: var(--sunnah);
+}
+.verse-ar { font-size: 1.12rem; line-height: 2; overflow-wrap: anywhere; }
+.verse-en, .science, .points li span { overflow-wrap: anywhere; }
+.verse-en { font-style: italic; color: #445; margin-top: .35rem; }
+.verse-ref { color: var(--primary); font-weight: 700; font-size: .85rem; margin-top: .35rem; }
+.science { color: #334; margin: .55rem 0; }
+.points { list-style: none; margin-top: .4rem; }
+.points li {
+  display: flex;
+  gap: .5rem;
+  padding: .35rem 0;
+  color: #333;
+  font-size: .95rem;
+}
+.points li i { color: var(--gold); margin-top: .35rem; flex-shrink: 0; }
+
+.divider {
+  margin: 1.5rem 0;
+  padding: 1.6rem;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+}
+.divider.sunnah { background: linear-gradient(135deg, var(--sunnah), #2a74c2); }
+.divider h2 { font-size: 1.6rem; }
+
+.quote {
+  background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+  color: #fff;
+  border-radius: 20px;
+  padding: 2rem 1.4rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.quote .ar { font-family: "Amiri", serif; font-size: 1.4rem; line-height: 2; }
+.quote .en { opacity: .9; font-style: italic; margin-top: .4rem; }
+
+.scholar {
+  display: flex;
+  gap: 1rem;
+  background: #fff8dc;
+  border-radius: 16px;
+  padding: 1.1rem;
+  margin: 1.2rem 0 0;
+  border: 1px solid #efe3b0;
+}
+.scholar i { color: var(--gold); font-size: 1.4rem; }
+.scholar cite { display: block; margin-top: .4rem; font-style: normal; font-weight: 700; color: var(--primary); }
+
+footer {
+  background: #101820;
+  color: #dfe7ee;
+  padding: 3rem 1.2rem 1.4rem;
+  margin-top: 2rem;
+}
+.footer-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 1.6rem;
+}
+footer h4 { color: var(--gold-soft); margin-bottom: .7rem; }
+footer a { color: #cfd8e0; text-decoration: none; }
+footer ul { list-style: none; }
+footer li { margin: .3rem 0; }
+.footer-bottom {
+  max-width: 1240px;
+  margin: 2rem auto 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+  font-size: .92rem;
+}
+.footer-bottom .muted { opacity: .75; }
+.rights-line {
+  color: var(--gold-soft);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: .35rem 0 .9rem;
+  font-family: "Amiri", "Cairo", serif;
+}
+.visitor-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(232, 212, 139, .28);
+  border-radius: 16px;
+  padding: .75rem 1.2rem;
+  margin: 0 auto 1.1rem;
+  max-width: 100%;
+}
+.visitor-box i { color: var(--gold-soft); font-size: 1.35rem; }
+.visitor-stat { text-align: start; }
+.visitor-stat b {
+  display: block;
+  color: var(--gold-soft);
+  font-size: 1.45rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.visitor-stat span { opacity: .8; font-size: .82rem; }
+
+.back-top {
+  position: fixed;
+  bottom: 22px;
+  inset-inline-start: 18px;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: var(--shadow);
+  z-index: 900;
+}
+.back-top.show { opacity: 1; visibility: visible; }
+
+.empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--muted);
+  background: #fff;
+  border-radius: 16px;
+}
+
+@media (max-width: 860px) {
+  .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    background: #fff;
+    flex-direction: column;
+    padding: .6rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .grid { grid-template-columns: 1fr; }
+  .hero { min-height: auto; padding-top: 5.5rem; }
+}
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#library">Skip to content</a>
+
+  <div class="lang-switcher" role="group" aria-label="Language">
+    <button class="lang-btn active" type="button" data-lang="ar">العربية</button>
+    <button class="lang-btn" type="button" data-lang="en">English</button>
+  </div>
+
+  <div class="dedication-overlay" id="dedicationOverlay">
+    <div class="dedication-popup">
+      <button class="close-x" type="button" onclick="closeDedication()" aria-label="Close"><i class="fas fa-times"></i></button>
+      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <img src="photo.jpg" alt="" class="dedication-photo" />
+      <h2 class="dedication-title" data-i="dedication">إهداء</h2>
+      <p class="dedication-name">
+        <span data-i="toFather">إلى روح أبي</span>
+        <strong data-i="fatherName">الحاج محمد خليل نشوان</strong>
+        <span data-i="fatherKunya">أبو نايف الدوايمة</span>
+      </p>
+      <p class="dedication-dua" data-i-html="dua">رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ</p>
+      <button class="btn-enter" type="button" onclick="closeDedication()" data-i="enter">دخول الموقع</button>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-kicker" data-i="kicker">موسوعة علمية موثّقة</p>
+      <h1 data-i="heroTitle">الإعجاز العلمي في القرآن والسنة</h1>
+      <p class="hero-sub" data-i="heroSub"></p>
+      <p class="hero-verse">سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ وَفِي أَنفُسِهِمْ حَتَّىٰ يَتَبَيَّنَ لَهُمْ أَنَّهُ الْحَقُّ</p>
+      <p class="hero-verse-tr" data-i="heroVerseTr">سورة فصلت: 53</p>
+      <div class="hero-stats">
+        <div class="stat"><b>+1000</b><span data-i="stats1"></span></div>
+        <div class="stat"><b>1400+</b><span data-i="stats2"></span></div>
+        <div class="stat"><b data-count>50+</b><span data-i="stats3"></span></div>
+        <div class="stat"><b>AR · EN</b><span data-i="stats4"></span></div>
+        <div class="stat">
+          <b data-visitors-num>—</b>
+          <span data-i="visitors">زائر</span>
+        </div>
+      </div>
+    </div>
+    <button class="scroll-hint" type="button" onclick="document.getElementById('method').scrollIntoView({behavior:'smooth'})" aria-label="Scroll">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+  </header>
+
+  <nav class="main-nav">
+    <div class="nav-wrap">
+      <a class="logo" href="#top"><i class="fas fa-book-quran"></i> <span data-i="logo"></span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="#method" data-i="navIntro"></a></li>
+        <li><a href="#library" data-i="navLibrary"></a></li>
+        <li><a href="#library" onclick="document.querySelector('[data-source=quran]')?.click()" data-i="navQuran"></a></li>
+        <li><a href="#library" onclick="document.querySelector('[data-source=sunnah]')?.click()" data-i="navSunnah"></a></li>
+        <li><a href="#about" data-i="navAbout"></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section" id="method">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i="methodTitle"></h2>
+          <p data-i="methodLead"></p>
+        </div>
+        <div class="method-grid">
+          <article class="method-card"><h3><i class="fas fa-flask"></i> <span data-i="m1t"></span></h3><p data-i="m1"></p></article>
+          <article class="method-card"><h3><i class="fas fa-book-open"></i> <span data-i="m2t"></span></h3><p data-i="m2"></p></article>
+          <article class="method-card"><h3><i class="fas fa-code-branch"></i> <span data-i="m3t"></span></h3><p data-i="m3"></p></article>
+          <article class="method-card"><h3><i class="fas fa-heart"></i> <span data-i="m4t"></span></h3><p data-i="m4"></p></article>
+        </div>
+        <div class="scholar">
+          <i class="fas fa-quote-right"></i>
+          <div>
+            <blockquote data-i="scholarQ"></blockquote>
+            <cite data-i="scholarC"></cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="library" style="padding-top:1.5rem">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i="libraryTitle"></h2>
+          <p data-i="libraryLead"></p>
+        </div>
+        <div class="toolbar">
+          <div class="search-row">
+            <input id="search" type="search" placeholder="ابحث..." autocomplete="off" />
+          </div>
+          <div class="chips" id="chips"></div>
+        </div>
+        <p class="results-meta" id="results-meta"></p>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i="aboutTitle"></h2>
+          <p data-i="aboutLead"></p>
+        </div>
+        <div class="about-grid">
+          <article class="info-card"><h3 data-i="a1t"></h3><p data-i="a1"></p></article>
+          <article class="info-card"><h3 data-i="a2t"></h3><p data-i="a2"></p></article>
+          <article class="info-card"><h3 data-i="a3t"></h3><p data-i="a3"></p></article>
+        </div>
+        <div class="quote">
+          <p class="ar" data-i="conclusionVerse"></p>
+          <p class="en" data-i="conclusionTr"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4 data-i="footerAbout"></h4>
+        <p data-i="footerAboutTxt"></p>
+        <p style="margin-top:1rem;color:var(--gold-soft)"><i class="fas fa-heart"></i> <span data-i="dedicatedTo"></span></p>
+      </div>
+      <div>
+        <h4 data-i="footerLinks"></h4>
+        <ul>
+          <li><a href="#method" data-i="navIntro"></a></li>
+          <li><a href="#library" data-i="navLibrary"></a></li>
+          <li><a href="#about" data-i="navAbout"></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i="footerRefs"></h4>
+        <ul>
+          <li>القرآن الكريم · The Quran</li>
+          <li>صحيح البخاري · Sahih al-Bukhari</li>
+          <li>صحيح مسلم · Sahih Muslim</li>
+          <li>Keith L. Moore · Embryology</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="visitor-box" id="visitorBox" aria-live="polite">
+        <i class="fas fa-users" aria-hidden="true"></i>
+        <div class="visitor-stat">
+          <b id="visitorCount">—</b>
+          <span data-i="visitors">زائر</span>
+        </div>
+        <div class="visitor-stat">
+          <b id="visitCount">—</b>
+          <span data-i="visits">زيارة</span>
+        </div>
+      </div>
+      <p class="rights-line" data-i="rights">حقوق البحث والنشر لوجه الله تعالى</p>
+      <p class="muted">© 2026 <span data-i="logo"></span></p>
+      <p class="muted" data-i="madeWith"></p>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backToTop" type="button" aria-label="Top"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+window.I18N = {
+  ar: {
+    dir: "rtl",
+    lang: "ar",
+    siteTitle: "الإعجاز العلمي في القرآن والسنة",
+    kicker: "موسوعة علمية موثّقة",
+    heroTitle: "الإعجاز العلمي في القرآن والسنة",
+    heroSub: "عرض منهجي لآيات وأحاديث أشارت إلى حقائق كونية وحيوية وطبية، ثم وافقتها الكشوف العلمية الحديثة بعد قرون.",
+    heroVerse: "سَنُرِيهِمْ آيَاتِنَا فِي الْآفَاقِ وَفِي أَنفُسِهِمْ حَتَّىٰ يَتَبَيَّنَ لَهُمْ أَنَّهُ الْحَقُّ",
+    heroVerseTr: "سورة فصلت: 53",
+    enter: "دخول الموقع",
+    dedication: "إهداء",
+    toFather: "إلى روح أبي",
+    fatherName: "الحاج محمد خليل نشوان",
+    fatherKunya: "أبو نايف الدوايمة",
+    dua: "رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ\nرَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",
+    navIntro: "المنهج",
+    navLibrary: "الموسوعة",
+    navQuran: "القرآن",
+    navSunnah: "السنة",
+    navAbout: "عن المشروع",
+    logo: "الإعجاز العلمي",
+    methodTitle: "منهج العرض العلمي",
+    methodLead: "القرآن كتاب هداية لا كتاب علوم طبيعية. والإعجاز العلمي — عند المحققين — هو إخبار الوحي بحقائق ثبتت بالعلم التجريبي، وكان يتعذر إدراكها بوسائل القرن السابع الميلادي.",
+    m1t: "ضابط الحقيقة",
+    m1: "نعتمد الحقائق المستقرة (مثل تمدد الكون، دورة الماء، تركيب الجنين، الحاجز بين الكتل المائية) ونتجنب إسقاط النظريات المتبدلة قسراً على النص.",
+    m2t: "النص أولاً",
+    m2: "نبدأ بالآية أو الحديث بلفظه، ثم الترجمة العلمية الدقيقة، ثم الملاحظة العلمية، مع ذكر المرجع. ولا نُحمّل اللفظ ما لا يحتمله.",
+    m3t: "تعدد التفسير",
+    m3: "لكثير من الآيات الكونية أوجه في التفسير. نذكر الوجه العلمي كدلالة ممكنة راجحة عند أهل الاختصاص، لا كمعنى وحيد يُكفَّر مخالفه.",
+    m4t: "الدعوة بالعقل",
+    m4: "الغاية تبيين أن الوحي لا يناقض العلم الراسخ، وأن تفاصيل الكون والنفس آيات تدل على الخالق العليم.",
+    libraryTitle: "مكتبة الإعجاز",
+    libraryLead: "تصنيف موضوعي لأشهر ما دُرس في هيئات الإعجاز العلمي وهيئة الإعجاز في القرآن والسنة، مع صياغة علمية عربية وإنجليزية عالية.",
+    searchPh: "ابحث عن آية، حديث، موضوع علمي...",
+    all: "الكل",
+    quran: "قرآن",
+    sunnah: "سنة",
+    cosmos: "الكون والفلك",
+    earth: "الأرض والجبال",
+    ocean: "البحار والمياه",
+    atmosphere: "الغلاف الجوي",
+    embryo: "علم الأجنة",
+    biology: "الأحياء",
+    physics: "الفيزياء والكيمياء",
+    medicine: "الطب",
+    hygiene: "الوقاية والنظافة",
+    showing: "عرض",
+    item: "موضوعاً",
+    empty: "لا توجد نتائج مطابقة. جرّب كلمة أخرى أو صنفاً مختلفاً.",
+    science: "الملاحظة العلمية",
+    quranBadge: "قرآن كريم",
+    sunnahBadge: "سنة نبوية",
+    aboutTitle: "عن هذا المشروع",
+    aboutLead: "موقع توثيقي مهداة روح الحاج محمد خليل نشوان، يجمع بين النص الشرعي والصياغة العلمية الرصينة بالعربي والإنجليزي.",
+    a1t: "المصادر الشرعية",
+    a1: "القرآن الكريم، صحيح البخاري، صحيح مسلم، والسنن المعتمدة. نكتفي غالباً بما صحّ أو حسُن.",
+    a2t: "المصادر العلمية",
+    a2: "حقائق مقررة في علم الأجنة، المحيطات، الجيولوجيا، الفلك، والطب الوقائي، مع لغة تخصصية دون تهويل.",
+    a3t: "اللغتان",
+    a3: "العربية لغة النص، والإنجليزية صياغة علمية معاصرة (scientific register) لغير الناطقين بالعربية.",
+    conclusionTitle: "خلاصة",
+    conclusionVerse: "وَلَوْ كَانَ مِنْ عِندِ غَيْرِ اللَّهِ لَوَجَدُوا فِيهِ اخْتِلَافًا كَثِيرًا",
+    conclusionTr: "سورة النساء: 82 — And if it had been from other than Allah, they would have found in it much contradiction.",
+    footerAbout: "عن الموقع",
+    footerAboutTxt: "موسوعة ثنائية اللغة توثّق وجوه الإعجاز العلمي في القرآن والسنة، بمنهج يحترم النص والعلم معاً.",
+    footerLinks: "روابط",
+    footerRefs: "مراجع إرشادية",
+    dedicatedTo: "مُهدى إلى روح الحاج محمد خليل نشوان",
+    madeWith: "صُنع لخدمة كتاب الله وسنة نبيه ﷺ",
+    rights: "حقوق البحث والنشر لوجه الله تعالى",
+    visitors: "زائر",
+    visits: "زيارة",
+    visitorLabel: "عدد الزوار",
+    scholarQ: "أوصاف مراحل الجنين في القرآن لا يمكن أن تكون مبنية على علم القرن السابع. الاستنتاج المعقول أنها أوحيت إلى محمد ﷺ من الله.",
+    scholarC: "د. كيث مور — أستاذ علم الأجنة، جامعة تورونتو",
+    stats1: "آية كونية تقريباً",
+    stats2: "عاماً على الوحي",
+    stats3: "موضوعاً موثّقاً هنا",
+    stats4: "لغتان علميتان"
+  },
+  en: {
+    dir: "ltr",
+    lang: "en",
+    siteTitle: "Scientific Signs in the Quran and Sunnah",
+    kicker: "A documented scientific encyclopedia",
+    heroTitle: "Scientific Miracles in the Quran & Sunnah",
+    heroSub: "A methodical survey of verses and hadiths that allude to cosmic, biological and medical realities later corroborated by modern empirical science.",
+    heroVerse: "We will show them Our signs in the horizons and within themselves until it becomes clear to them that it is the truth.",
+    heroVerseTr: "Quran 41:53",
+    enter: "Enter the site",
+    dedication: "Dedication",
+    toFather: "To the soul of my father",
+    fatherName: "Al-Hajj Muhammad Khalil Nashwan",
+    fatherKunya: "Abu Nayef Al-Duwaima",
+    dua: "My Lord, forgive me and my parents.\nMy Lord, have mercy on them as they raised me when I was small.",
+    navIntro: "Method",
+    navLibrary: "Encyclopedia",
+    navQuran: "Quran",
+    navSunnah: "Sunnah",
+    navAbout: "About",
+    logo: "Scientific Signs",
+    methodTitle: "Scholarly method",
+    methodLead: "The Quran is a book of guidance, not a natural-science textbook. Scientific iʿjāz, as defined by specialists, is the disclosure of empirical realities that could not have been known by seventh-century means.",
+    m1t: "Established facts",
+    m1: "We rely on well-settled observations (cosmic expansion, the water cycle, embryonic staging, oceanic fronts) and avoid forcing shifting theories onto the text.",
+    m2t: "Text first",
+    m2: "Each entry begins with the Arabic wording, a precise scientific English rendering, then the observation, with references. We do not overload the wording.",
+    m3t: "Plural readings",
+    m3: "Many cosmic verses admit more than one tafsīr. The scientific reading is presented as a possible, often strong, correspondence — not as the sole licit meaning.",
+    m4t: "Reasoned invitation",
+    m4: "The aim is to show that revelation does not contradict well-established science, and that the cosmos and the self are signs pointing to the All-Knowing Creator.",
+    libraryTitle: "Encyclopedia of signs",
+    libraryLead: "A topical library of the most studied cases in the literature of scientific signs in the Quran and Sunnah, written in a high scientific register in Arabic and English.",
+    searchPh: "Search a verse, hadith, or scientific topic...",
+    all: "All",
+    quran: "Quran",
+    sunnah: "Sunnah",
+    cosmos: "Cosmos",
+    earth: "Earth & mountains",
+    ocean: "Seas & water",
+    atmosphere: "Atmosphere",
+    embryo: "Embryology",
+    biology: "Biology",
+    physics: "Physics & chemistry",
+    medicine: "Medicine",
+    hygiene: "Prevention & hygiene",
+    showing: "Showing",
+    item: "entries",
+    empty: "No matching entries. Try another keyword or category.",
+    science: "Scientific observation",
+    quranBadge: "Holy Quran",
+    sunnahBadge: "Prophetic Sunnah",
+    aboutTitle: "About this project",
+    aboutLead: "A bilingual documentary site dedicated to the soul of Al-Hajj Muhammad Khalil Nashwan, joining scripture with careful scientific wording.",
+    a1t: "Scriptural sources",
+    a1: "The Quran, Sahih al-Bukhari, Sahih Muslim, and the canonical Sunan. We generally restrict ourselves to sound or fair reports.",
+    a2t: "Scientific sources",
+    a2: "Established findings in embryology, oceanography, geology, astronomy and preventive medicine — specialist language without sensationalism.",
+    a3t: "Two languages",
+    a3: "Arabic carries the revealed wording; English is written in a contemporary scientific register for non-Arabic readers.",
+    conclusionTitle: "Closing note",
+    conclusionVerse: "And if it had been from other than Allah, they would have found within it much contradiction.",
+    conclusionTr: "Quran 4:82",
+    footerAbout: "About",
+    footerAboutTxt: "A bilingual encyclopedia documenting scientific signs in the Quran and Sunnah, with respect for both text and science.",
+    footerLinks: "Links",
+    footerRefs: "Indicative references",
+    dedicatedTo: "Dedicated to the soul of Al-Hajj Muhammad Khalil Nashwan",
+    madeWith: "Made in service of the Book of Allah and the Sunnah of His Prophet ﷺ",
+    rights: "حقوق البحث والنشر لوجه الله تعالى",
+    visitors: "visitors",
+    visits: "visits",
+    visitorLabel: "Visitors",
+    scholarQ: "The embryological descriptions in the Quran could not have been based on seventh-century science. The only reasonable conclusion is that they were revealed to Muhammad ﷺ from God.",
+    scholarC: "Keith L. Moore, Professor of Embryology, University of Toronto",
+    stats1: "cosmic verses (approx.)",
+    stats2: "years since revelation",
+    stats3: "documented entries here",
+    stats4: "scientific languages"
+  }
+};
+
+window.MIRACLES = [
+  {
+    id: "big-bang",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-atom",
+    ar: {
+      title: "رتق السموات والأرض ثم فتقهما",
+      verse: "أَوَلَمْ يَرَ الَّذِينَ كَفَرُوا أَنَّ السَّمَاوَاتِ وَالْأَرْضَ كَانَتَا رَتْقًا فَفَتَقْنَاهُمَا",
+      verseEn: "Have those who disbelieve not considered that the heavens and the earth were a joined entity, then We separated them?",
+      ref: "الأنبياء: 30",
+      science: "الرتق في العربية الضم والالتحام، والفتق الفصل بعد الاتصال. يوافق هذا الوصف النموذج الكوني المعياري: الكون بدأ من حالة كثافة وحرارة هائلتين ثم تمدّد وانفصلت البنى. الآية ليست صياغة لمعادلات، لكنها تصف حدث انفصال أولي بعد وحدة.",
+      points: [
+        "نظرية الانفجار العظيم أصبحت النموذج القياسي في القرن العشرين (لماتر، هابل، بنزياس وويلسون).",
+        "لم يكن لسكان الجزيرة في القرن السابع أي أداة لرصد إشعاع الخلفية الكونية أو انزياح المجرات نحو الأحمر."
+      ]
+    },
+    en: {
+      title: "A joined cosmos then separated",
+      verse: "أَوَلَمْ يَرَ الَّذِينَ كَفَرُوا أَنَّ السَّمَاوَاتِ وَالْأَرْضَ كَانَتَا رَتْقًا فَفَتَقْنَاهُمَا",
+      verseEn: "Have those who disbelieve not considered that the heavens and the earth were a joined entity (ratq), then We separated them (fataqnāhumā)?",
+      ref: "Quran 21:30",
+      science: "Ratq denotes a fused, seamless whole; fatq denotes splitting after union. This maps onto the standard cosmological model: an initially hot, dense state followed by expansion and the differentiation of structures. The verse is not a set of field equations; it is a precise qualitative description of primordial unity then separation.",
+      points: [
+        "The Big Bang became the standard model in the twentieth century (Lemaître, Hubble, Penzias & Wilson).",
+        "Seventh-century Arabia had no means of detecting cosmic microwave background radiation or galactic redshift."
+      ]
+    }
+  },
+  {
+    id: "expansion",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-expand-arrows-alt",
+    ar: {
+      title: "بناء السماء والتوسعة المستمرة",
+      verse: "وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ",
+      verseEn: "And the heaven We constructed with might, and indeed We are [still] expanding it.",
+      ref: "الذاريات: 47",
+      science: "صيغة اسم الفاعل «لموسعون» تدل على حدث مستمر. رصد إدوين هابل سنة 1929 تباعد المجرات (قانون هابل–لوميتر)، وهو قياس مباشر لتمدد الزمكان. الطاقة المظلمة المكتشفة لاحقاً تعزّز التسارع، والآية تتحدث عن أصل الفعل: التوسعة.",
+      points: [
+        "حتى أينشتاين افترض كوناً ساكناً وأدخل الثابت الكوني ثم عدل عنه.",
+        "التعبير القرآني يسبق الرصد الفلكي بأربعة عشر قرناً."
+      ]
+    },
+    en: {
+      title: "Ongoing expansion of the heaven",
+      verse: "وَالسَّمَاءَ بَنَيْنَاهَا بِأَيْدٍ وَإِنَّا لَمُوسِعُونَ",
+      verseEn: "And the heaven We built with power, and indeed We are expanders.",
+      ref: "Quran 51:47",
+      science: "The active participle mūsiʿūn indicates a continuing act. Hubble’s 1929 observation of galactic recession (the Hubble–Lemaître law) is a direct measure of spacetime expansion. Later evidence for accelerated expansion (dark energy) concerns the rate; the verse addresses the fact of expansion itself.",
+      points: [
+        "Einstein initially assumed a static universe and introduced a cosmological constant he later regretted.",
+        "The Quranic wording precedes telescopic confirmation by fourteen centuries."
+      ]
+    }
+  },
+  {
+    id: "smoke",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-smog",
+    ar: {
+      title: "السماء وهي دخان",
+      verse: "ثُمَّ اسْتَوَىٰ إِلَى السَّمَاءِ وَهِيَ دُخَانٌ فَقَالَ لَهَا وَلِلْأَرْضِ ائْتِيَا طَوْعًا أَوْ كَرْهًا",
+      verseEn: "Then He directed Himself to the heaven while it was smoke, and said to it and to the earth: Come, willingly or unwillingly.",
+      ref: "فصلت: 11",
+      science: "المادة المبكرة للكون بعد التبريد صارت سحباً من غاز (هيدروجين وهيليوم) وغباراً دقيقاً — ما يسميه الفلكيون السديم أو «الدخان الكوني». من هذه السحب تتكثف النجوم والمجرات. وصف السماء وهي «دخان» يطابق الحالة الغازية–الغبارية قبل التشكل النجمي.",
+      points: [
+        "لم تكن المناظير ولا التحليل الطيفي معروفين زمن التنزيل.",
+        "الدخان في العربية جسم دقيق منتشر، وهو أقرب وصف عربي كلاسيكي للسديم."
+      ]
+    },
+    en: {
+      title: "The heaven as smoke",
+      verse: "ثُمَّ اسْتَوَىٰ إِلَى السَّمَاءِ وَهِيَ دُخَانٌ",
+      verseEn: "Then He turned to the heaven when it was smoke (dukhān).",
+      ref: "Quran 41:11",
+      science: "After the early universe cooled, baryonic matter existed as diffuse clouds of hydrogen, helium and fine dust — what astrophysics calls nebular gas. Stars and galaxies condense from this medium. Dukhān, a particulate suspension, is the closest classical Arabic analogue of a primordial nebula.",
+      points: [
+        "Neither spectroscopy nor nebular theory existed at the time of revelation.",
+        "The image is physical, not merely rhetorical: a sky still in a gaseous, unformed state."
+      ]
+    }
+  },
+  {
+    id: "orbits",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-sync",
+    ar: {
+      title: "كل في فلك يسبحون",
+      verse: "وَهُوَ الَّذِي خَلَقَ اللَّيْلَ وَالنَّهَارَ وَالشَّمْسَ وَالْقَمَرَ ۖ كُلٌّ فِي فَلَكٍ يَسْبَحُونَ",
+      verseEn: "It is He who created the night and the day and the sun and the moon; each swimming in an orbit.",
+      ref: "الأنبياء: 33",
+      science: "الفلك مدار مستدير، والسباحة حركة في وسط. الشمس ليست ثابتة: تدور حول محورها وتجري مع النظام الشمسي حول مركز المجرة بسرعة تقارب 220 كم/ث. القمر يدور حول الأرض، والأرض حول الشمس. الآية تجمع الليل والنهار (دوران الأرض) مع الشمس والقمر في حركة مدارية.",
+      points: [
+        "الفلك البطليمي جعل الأرض مركزاً ثابتاً؛ القرآن لم يجعل الشمس ساكنة.",
+        "يس: 40 تؤكد: «لَا الشَّمْسُ يَنبَغِي لَهَا أَن تُدْرِكَ الْقَمَرَ... وَكُلٌّ فِي فَلَكٍ يَسْبَحُونَ»."
+      ]
+    },
+    en: {
+      title: "Each swimming in an orbit",
+      verse: "كُلٌّ فِي فَلَكٍ يَسْبَحُونَ",
+      verseEn: "Each is swimming in an orbit (falak).",
+      ref: "Quran 21:33; cf. 36:40",
+      science: "Falak is a rounded course; sabaha is motion through a medium. The Sun is not a fixed lamp: it rotates and, with the solar system, orbits the Galactic Centre at ~220 km s⁻¹. The Moon orbits Earth; Earth orbits the Sun. Night and day (Earth’s rotation) are listed with these orbital motions.",
+      points: [
+        "Ptolemaic astronomy froze the Earth at the centre; the Quran does not freeze the Sun.",
+        "36:40 adds that the Sun cannot overtake the Moon — distinct, non-colliding trajectories."
+      ]
+    }
+  },
+  {
+    id: "sun-run",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-sun",
+    ar: {
+      title: "الشمس تجري لمستقر لها",
+      verse: "وَالشَّمْسُ تَجْرِي لِمُسْتَقَرٍّ لَّهَا ۚ ذَٰلِكَ تَقْدِيرُ الْعَزِيزِ الْعَلِيمِ",
+      verseEn: "And the sun runs to a resting-place appointed for it. That is the determination of the Almighty, the All-Knowing.",
+      ref: "يس: 38",
+      science: "الشمس تتحرك نحو نقطة في السماء تُسمى Apex of the Sun’s Way باتجاه كوكبة الجاثي/القيثارة، ضمن الحركة العامة حول المجرة. للمستقر أيضاً دلالة أخروية (يوم القيامة) عند المفسرين؛ والدلالة الكونية لا تعارضها: نجم له مسار مقدَّر ونهاية وقودية بعد مليارات السنين.",
+      points: [
+        "الحضارات القديمة تصورت الشمس مركبة يومية حول أرض ثابتة.",
+        "الجري في العربية حركة ذاتية مستمرة، لا مجرد طلوع ظاهري."
+      ]
+    },
+    en: {
+      title: "The Sun runs to an appointed term",
+      verse: "وَالشَّمْسُ تَجْرِي لِمُسْتَقَرٍّ لَّهَا",
+      verseEn: "The sun runs on to a resting-place of its own.",
+      ref: "Quran 36:38",
+      science: "The Sun moves toward the solar apex (Hercules/Lyra) while orbiting the Galaxy. Mustaqarr also bears an eschatological reading in classical tafsīr; the cosmological reading is compatible: a star on a determined path, with a finite main-sequence lifetime.",
+      points: [
+        "Ancient cosmologies treated the Sun as a daily chariot around a static Earth.",
+        "The verb tajrī denotes intrinsic, continuous motion, not merely apparent rising."
+      ]
+    }
+  },
+  {
+    id: "moon-light",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-moon",
+    ar: {
+      title: "الشمس سراج والقمر نور",
+      verse: "تَبَارَكَ الَّذِي جَعَلَ فِي السَّمَاءِ بُرُوجًا وَجَعَلَ فِيهَا سِرَاجًا وَقَمَرًا مُّنِيرًا",
+      verseEn: "Blessed is He who placed constellations in the sky, and placed therein a lamp and a light-giving moon.",
+      ref: "الفرقان: 61 — وانظر يونس: 5، نوح: 16",
+      science: "السراج مصدر ضوء ذاتي مشتعل. المنير والنور ضوء مكتسَب. الشمس جسم مشع بالاندماج النووي؛ القمر جسم بارد يعكس ضوء الشمس بوضاءة منخفضة (albedo ≈ 0.12). التفريق المعجمي دقيق ولم يكن بدهياً قبل البصريات الحديثة.",
+      points: [
+        "كثير من الثقافات عدّت القمر مصدراً مستقلاً للضوء.",
+        "يونس 5: «جَعَلَ الشَّمْسَ ضِيَاءً وَالْقَمَرَ نُورًا»."
+      ]
+    },
+    en: {
+      title: "The Sun a lamp, the Moon a reflected light",
+      verse: "وَجَعَلَ فِيهَا سِرَاجًا وَقَمَرًا مُّنِيرًا",
+      verseEn: "He placed therein a lamp (sirāj) and a light-giving moon (qamaran munīran).",
+      ref: "Quran 25:61; cf. 10:5, 71:16",
+      science: "Sirāj is a self-luminous burning source; nūr/munīr is borrowed illumination. The Sun radiates by nuclear fusion; the Moon is a cold reflector with a geometric albedo of about 0.12. The lexical distinction is physically exact and was not trivial before modern optics.",
+      points: [
+        "Many cultures treated the Moon as an independent luminary.",
+        "10:5 pairs ḍiyāʾ (the Sun) with nūr (the Moon)."
+      ]
+    }
+  },
+  {
+    id: "folding",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-scroll",
+    ar: {
+      title: "طيّ السماء كطي السجل",
+      verse: "يَوْمَ نَطْوِي السَّمَاءَ كَطَيِّ السِّجِلِّ لِلْكُتُبِ ۚ كَمَا بَدَأْنَا أَوَّلَ خَلْقٍ نُّعِيدُهُ",
+      verseEn: "The Day We will fold the heaven like the folding of a written scroll. As We began the first creation, We will repeat it.",
+      ref: "الأنبياء: 104",
+      science: "بعض نماذج الكون المغلقة تتوقع انهياراً عكس التمدد (الانسحاق العظيم). الآية غيب أخروي في أصلها، لكن صورتها — طي نسيج السماء وعَود إلى هيئة البدء — تناظر هندسياً انكماش الزمكان. نعرضها كتشبيه كوني لا كبرهان على نموذج بعينه، لأن المصير الهندسي للكون ما زال قيد البحث (الطاقة المظلمة).",
+      points: [
+        "الآية تربط النهاية بالبداية: «كما بدأنا أول خلق نعيده».",
+        "نميّز هنا بين الصورة القرآنية والنماذج الفيزيائية المتغيرة."
+      ]
+    },
+    en: {
+      title: "Folding the heaven like a scroll",
+      verse: "يَوْمَ نَطْوِي السَّمَاءَ كَطَيِّ السِّجِلِّ لِلْكُتُبِ",
+      verseEn: "The Day We fold the heaven like the folding of a scroll for writings.",
+      ref: "Quran 21:104",
+      science: "Some closed-universe models predict a recollapse (a ‘Big Crunch’). The verse is eschatological in intent; its geometry — a fabric rolled up, a return to the first creation — is analogous to a contracting spacetime. We present it as a cosmic image, not as proof of one cosmology, since the universe’s ultimate geometry remains observationally open (dark energy).",
+      points: [
+        "The verse explicitly pairs the end with the beginning.",
+        "We distinguish Quranic imagery from still-evolving physical models."
+      ]
+    }
+  },
+  {
+    id: "time-relativity",
+    cat: "cosmos",
+    source: "quran",
+    icon: "fa-hourglass-half",
+    ar: {
+      title: "نسبية مقادير الأيام",
+      verse: "يُدَبِّرُ الْأَمْرَ مِنَ السَّمَاءِ إِلَى الْأَرْضِ ثُمَّ يَعْرُجُ إِلَيْهِ فِي يَوْمٍ كَانَ مِقْدَارُهُ أَلْفَ سَنَةٍ مِّمَّا تَعُدُّونَ",
+      verseEn: "He arranges [each] matter from the heaven to the earth; then it will ascend to Him in a Day the extent of which is a thousand years of those you count.",
+      ref: "السجدة: 5 — وانظر المعارج: 4",
+      science: "النسبية الخاصة والعامة بيّنت أن الزمن ليس مطلقاً: يتباطأ مع السرعة ومع حقول الجاذبية. القرآن يفرّق صراحة بين «يوم» عند تدبير الأمر و«ما تعدّون» من أيام الأرض (ألف سنة، وفي المعارج خمسون ألفاً). الدلالة الشرعية غيبية، لكن المبدأ — أن للزمن مقادير مختلفة بحسب الإطار — مبدأ علمي حديث.",
+      points: [
+        "نيوتن افترض زمناً كونياً واحداً مطلقاً حتى 1905.",
+        "اختلاف العددين (1000 و50,000) يشير إلى أطر متعددة لا إلى تناقض."
+      ]
+    },
+    en: {
+      title: "Different measures of a ‘day’",
+      verse: "فِي يَوْمٍ كَانَ مِقْدَارُهُ أَلْفَ سَنَةٍ مِّمَّا تَعُدُّونَ",
+      verseEn: "In a Day whose measure is a thousand years of what you count.",
+      ref: "Quran 32:5; cf. 70:4",
+      science: "Special and general relativity showed that time is not universal: it dilates with velocity and with gravitational potential. The Quran distinguishes a ‘day’ of divine ordering from ‘what you count’ on Earth (a thousand years; in 70:4, fifty thousand). The setting is unseen; the principle — that time has frame-dependent measures — is modern physics.",
+      points: [
+        "Newton assumed a single absolute time until 1905.",
+        "The two figures (1,000 and 50,000) indicate different frames, not a contradiction."
+      ]
+    }
+  },
+  {
+    id: "earth-shape",
+    cat: "earth",
+    source: "quran",
+    icon: "fa-globe",
+    ar: {
+      title: "دحو الأرض",
+      verse: "وَالْأَرْضَ بَعْدَ ذَٰلِكَ دَحَاهَا",
+      verseEn: "And after that He spread out the earth (daḥāhā).",
+      ref: "النازعات: 30",
+      science: "الدحو في العربية بسط مع استدارة؛ والدحية بيضة النعام. الأرض ليست كرة تامة بل قطع ناقص مفلطح عند القطبين (oblate spheroid) بسبب الدوران. الآية تتحدث عن تهيئة السطح للعيش بعد خلق السماء، وهو ما يوافق ت sequential: قشرة، ماء، مرعى (الآيات 31–32).",
+      points: [
+        "الزمر 5: «يُكَوِّرُ اللَّيْلَ عَلَى النَّهَارِ وَيُكَوِّرُ النَّهَارَ عَلَى اللَّيْلِ» — التكوير اللف على جسم مستدير.",
+        "الكروية عُرفت عند بعض القدماء، أما التفلطح المقاس فحديث."
+      ]
+    },
+    en: {
+      title: "The spreading-out (daḥw) of the Earth",
+      verse: "وَالْأَرْضَ بَعْدَ ذَٰلِكَ دَحَاهَا",
+      verseEn: "And after that He spread the earth (daḥāhā).",
+      ref: "Quran 79:30",
+      science: "Daḥw in Arabic is spreading with roundness; duḥya is the ostrich egg. Earth is not a perfect sphere but an oblate spheroid, flattened at the poles by rotation. The verse also sequences surface preparation after the heaven — crust, water, pasture (79:31–32).",
+      points: [
+        "39:5 uses yukawwiru — wrapping night over day on a rounded body.",
+        "Sphericity was known to some ancients; measured polar flattening is modern."
+      ]
+    }
+  },
+  {
+    id: "mountains-move",
+    cat: "earth",
+    source: "quran",
+    icon: "fa-cloud",
+    ar: {
+      title: "الجبال تمرّ مرّ السحاب",
+      verse: "وَتَرَى الْجِبَالَ تَحْسَبُهَا جَامِدَةً وَهِيَ تَمُرُّ مَرَّ السَّحَابِ",
+      verseEn: "And you see the mountains, thinking them motionless, while they pass as the passing of clouds.",
+      ref: "النمل: 88",
+      science: "السياق أخروي عند جمهور المفسرين. ويبقى الوصف دقيقاً للحاضر أيضاً: الجبال تبدو ساكنة وهي محمولة على صفائح تكتونية تتحرك سنوياً سنتمترات، كما أن دوران الأرض ينقل الجبال مع الكوكب بسرعة مئات الأمتار في الثانية عند خط الاستواء — حركة لا تُحس. التشبيه بالسحاب حركة صامتة واسعة.",
+      points: [
+        "الصفائح التكتونية لم تُصغ نظرياً إلا في الستينيات.",
+        "الآية تنبّه إلى الفرق بين الحسّ الظاهر والواقع الحركي."
+      ]
+    },
+    en: {
+      title: "Mountains passing like clouds",
+      verse: "وَتَرَى الْجِبَالَ تَحْسَبُهَا جَامِدَةً وَهِيَ تَمُرُّ مَرَّ السَّحَابِ",
+      verseEn: "You see the mountains, supposing them fixed, but they pass as clouds pass.",
+      ref: "Quran 27:88",
+      science: "The primary tafsīr is eschatological. The wording also fits the present Earth: mountains appear static yet ride tectonic plates (cm yr⁻¹), and Earth’s rotation carries them at hundreds of metres per second at the equator — motion below perception. Clouds are the right simile: vast, silent displacement.",
+      points: [
+        "Plate tectonics was formulated only in the 1960s.",
+        "The verse separates appearance from kinematic reality."
+      ]
+    }
+  },
+  {
+    id: "mountains-pegs",
+    cat: "earth",
+    source: "quran",
+    icon: "fa-mountain",
+    ar: {
+      title: "الجبال أوتاد",
+      verse: "أَلَمْ نَجْعَلِ الْأَرْضَ مِهَادًا ﴿٦﴾ وَالْجِبَالَ أَوْتَادًا ﴿٧﴾",
+      verseEn: "Have We not made the earth a cradle, and the mountains as pegs?",
+      ref: "النبأ: 6–7 — وانظر النحل: 15",
+      science: "الوتد جزء ظاهر وجزء مغروس. الجبال لها جذور قشرية (mountain roots) تمتد في الوشاح وفق مبدأ أيسوستاسي (Airy isostasy): كلما ارتفع الجبل زاد عمق جذره. النحل 15: «وَأَلْقَىٰ فِي الْأَرْضِ رَوَاسِيَ أَن تَمِيدَ بِكُمْ» — الرواسي تقلل الميدان (التمايل) عبر تثبيت القشرة عند حدود الصفائح ومناطق التصادم.",
+      points: [
+        "الجذر قد يبلغ أضعاف الارتفاع الظاهر.",
+        "الوصف «وتد» أدق من «كومة على السطح» الذي ساد الحس العام."
+      ]
+    },
+    en: {
+      title: "Mountains as pegs",
+      verse: "وَالْجِبَالَ أَوْتَادًا",
+      verseEn: "And the mountains as pegs (awtād).",
+      ref: "Quran 78:6–7; cf. 16:15",
+      science: "A peg is partly visible and partly driven in. Mountains possess crustal roots, as required by Airy isostasy: higher topography is compensated by a deeper, lower-density root. 16:15 states that firmly-set mountains were cast so that the Earth should not sway with you — a qualitative account of lithospheric stabilization at collision belts.",
+      points: [
+        "The root can exceed the visible elevation.",
+        "‘Peg’ is a better physical metaphor than a pile sitting on a flat surface."
+      ]
+    }
+  },
+  {
+    id: "lowest-land",
+    cat: "earth",
+    source: "quran",
+    icon: "fa-map-marker-alt",
+    ar: {
+      title: "أدنى الأرض وهزيمة الروم",
+      verse: "غُلِبَتِ الرُّومُ ﴿٢﴾ فِي أَدْنَى الْأَرْضِ وَهُم مِّن بَعْدِ غَلَبِهِمْ سَيَغْلِبُونَ",
+      verseEn: "The Byzantines have been defeated in the nearest/lowest land; but after their defeat they will overcome.",
+      ref: "الروم: 2–3",
+      science: "أدنى تحتمل الأقرب (إلى العرب) والأوطأ. المعركة الشهيرة كانت عند أطراف الشام قرب البحر الميت، أخفض يابسة على سطح الأرض (حوالي −430 م). الآية نبوءة تاريخية تحققت بعد بضع سنين (انتصار هرقل)، وفي الوقت نفسه تصف الموقع بلفظ يطابق قياسات الارتفاع الحديثة.",
+      points: [
+        "قياس منسوب البحر الميت لم يتوفر إلا بالمساحة الحديثة.",
+        "الإعجاز هنا غيبي (النبوءة) وجغرافي (الموقع) معاً."
+      ]
+    },
+    en: {
+      title: "The lowest land and the Byzantine defeat",
+      verse: "غُلِبَتِ الرُّومُ فِي أَدْنَى الْأَرْضِ",
+      verseEn: "The Byzantines have been defeated in the nearest/lowest land (adnā l-arḍ).",
+      ref: "Quran 30:2–3",
+      science: "Adnā can mean nearest (to Arabia) or lowest. The campaign was fought in the Levantine depression near the Dead Sea, the lowest terrestrial elevation on Earth (about −430 m). The verse is a short-term historical prophecy (Heraclius’s later victory) and a toponym that matches modern hypsometry.",
+      points: [
+        "Dead Sea bathymetry/elevation was not mapped in Late Antiquity as a global minimum.",
+        "The sign is both unseen (prophecy) and geographic."
+      ]
+    }
+  },
+  {
+    id: "iron",
+    cat: "physics",
+    source: "quran",
+    icon: "fa-meteor",
+    ar: {
+      title: "إنزال الحديد",
+      verse: "وَأَنزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِلنَّاسِ",
+      verseEn: "And We sent down iron, wherein is mighty power and benefits for people.",
+      ref: "الحديد: 25",
+      science: "الحديد لا يُصنَّع باندماج مستقر داخل نجوم كالشمس؛ نواته تبلغ قاع بئر الطاقة، وتتكوّن في انهيار النجوم الضخمة (مستعرات عظمى واندماجات نجمية) ثم «تُنزل» إلى الكواكب مع النيازك والغبار. الأرض استقبلت حديداً إضافياً عبر القصف النيزكي. لفظ الإنزال — لا الخلق في الأرض — يوافق الأصل النجمي.",
+      points: [
+        "البأس: المغناطيسية والصلابة والاستخدام العسكري والصناعي.",
+        "رقم سورة الحديد 57 يطابق العدد الذري للحديد — ملاحظة عددية تُذكر ولا تُجعل دليلاً مستقلاً."
+      ]
+    },
+    en: {
+      title: "Iron sent down",
+      verse: "وَأَنزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِلنَّاسِ",
+      verseEn: "And We sent down iron, in which is great might and benefits for people.",
+      ref: "Quran 57:25",
+      science: "Iron is not stably fused in Sun-like stars; ⁵⁶Fe sits at the bottom of the nuclear binding curve. It is forged in core-collapse supernovae and neutron-star mergers, then delivered to planets with meteoritic material. Earth’s iron budget includes this extraterrestrial influx. The verb anzalnā (We sent down), rather than ‘We created it in the Earth’, matches a stellar origin.",
+      points: [
+        "Baʾs covers hardness, magnetism, and military/industrial use.",
+        "Sūrah number 57 equals iron’s atomic number — a numerical remark, not a stand-alone proof."
+      ]
+    }
+  },
+  {
+    id: "atom",
+    cat: "physics",
+    source: "quran",
+    icon: "fa-circle-notch",
+    ar: {
+      title: "مثقال الذرة وما أصغر منها",
+      verse: "وَمَا يَعْزُبُ عَن رَّبِّكَ مِن مِّثْقَالِ ذَرَّةٍ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَلَا أَصْغَرَ مِن ذَٰلِكَ وَلَا أَكْبَرَ إِلَّا فِي كِتَابٍ مُّبِينٍ",
+      verseEn: "Not absent from your Lord is an atom’s weight in the earth or in the heaven, or anything smaller or greater than that, except that it is in a clear record.",
+      ref: "يونس: 61 — وانظر سبأ: 3",
+      science: "الذرة عند العرب الغبار المتناهي في الصغر، ثم صارت في الاصطلاح العلمي atom. الآية لا تتوقف عند هذا الحد بل تصرّح بـ«أصغر من ذلك»، وهو ما يوافق اكتشاف أن للذرة بنية داخلية (إلكترونات، نوى، كواركات) وأن الكتلة تتجزأ دون أن يغيب شيء عن الإحصاء الإلهي.",
+      points: [
+        "العلم إلى القرن 19 عدّ الذرة حدّاً لا يتجزأ.",
+        "السباق هنا معرفي: إمكان ما هو أصغر من أصغر محسوس."
+      ]
+    },
+    en: {
+      title: "An atom’s weight and what is smaller",
+      verse: "وَلَا أَصْغَرَ مِن ذَٰلِكَ وَلَا أَكْبَرَ",
+      verseEn: "Not an atom’s weight… nor anything smaller or greater than that…",
+      ref: "Quran 10:61; cf. 34:3",
+      science: "Dharra was the finest visible mote, later the scientific ‘atom’. The verse does not stop there: it names what is smaller still — consistent with subatomic structure (electrons, nucleons, quarks) and with a bookkeeping of mass-energy at every scale.",
+      points: [
+        "Until the nineteenth century the atom was treated as indivisible.",
+        "The cognitive claim is the existence of a sub-mote scale."
+      ]
+    }
+  },
+  {
+    id: "pairs",
+    cat: "physics",
+    source: "quran",
+    icon: "fa-balance-scale",
+    ar: {
+      title: "من كل شيء زوجان",
+      verse: "وَمِن كُلِّ شَيْءٍ خَلَقْنَا زَوْجَيْنِ لَعَلَّكُمْ تَذَكَّرُونَ",
+      verseEn: "And of all things We created two mates, that you may remember.",
+      ref: "الذاريات: 49 — وانظر يس: 36",
+      science: "يس 36 توسّع الأزواج إلى ما تنبت الأرض، وما في الأنفس، و«ما لا يعلمون». بعد اكتشاف الشحنة الموجبة والسالبة، والمادة والمادة المضادة، وأزواج الجسيمات في نظرية الحقل، صار للزوجية معنى فيزيائي فوق النبات والحيوان. الآية لا تُحصي الجسيمات، لكنها تؤسس مبدأ الزوجية في الخلق كله.",
+      points: [
+        "التلقيح عند النبات لم يُفهم علمياً إلا في العصر الحديث.",
+        "«مما لا يعلمون» باب مفتوح لما يُكتشف لاحقاً."
+      ]
+    },
+    en: {
+      title: "Pairs of all things",
+      verse: "وَمِن كُلِّ شَيْءٍ خَلَقْنَا زَوْجَيْنِ",
+      verseEn: "Of all things We created two mates (zawjayn).",
+      ref: "Quran 51:49; cf. 36:36",
+      science: "36:36 extends pairing to plants, human selves, and ‘that which they do not know’. After the discovery of opposite electric charge, matter/antimatter, and particle–antiparticle pairs in field theory, complementarity acquired a physical sense beyond botany. The verse does not catalogue particles; it states a principle of created duality.",
+      points: [
+        "Plant sexuality was scientifically clarified only in the modern era.",
+        "‘What they do not know’ leaves the set open to later discovery."
+      ]
+    }
+  },
+  {
+    id: "barrier-seas",
+    cat: "ocean",
+    source: "quran",
+    icon: "fa-water",
+    ar: {
+      title: "برزخ لا يبغيان",
+      verse: "مَرَجَ الْبَحْرَيْنِ يَلْتَقِيَانِ ﴿١٩﴾ بَيْنَهُمَا بَرْزَخٌ لَّا يَبْغِيَانِ ﴿٢٠﴾",
+      verseEn: "He released the two seas, meeting side by side; between them is a barrier they do not transgress.",
+      ref: "الرحمن: 19–20 — الفرقان: 53",
+      science: "عند التقاء كتل مائية مختلفة الملوحة والحرارة والكثافة يتكوّن جبهة محيطية (halocline / pycnocline). الخلط كامل لا يحدث فوراً؛ تبقى خصائص كل كتلة متميزة عبر منطقة انتقال. الفرقان 53 تخصّ عذباً فراتاً وملحاً أجاجاً وحجراً محجوراً — مصبات الأنهار حيث يمنع التدرج الكثافي الاجتياح السريع.",
+      points: [
+        "الجبهات البحرية رُصدت بأجهزة القرن العشرين.",
+        "المرج: الخلط الظاهر مع بقاء الحد."
+      ]
+    },
+    en: {
+      title: "A barrier the two seas do not transgress",
+      verse: "بَيْنَهُمَا بَرْزَخٌ لَّا يَبْغِيَانِ",
+      verseEn: "Between them is a barrier (barzakh) they do not transgress.",
+      ref: "Quran 55:19–20; 25:53",
+      science: "Where water masses of different salinity, temperature and density meet, an oceanic front forms (halocline/pycnocline). Complete mixing is not instantaneous; each mass retains its identity across a transition zone. 25:53 specifies sweet versus bitter-salt water and a forbidden partition — the estuarine case, where the density gradient retards rapid invasion.",
+      points: [
+        "Oceanic fronts were instrumented in the twentieth century.",
+        "Maraja: apparent mingling while a boundary remains."
+      ]
+    }
+  },
+  {
+    id: "deep-sea",
+    cat: "ocean",
+    source: "quran",
+    icon: "fa-wave-square",
+    ar: {
+      title: "ظلمات في بحر لجّي وموج فوق موج",
+      verse: "أَوْ كَظُلُمَاتٍ فِي بَحْرٍ لُّجِّيٍّ يَغْشَاهُ مَوْجٌ مِّن فَوْقِهِ مَوْجٌ مِّن فَوْقِهِ سَحَابٌ ۚ ظُلُمَاتٌ بَعْضُهَا فَوْقَ بَعْضٍ",
+      verseEn: "Or like darknesses in a deep sea which is covered by a wave, above which is a wave, above which are clouds — darknesses, some of them above others.",
+      ref: "النور: 40",
+      science: "في البحر العميق (lujjī) ينعدم الضوء تحت عمق مئات الأمتار (المنطقة الأفوتية). فوق السطح موج سطحي، وتحته موجات داخلية (internal waves) عند طبقات الكثافة، وفوق ذلك السحاب. الظلمات المتراكبة: امتصاص الضوء، العواصف، والغطاء السحابي. الغوص إلى هذه الأعماق لم يكن ممكناً زمن الوحي.",
+      points: [
+        "الموجات الداخلية اكتُشفت علمياً في القرن 20.",
+        "الآية تمثيل لضلال الكافر، والصورة الكونية فيها دقيقة."
+      ]
+    },
+    en: {
+      title: "Layered darkness in a deep sea",
+      verse: "يَغْشَاهُ مَوْجٌ مِّن فَوْقِهِ مَوْجٌ مِّن فَوْقِهِ سَحَابٌ",
+      verseEn: "A deep sea covered by a wave, above which is a wave, above which are clouds — darknesses one above another.",
+      ref: "Quran 24:40",
+      science: "In the deep ocean (lujjī) light is extinguished within a few hundred metres (the aphotic zone). Surface wind waves overlie internal waves on density interfaces; clouds add a further screen. Stacked darknesses: optical attenuation, storm seas, and cloud cover. Such depths were inaccessible in the seventh century.",
+      points: [
+        "Internal waves were described scientifically in the twentieth century.",
+        "The verse is a simile for unbelief; its physical image is nonetheless exact."
+      ]
+    }
+  },
+  {
+    id: "water-life",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-tint",
+    ar: {
+      title: "وجعلنا من الماء كل شيء حي",
+      verse: "وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ ۖ أَفَلَا يُؤْمِنُونَ",
+      verseEn: "And We made from water every living thing. Will they not then believe?",
+      ref: "الأنبياء: 30",
+      science: "البروتوبلازم خلويّاً محلول مائي. التفاعلات الأيضية، ونقل الأيونات، وبنية البروتينات والحمض النووي تعتمد على المذيب القطبي الفريد للماء. علم الأحياء يعدّ الماء شرطاً ضرورياً للحياة كما نعرفها، وهو معيار البحث عن الحياة خارج الأرض.",
+      points: [
+        "النور 45: «وَاللَّهُ خَلَقَ كُلَّ دَابَّةٍ مِّن مَّاءٍ».",
+        "ليست الملاحظة أن الكائن يشرب، بل أن أصل مادته الحية مائي."
+      ]
+    },
+    en: {
+      title: "Every living thing from water",
+      verse: "وَجَعَلْنَا مِنَ الْمَاءِ كُلَّ شَيْءٍ حَيٍّ",
+      verseEn: "And We made from water every living thing.",
+      ref: "Quran 21:30",
+      science: "Cytoplasm is an aqueous solution. Metabolism, ion transport, protein folding and nucleic-acid structure depend on water’s unique polar solvent properties. Biology treats water as a necessary condition of life as we know it — and as the first biomarker in astrobiology.",
+      points: [
+        "24:45: Allah created every moving creature from water.",
+        "The claim is compositional, not merely that animals drink."
+      ]
+    }
+  },
+  {
+    id: "water-cycle",
+    cat: "ocean",
+    source: "quran",
+    icon: "fa-cloud-rain",
+    ar: {
+      title: "دورة الماء وخزنه في الأرض",
+      verse: "أَلَمْ تَرَ أَنَّ اللَّهَ أَنزَلَ مِنَ السَّمَاءِ مَاءً فَسَلَكَهُ يَنَابِيعَ فِي الْأَرْضِ",
+      verseEn: "Have you not seen that Allah sends down water from the sky and leads it through springs in the earth?",
+      ref: "الزمر: 21 — وانظر المؤمنون: 18",
+      science: "المؤمنون 18: إنزال الماء بقدر وإسكانه في الأرض ثم إذهابه. هذا هو الهيدرولوجيا: تبخر، تكثف، تساقط، رشح إلى خزانات جوفية (aquifers)، ينابيع، ثم عودة. القدماء تخيلوا أحياناً محيطاً تحت الأرض أو أنهاراً من السماء بلا ميزان؛ القرآن يذكر قدراً وخزناً ومسلكاً.",
+      points: [
+        "«بِقَدَرٍ» يوافق أن دورة الماء مغلقة كمّياً على مقياس الأرض.",
+        "سلكه ينابيع: مسار في المسام والصخور لا صبّ مباشر فقط."
+      ]
+    },
+    en: {
+      title: "The hydrologic cycle and groundwater",
+      verse: "فَسَلَكَهُ يَنَابِيعَ فِي الْأَرْضِ",
+      verseEn: "He sends down water from the sky and channels it as springs in the earth.",
+      ref: "Quran 39:21; cf. 23:18",
+      science: "23:18 adds that water is sent down in due measure, lodged in the earth, then caused to leave. That is hydrology: evaporation, condensation, precipitation, infiltration into aquifers, springs, and return. Ancient guesses included subterranean oceans; the Quran names measure, storage and a path.",
+      points: [
+        "Bi-qadar agrees with a quantitatively closed terrestrial water cycle.",
+        "Salkahu: conduction through pores and strata, not only surface runoff."
+      ]
+    }
+  },
+  {
+    id: "protected-roof",
+    cat: "atmosphere",
+    source: "quran",
+    icon: "fa-shield-alt",
+    ar: {
+      title: "السماء سقف محفوظ",
+      verse: "وَجَعَلْنَا السَّمَاءَ سَقْفًا مَّحْفُوظًا ۖ وَهُمْ عَنْ آيَاتِهَا مُعْرِضُونَ",
+      verseEn: "And We made the heaven a protected roof, while they turn away from its signs.",
+      ref: "الأنبياء: 32",
+      science: "الغلاف الجوي والمجال المغناطيسي درع: يمتصان الأشعة فوق البنفسجية الضارة (طبقة الأوزون)، ويحرقان معظم النيازك الصغيرة، ويصدّان الرياح الشمسية. بلا هذا السقف تنهار شروط الحياة السطحية. الحفظ هنا وظيفة فيزيائية مستمرة.",
+      points: [
+        "الأنبياء 32 تقرن السقف بالآيات المعرَض عنها.",
+        "الطارق 11: «وَالسَّمَاءِ ذَاتِ الرَّجْعِ» — رجع المطر ورجع الموجات الراديوية في الأيونوسفير."
+      ]
+    },
+    en: {
+      title: "A protected roof",
+      verse: "وَجَعَلْنَا السَّمَاءَ سَقْفًا مَّحْفُوظًا",
+      verseEn: "And We made the heaven a protected roof.",
+      ref: "Quran 21:32",
+      science: "The atmosphere and magnetosphere function as a shield: ozone absorbs harmful UV, most micrometeoroids ablate, and the magnetic field deflects solar wind. Without this roof, surface habitability collapses. Preservation here is an ongoing physical office.",
+      points: [
+        "21:32 pairs the roof with signs people ignore.",
+        "86:11, ‘the sky of return’, covers the rain cycle and ionospheric reflection of radio waves."
+      ]
+    }
+  },
+  {
+    id: "altitude",
+    cat: "atmosphere",
+    source: "quran",
+    icon: "fa-arrow-up",
+    ar: {
+      title: "ضيق الصدر عند الصعود في السماء",
+      verse: "فَمَن يُرِدِ اللَّهُ أَن يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلْإِسْلَامِ ۖ وَمَن يُرِدْ أَن يُضِلَّهُ يَجْعَلْ صَدْرَهُ ضَيِّقًا حَرَجًا كَأَنَّمَا يَصَّعَّدُ فِي السَّمَاءِ",
+      verseEn: "Whomever Allah wills to guide, He expands his breast to Islam; whomever He wills to leave astray, He makes his breast tight and constricted, as though he were climbing into the sky.",
+      ref: "الأنعام: 125",
+      science: "مع الارتفاع ينخفض الضغط الجزئي للأكسجين انخفاضاً أُسّياً تقريباً، فيحدث ضيق تنفسي ونقص تأكسج (hypoxia). التشبيه يفترض أن الصعود في السماء يضيق الصدر حقيقة، وهو ما لم يكن تجربة شائعة في الحجاز، بخلاف صعود الجبال المحدود.",
+      points: [
+        "قانون الضغط الجوي صيغ مع توريشلي وباسكال ثم عُمّم.",
+        "وجه الشبه فسيولوجي لا مجرد خوف من العلو."
+      ]
+    },
+    en: {
+      title: "Chest constriction with ascent",
+      verse: "كَأَنَّمَا يَصَّعَّدُ فِي السَّمَاءِ",
+      verseEn: "As though he were climbing into the sky.",
+      ref: "Quran 6:125",
+      science: "Partial pressure of oxygen falls roughly exponentially with altitude, producing dyspnoea and hypoxia. The simile presupposes that ascent into the sky truly tightens the chest — not a commonplace experience in the Hijaz, unlike modest hill-climbing.",
+      points: [
+        "The barometric law was formulated with Torricelli and Pascal.",
+        "The tertium comparationis is physiological, not mere acrophobia."
+      ]
+    }
+  },
+  {
+    id: "clouds",
+    cat: "atmosphere",
+    source: "quran",
+    icon: "fa-cloud",
+    ar: {
+      title: "تأليف السحاب والبرد",
+      verse: "أَلَمْ تَرَ أَنَّ اللَّهَ يُزْجِي سَحَابًا ثُمَّ يُؤَلِّفُ بَيْنَهُ ثُمَّ يَجْعَلُهُ رُكَامًا فَتَرَى الْوَدْقَ يَخْرُجُ مِنْ خِلَالِهِ وَيُنَزِّلُ مِنَ السَّمَاءِ مِن جِبَالٍ فِيهَا مِن بَرَدٍ",
+      verseEn: "Do you not see that Allah drives clouds, then brings them together, then makes them into a heap, and you see the rain emerge from within it? And He sends down from the sky, from mountains therein of hail…",
+      ref: "النور: 43",
+      science: "مراحل الحمل الحراري الركامي: سوق الخلايا، الاندماج (cloud merging)، التراكم الرأسي، ثم الهطول. «جبال فيها من برد» توافق نوى البرد في أبراج المزن الركامي التي قد تبلغ ارتفاعات جبلية (10–18 كم) حيث يتجمد الماء. البرق يُذكر في تمام الآية مع الإصابة بإذن الله.",
+      points: [
+        "علم السحب الفيزياء الدقيقة (microphysics) علم حديث.",
+        "الترتيب: سوق → تأليف → ركام → ودق، يطابق الرصد الراداري."
+      ]
+    },
+    en: {
+      title: "Cloud merging, hail towers",
+      verse: "ثُمَّ يُؤَلِّفُ بَيْنَهُ ثُمَّ يَجْعَلُهُ رُكَامًا",
+      verseEn: "He drives clouds, then joins them, then makes them a heap, and you see rain issue from within them; and He sends down from mountains in the sky, hail…",
+      ref: "Quran 24:43",
+      science: "Cumulonimbus convection: cells are driven, merge, build vertically, then precipitate. ‘Mountains of hail’ matches hail embryos in convective towers that reach mountain-like altitudes (10–18 km) where supercooled water freezes. Lightning is named in the same verse.",
+      points: [
+        "Cloud microphysics is a modern discipline.",
+        "The sequence — drive, join, heap, rain — matches radar climatology."
+      ]
+    }
+  },
+  {
+    id: "seven-heavens",
+    cat: "atmosphere",
+    source: "quran",
+    icon: "fa-layer-group",
+    ar: {
+      title: "سبع سماوات طباقاً",
+      verse: "الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِي خَلْقِ الرَّحْمَٰنِ مِن تَفَاوُتٍ",
+      verseEn: "Who created seven heavens in layers. You do not see in the creation of the Most Merciful any inconsistency.",
+      ref: "الملك: 3 — نوح: 15",
+      science: "الطباق طبقات بعضها فوق بعض. الغلاف الجوي يُقسَّم وظيفياً إلى تروبوسفير، ستراتوسفير، ميزوسفير، ثيرموسفير، وإكسوسفير، مع مناطق انتقال (تروبوبوز وغيرها) والأيونوسفير والمجال المغناطيسي كأغلفة مرتبطة. المفسرون الكلاسيكيون حملوا السبع على عوالم فوق الأرض. العرض العلمي هنا تمثيل تقريبي للطبقية، لا مطابقة قسرية لكل طبقة باسم معاصر.",
+      points: [
+        "وجه الإعجاز: مبدأ الطباق لا الحصر الاصطلاحي الحديث.",
+        "الملك 3 تربط الطباق بانتفاء التفاوت (الاتساق الفيزيائي)."
+      ]
+    },
+    en: {
+      title: "Seven heavens in layers",
+      verse: "خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا",
+      verseEn: "Who created seven heavens in layers (ṭibāqan).",
+      ref: "Quran 67:3; 71:15",
+      science: "Ṭibāq means superimposed strata. The atmosphere is partitioned into troposphere, stratosphere, mesosphere, thermosphere and exosphere, with transition pauses, plus the ionosphere and magnetosphere as coupled envelopes. Classical tafsīr took the seven as unseen worlds above the Earth. The scientific presentation here is an analogy of stratification, not a forced one-to-one map onto modern labels.",
+      points: [
+        "The sign is layered architecture, not a modern checklist of names.",
+        "67:3 links layering with the absence of inconsistency (physical coherence)."
+      ]
+    }
+  },
+  {
+    id: "embryology",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-baby",
+    ar: {
+      title: "مراحل خلق الجنين",
+      verse: "ثُمَّ جَعَلْنَاهُ نُطْفَةً فِي قَرَارٍ مَّكِينٍ ﴿١٣﴾ ثُمَّ خَلَقْنَا النُّطْفَةَ عَلَقَةً فَخَلَقْنَا الْعَلَقَةَ مُضْغَةً فَخَلَقْنَا الْمُضْغَةَ عِظَامًا فَكَسَوْنَا الْعِظَامَ لَحْمًا ثُمَّ أَنشَأْنَاهُ خَلْقًا آخَرَ",
+      verseEn: "Then We placed him as a drop in a firm lodging; then We made the drop a clinging form; then the clinging form a chewed-like lump; then We made the lump bones, and We clothed the bones with flesh; then We produced him as another creation.",
+      ref: "المؤمنون: 13–14",
+      science: "النطفة: الأمشاج/الزيجوت في الرحم (قرار مكين). العلقة: شيء يعلق ويشبه العلقة الدموية — انغراس الكيسة الأريمية وهيئة الأسبوع 3–4. المضغة: كتلة عليها أثر أسنان لظهور القسيمات البدنية (somites). ثم تظهر طلائع العظام الغضروفية قبل كسوتها بالعضلات. الخلق الآخر: تمايز إنساني (جهاز عصبي، نفخ الروح في الخطاب الشرعي).",
+      points: [
+        "التسلسل عظام ثم كسوة لحم يوافق أن الهيكل يسبق كساء العضلات.",
+        "جالينوس خلط كثيراً من التفاصيل؛ النص العربي موجز ودقيق في الترتيب."
+      ]
+    },
+    en: {
+      title: "Staged human embryogenesis",
+      verse: "نُطْفَةً… عَلَقَةً… مُضْغَةً… عِظَامًا فَكَسَوْنَا الْعِظَامَ لَحْمًا",
+      verseEn: "A drop in a firm lodging; then a clinging form (ʿalaqah); then a chewed-like lump (muḍghah); then bones, then bones clothed with flesh; then another creation.",
+      ref: "Quran 23:13–14",
+      science: "Nutfah: gametes/zygote in the uterus. ʿAlaqah: that which clings, leech-like — implantation and the week-3–4 embryo. Muḍghah: a somite-marked mass resembling a chewed morsel. Cartilaginous bone primordia appear before being clothed with muscle. The ‘other creation’ marks distinctively human differentiation (and, in the legal discourse, ensoulment).",
+      points: [
+        "Bones-then-flesh matches skeletal condensation before muscular investment.",
+        "Galenic embryology mixed errors; the Arabic sequence is terse and ordered."
+      ]
+    }
+  },
+  {
+    id: "mixed-drop",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-dna",
+    ar: {
+      title: "نطفة أمشاج وتحديد الجنس",
+      verse: "إِنَّا خَلَقْنَا الْإِنسَانَ مِن نُّطْفَةٍ أَمْشَاجٍ نَّبْتَلِيهِ",
+      verseEn: "We created man from a mixed drop, to test him.",
+      ref: "الإنسان: 2 — وانظر النجم: 45–46",
+      science: "الأمشاج: أخلاط. الزيجوت اتحاد نواتي الحيوان المنوي والبويضة. النجم 45–46: خلق الزوجين من نطفة إذا تُمنى — إشارة إلى أن تحديد الجنس مرتبط بالماء الممنِي (الحيوان المنوي يحمل X أو Y)، لا بالرحم وحده كما ظن كثير من الأقدمين.",
+      points: [
+        "الحج 5 تفرّق مضغة مخلّقة وغير مخلّقة (تمايز/عدم تمايز).",
+        "قرار مكين = بيئة الرحم المستقرة غذائياً وهرمونياً."
+      ]
+    },
+    en: {
+      title: "A mixed drop and sex determination",
+      verse: "مِن نُّطْفَةٍ أَمْشَاجٍ",
+      verseEn: "From a mixed drop (nutfatin amshāj).",
+      ref: "Quran 76:2; cf. 53:45–46",
+      science: "Amshāj means mingled components. The zygote is the fusion of sperm and oocyte nuclei. 53:45–46 traces male and female to a drop when it is emitted — sex determination tracking the sperm (X or Y), not the womb alone, contrary to many ancient theories.",
+      points: [
+        "22:5 distinguishes formed and unformed lumps (differentiation).",
+        "The ‘firm lodging’ is the hormonally and nutritionally stable uterus."
+      ]
+    }
+  },
+  {
+    id: "three-darknesses",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-moon",
+    ar: {
+      title: "ظلمات ثلاث",
+      verse: "يَخْلُقُكُمْ فِي بُطُونِ أُمَّهَاتِكُمْ خَلْقًا مِّن بَعْدِ خَلْقٍ فِي ظُلُمَاتٍ ثَلَاثٍ",
+      verseEn: "He creates you in the wombs of your mothers, creation after creation, in three darknesses.",
+      ref: "الزمر: 6",
+      science: "الأغشية المحيطة بالجنين ثلاث على الترتيب الوظيفي الشائع في عرض الإعجاز: جدار البطن، جدار الرحم، ثم الأغشية الجنينية (المشيمة/الغشاء السلوي–المشيمائي). الجنين لا يُرى، ويُخلق أطواراً متتابعة داخل هذه الحُجب.",
+      points: [
+        "الخلق من بعد خلق = التخلق المتتابع لا دفعة واحدة.",
+        "لم يكن التشريح الجنيني متاحاً في مكة."
+      ]
+    },
+    en: {
+      title: "Three darknesses of gestation",
+      verse: "فِي ظُلُمَاتٍ ثَلَاثٍ",
+      verseEn: "Creation after creation, in three darknesses.",
+      ref: "Quran 39:6",
+      science: "The gestational coverings commonly enumerated in iʿjāz literature are the abdominal wall, the uterine wall, and the extra-embryonic membranes (amnion–chorion/placenta). The embryo is unseen and staged inside these veils.",
+      points: [
+        "Creation after creation = sequential morphogenesis, not a single moulding.",
+        "Human embryonic dissection was not available in Mecca."
+      ]
+    }
+  },
+  {
+    id: "fingerprints",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-fingerprint",
+    ar: {
+      title: "تسوية البنان",
+      verse: "أَيَحْسَبُ الْإِنسَانُ أَلَّن نَّجْمَعَ عِظَامَهُ ﴿٣﴾ بَلَىٰ قَادِرِينَ عَلَىٰ أَن نُّسَوِّيَ بَنَانَهُ",
+      verseEn: "Does man think that We will not assemble his bones? Yes — We are able even to proportion his fingertips.",
+      ref: "القيامة: 3–4",
+      science: "البنان أطراف الأصابع. الجلد هناك يحمل أنماطاً جلدية فريدة (dermatoglyphs) تثبت في الجنين نحو الأسبوع 10–16 ولا تتطابق حتى بين التوائم المتماثلة. الاستدلال الشرعي على البعث يختار أدق تفاصيل الهوية الجسدية.",
+      points: [
+        "علم البصمات جنائي حديث (قرن 19–20).",
+        "التسوية إتقان الشكل لا مجرد الإعادة العشوائية."
+      ]
+    },
+    en: {
+      title: "Proportioning the fingertips",
+      verse: "بَلَىٰ قَادِرِينَ عَلَىٰ أَن نُّسَوِّيَ بَنَانَهُ",
+      verseEn: "Yes, We are able to proportion his fingertips (banān).",
+      ref: "Quran 75:3–4",
+      science: "Banān are the finger-ends. Their friction-ridge patterns (dermatoglyphs) are laid down around weeks 10–16 and are unique even in monozygotic twins. The eschatological argument for resurrection selects the finest marker of bodily identity.",
+      points: [
+        "Forensic fingerprinting is a nineteenth–twentieth-century science.",
+        "Taswiyah is precise fashioning, not crude reassembly."
+      ]
+    }
+  },
+  {
+    id: "skin-pain",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-hand-paper",
+    ar: {
+      title: "مستقبلات الألم في الجلد",
+      verse: "إِنَّ الَّذِينَ كَفَرُوا بِآيَاتِنَا سَوْفَ نُصْلِيهِمْ نَارًا كُلَّمَا نَضِجَتْ جُلُودُهُم بَدَّلْنَاهُمْ جُلُودًا غَيْرَهَا لِيَذُوقُوا الْعَذَابَ",
+      verseEn: "Those who disbelieve in Our signs — We will roast them in a Fire. Whenever their skins are burned through, We will replace them with other skins so that they may taste the punishment.",
+      ref: "النساء: 56",
+      science: "مستقبلات الألم الحراري (nociceptors) تتركز في الجلد. إذا احترق الجلد وتلفت النهايات العصبية سقط الإحساس. تبديل الجلود يعيد سطح الإحساس. الآية خطاب أخروي، ووجهها العلمي أن العذاب المذكور معلَّل بتجديد الجلد لا بحرق اللحم العميق وحده.",
+      points: [
+        "هذا التفصيل العصبي لم يُعرف إلا بعلم الأنسجة الحديث.",
+        "التعليل القرآني: «ليذوقوا العذاب»."
+      ]
+    },
+    en: {
+      title: "Cutaneous pain receptors",
+      verse: "كُلَّمَا نَضِجَتْ جُلُودُهُم بَدَّلْنَاهُمْ جُلُودًا غَيْرَهَا",
+      verseEn: "Whenever their skins are burned through, We replace them with other skins so they may taste the punishment.",
+      ref: "Quran 4:56",
+      science: "Thermal nociceptors are concentrated in the skin. Full-thickness burns destroy nerve endings and abolish pain. Replacing the skin restores the sensory surface. The setting is eschatological; the physiology is that punishment is explicitly tied to skin renewal, not to deep-tissue charring alone.",
+      points: [
+        "This neural detail awaited modern histology.",
+        "The Quran supplies the purpose clause: ‘so that they may taste’."
+      ]
+    }
+  },
+  {
+    id: "forelock",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-brain",
+    ar: {
+      title: "الناصية الكاذبة الخاطئة",
+      verse: "كَلَّا لَئِن لَّمْ يَنتَهِ لَنَسْفَعًا بِالنَّاصِيَةِ ﴿١٥﴾ نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ",
+      verseEn: "No! If he does not desist, We will surely drag him by the forelock — a lying, sinful forelock.",
+      ref: "العلق: 15–16",
+      science: "الناصية مقدم الرأس. القشرة الجبهية الأمامية (prefrontal cortex) مرتبطة بالتخطيط، وكفّ السلوك، واتخاذ القرار، والكذب. وصف الناصية نفسها بالكاذبة الخاطئة ينقل الصفة من الشخص إلى مركز القرار في الدماغ — تعبير لم يكن لجراحة الأعصاب وجود لتبريره.",
+      points: [
+        "هود 56: الناصية بيد الله، أي نواصي الخلائق.",
+        "الارتباط الوظيفي للجبهة بالسلوك الأخلاقي كشف عصبي حديث."
+      ]
+    },
+    en: {
+      title: "The lying, sinful forelock",
+      verse: "نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ",
+      verseEn: "A lying, sinful forelock (nāṣiyah).",
+      ref: "Quran 96:15–16",
+      science: "The nāṣiyah is the front of the head. Prefrontal cortex is implicated in planning, behavioural inhibition, decision-making and lying. Predicating ‘lying/sinful’ of the forelock itself transfers agency to the brain’s executive centre — a mapping neurosurgery would later make intelligible.",
+      points: [
+        "11:56: every creature’s forelock is in Allah’s hand.",
+        "The frontal–moral association is a finding of modern neuroscience."
+      ]
+    }
+  },
+  {
+    id: "milk",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-glass-whiskey",
+    ar: {
+      title: "لبناً خالصاً من بين فرث ودم",
+      verse: "وَإِنَّ لَكُمْ فِي الْأَنْعَامِ لَعِبْرَةً ۖ نُّسْقِيكُم مِّمَّا فِي بُطُونِهِ مِن بَيْنِ فَرْثٍ وَدَمٍ لَّبَنًا خَالِصًا سَائِغًا لِّلشَّارِبِينَ",
+      verseEn: "In livestock is a lesson: We give you drink from what is in their bellies — from between digested fodder and blood — pure milk, palatable to drinkers.",
+      ref: "النحل: 66",
+      science: "في الكرش يهضم الفرث. نواتج الهضم تُمتص إلى الدم. الغدة اللبنية تستخلص من الدم سكراً وبروتيناً ودسماً وتفرز لبناً خالياً من لون الدم ورائحة الفرث. المسار التشريحي: محتويات الهضم ← دورة دموية ← ضرع. الآية تلخّص فسيولوجيا الإدرار.",
+      points: [
+        "الخلوص: انتقاء جزيئي عبر الحواجز الخلوية.",
+        "لم يكن المجهر ولا الكيمياء الحيوية معروفين."
+      ]
+    },
+    en: {
+      title: "Pure milk from between chyme and blood",
+      verse: "مِن بَيْنِ فَرْثٍ وَدَمٍ لَّبَنًا خَالِصًا",
+      verseEn: "From between digested fodder (farth) and blood, pure, palatable milk.",
+      ref: "Quran 16:66",
+      science: "Rumen contents are digested; metabolites enter the blood; the mammary gland extracts lactose, protein and fat and secretes milk free of the colour of blood and the odour of ingesta. The anatomical path is gut → circulation → udder. The verse condenses lactation physiology.",
+      points: [
+        "‘Pure’ implies molecular selection across cellular barriers.",
+        "Neither microscopy nor biochemistry existed at revelation."
+      ]
+    }
+  },
+  {
+    id: "bees",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-dove",
+    ar: {
+      title: "الوحي إلى النحل والشراب الشافي",
+      verse: "وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ أَنِ اتَّخِذِي مِنَ الْجِبَالِ بُيُوتًا وَمِنَ الشَّجَرِ وَمِمَّا يَعْرِشُونَ ﴿٦٨﴾ ثُمَّ كُلِي مِن كُلِّ الثَّمَرَاتِ فَاسْلُكِي سُبُلَ رَبِّكِ ذُلُلًا ۚ يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ",
+      verseEn: "Your Lord inspired the bee: Take houses among the mountains, the trees and what they construct. Then eat of all fruits and follow the ways of your Lord, made easy. There comes forth from their bellies a drink of varying colours in which is healing for people.",
+      ref: "النحل: 68–69",
+      science: "الخطاب مؤنث (اتخذي، كلي، فاسلكي) والعاملات إناث. البيوت في الجبال والشجر والعروش تطابق النحل البري والبلدي. الشراب: عسل، وغذاء ملكات، وماء مهضوم — ألوانه تتبع المصدر الزهري. للعسل نشاط مضاد للجراثيم (بيروكسيد الهيدروجين، ميثيل غليوكسال في المانوكا، ضغط أسموزي عالٍ)، ويُستخدم سريرياً في بعض الجروح.",
+      points: [
+        "سبل ذلل: مسارات تعلّمها النحل (رقصة الاهتزاز لدى فون فريش).",
+        "الشفاء قيدٌ قرآني أثبته الطب لاحقاً دون جعله دواء كل علة."
+      ]
+    },
+    en: {
+      title: "The bee, and a drink of healing",
+      verse: "يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ",
+      verseEn: "From their bellies comes a drink of varying colours in which is healing for people.",
+      ref: "Quran 16:68–69",
+      science: "The verbs are feminine; worker bees are female. Nesting in mountains, trees and human structures matches wild and managed Apis. The drink includes honey (and related secretions) whose colour tracks floral source. Honey is antimicrobial (H₂O₂, methylglyoxal in manuka, high osmolarity) and is used in selected wound protocols.",
+      points: [
+        "‘Easy paths’ fits learned foraging (von Frisch’s waggle dance).",
+        "Healing is a Quranic predicate later borne out clinically — not a claim of panacea."
+      ]
+    }
+  },
+  {
+    id: "ants",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-bug",
+    ar: {
+      title: "تخاطب النمل",
+      verse: "حَتَّىٰ إِذَا أَتَوْا عَلَىٰ وَادِ النَّمْلِ قَالَتْ نَمْلَةٌ يَا أَيُّهَا النَّمْلُ ادْخُلُوا مَسَاكِنَكُمْ لَا يَحْطِمَنَّكُمْ سُلَيْمَانُ وَجُنُودُهُ وَهُمْ لَا يَشْعُرُونَ",
+      verseEn: "When they came upon the valley of the ants, an ant said: O ants, enter your dwellings lest Solomon and his soldiers crush you while they do not perceive.",
+      ref: "النمل: 18",
+      science: "النمل كائن اجتماعي يملك إنذاراً كيميائياً (فيرومونات) واهتزازياً، وتقسيماً للعمل، ومساكن معقدة. الآية تثبت: فرداً ينذر الجماعة، وجود مساكن، خطر السحق، وغياب شعور الجيش. علم السلوك الاجتماعي (eusociality) كشف شبكات الاتصال هذه في القرنين الأخيرين.",
+      points: [
+        "القصة معجزة لسليمان في فهم المنطق، والصورة الأحيائية صادقة.",
+        "النمل يخلّف أثراً كيميائياً للطرق والمخاطر."
+      ]
+    },
+    en: {
+      title: "Ant communication",
+      verse: "قَالَتْ نَمْلَةٌ يَا أَيُّهَا النَّمْلُ ادْخُلُوا مَسَاكِنَكُمْ",
+      verseEn: "An ant said: O ants, enter your dwellings lest Solomon and his soldiers crush you unawares.",
+      ref: "Quran 27:18",
+      science: "Ants are eusocial: pheromonal and vibrational alarm, division of labour, elaborate nests. The verse records an individual warning the colony, the existence of dwellings, the risk of being crushed, and the army’s unawareness. Behavioural ecology mapped these networks only in recent centuries.",
+      points: [
+        "Solomon’s miracle is understanding their ‘speech’; the biology is accurate.",
+        "Ants lay chemical trails for paths and hazards."
+      ]
+    }
+  },
+  {
+    id: "spider",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-spider",
+    ar: {
+      title: "بيت العنكبوت",
+      verse: "مَثَلُ الَّذِينَ اتَّخَذُوا مِن دُونِ اللَّهِ أَوْلِيَاءَ كَمَثَلِ الْعَنكَبُوتِ اتَّخَذَتْ بَيْتًا ۖ وَإِنَّ أَوْهَنَ الْبُيُوتِ لَبَيْتُ الْعَنكَبُوتِ ۖ لَوْ كَانُوا يَعْلَمُونَ",
+      verseEn: "The example of those who take allies besides Allah is that of the spider who takes a house. The frailest of houses is the spider’s house, if they only knew.",
+      ref: "العنكبوت: 41",
+      science: "اتخذت: فعل مؤنث، والأنثى هي التي تنسج البيت غالباً. الحرير من أقوى الألياف نسبةً إلى وزنه، لكن البيت واهن كمأوى وحماية — وهذا موضع المثل: لا المتانة المجهرية للنسيج بل وهن المأوى. «لو كانوا يعلمون» تشير إلى علمٍ زائد على ظاهر المثل.",
+      points: [
+        "الوهن اجتماعي أيضاً: بعض الأنواع تقتل الذكر بعد التزاوج.",
+        "التأنيث اللغوي يوافق السلوك البيولوجي للنسج."
+      ]
+    },
+    en: {
+      title: "The spider’s house",
+      verse: "وَإِنَّ أَوْهَنَ الْبُيُوتِ لَبَيْتُ الْعَنكَبُوتِ",
+      verseEn: "The frailest of houses is the spider’s house, if they only knew.",
+      ref: "Quran 29:41",
+      science: "The verb is feminine; females typically spin the web. Silk is extraordinarily strong per unit mass, yet the house is a feeble shelter — and that is the point of the parable: not the microscopic tensile strength of fibroin but the frailty of the refuge. ‘If they only knew’ hints at knowledge beyond the obvious simile.",
+      points: [
+        "Social frailty too: sexual cannibalism in some species.",
+        "Grammatical feminine gender matches the biology of web-building."
+      ]
+    }
+  },
+  {
+    id: "winds-pollen",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-wind",
+    ar: {
+      title: "الرياح لواقح",
+      verse: "وَأَرْسَلْنَا الرِّيَاحَ لَوَاقِحَ فَأَنزَلْنَا مِنَ السَّمَاءِ مَاءً فَأَسْقَيْنَاكُمُوهُ",
+      verseEn: "And We sent the winds fertilizing, then We sent down water from the sky and gave it to you to drink.",
+      ref: "الحجر: 22",
+      science: "لواقح: ملقِّحات. الرياح تحمل حبوب اللقاح (anemophily) كما تحمل نوى التكثف التي تُلقح السحاب فتمطر. الآية تجمع التلقيح النباتي وتلقيح السحب في وصف واحد، وهو ما يوافق فيزياء السحب وعلم النبات معاً.",
+      points: [
+        "التلقيح الهوائي أساس محاصيل كالقمح والذرة.",
+        "نوى التكثف (aerosols) شرط فيزيائي للهطول."
+      ]
+    },
+    en: {
+      title: "Fertilizing winds",
+      verse: "وَأَرْسَلْنَا الرِّيَاحَ لَوَاقِحَ",
+      verseEn: "We sent the winds as fertilizers (lawāqiḥ).",
+      ref: "Quran 15:22",
+      science: "Lawāqiḥ are impregnators. Winds carry pollen (anemophily) and also cloud-condensation nuclei that ‘seed’ clouds. The verse joins botanical pollination and cloud physics in one epithet.",
+      points: [
+        "Wind pollination underpins cereals such as wheat and maize.",
+        "Aerosol CCN are a physical prerequisite of rainfall."
+      ]
+    }
+  },
+  {
+    id: "pharaoh",
+    cat: "earth",
+    source: "quran",
+    icon: "fa-landmark",
+    ar: {
+      title: "نجاة بدن فرعون آية لمن خلفه",
+      verse: "فَالْيَوْمَ نُنَجِّيكَ بِبَدَنِكَ لِتَكُونَ لِمَنْ خَلْفَكَ آيَةً",
+      verseEn: "Today We will save you in your body that you may be a sign for those after you.",
+      ref: "يونس: 92",
+      science: "الخبر أن جسد الطاغية لن يُفقد في اليمّ بل يبقى علامة. حفظ أجساد ملوك مصر بالتحنيط حقيقة أثرية، وقد ارتبط النقاش الحديث بمومياوات الأسرة التاسعة عشرة (ومنها رمسيس الثاني وميرنبتاح) دون قطع علمي باسم فرعون الخروج. وجه الدلالة: إخبار القرآن ببقاء البدن آية، وهو خلاف مألوف الغرقى.",
+      points: [
+        "لا نجزم بهوية أثرية قطعية؛ نثبت دلالة النص: بدنٌ باقٍ للنظر.",
+        "موريس بوكاي أشهر من ربط القصة بالمومياوات في العصر الحديث."
+      ]
+    },
+    en: {
+      title: "Pharaoh’s body saved as a sign",
+      verse: "فَالْيَوْمَ نُنَجِّيكَ بِبَدَنِكَ لِتَكُونَ لِمَنْ خَلْفَكَ آيَةً",
+      verseEn: "Today We will save you in your body, that you may be a sign for those after you.",
+      ref: "Quran 10:92",
+      science: "The claim is that the tyrant’s corpse would not be lost in the sea but remain a sign. Egyptian royal mummification is an archaeological fact. Modern discussion has involved Nineteenth-Dynasty mummies (Ramesses II, Merneptah) without a conclusive identification of the Exodus Pharaoh. The textual point stands: a drowned king’s body preserved for later inspection, contrary to the usual fate of the drowned.",
+      points: [
+        "We do not assert a certain archaeological identity; we assert the Quran’s claim of a remaining body.",
+        "Maurice Bucaille popularised the mummy connection in the modern era."
+      ]
+    }
+  },
+  {
+    id: "breastfeeding",
+    cat: "medicine",
+    source: "quran",
+    icon: "fa-baby-carriage",
+    ar: {
+      title: "حولان كاملان للرضاعة",
+      verse: "وَالْوَالِدَاتُ يُرْضِعْنَ أَوْلَادَهُنَّ حَوْلَيْنِ كَامِلَيْنِ ۖ لِمَنْ أَرَادَ أَن يُتِمَّ الرَّضَاعَةَ",
+      verseEn: "Mothers shall breastfeed their children two full years, for whoever wishes to complete the nursing.",
+      ref: "البقرة: 233",
+      science: "منظمة الصحة العالمية توصي بالرضاعة لعامين مع الأغذية التكميلية بعد ستة أشهر. اللبن يحوي أجساماً مضادة (IgA)، وخلايا مناعية، وتركيبًا يتغيّر مع عمر الرضيع. الآية تجعل الإتمام حولين، وهو ما يوافق التوصية الصحية العالمية المعاصرة.",
+      points: [
+        "الحكم فقهي وفيه مصلحة طبية ثابتة.",
+        "الأحقاف 15 تجمع الحمل والفصال ثلاثين شهراً."
+      ]
+    },
+    en: {
+      title: "Two full years of nursing",
+      verse: "حَوْلَيْنِ كَامِلَيْنِ لِمَنْ أَرَادَ أَن يُتِمَّ الرَّضَاعَةَ",
+      verseEn: "Mothers nurse their children two full years, for whoever wishes to complete the nursing.",
+      ref: "Quran 2:233",
+      science: "WHO recommends breastfeeding to two years, with complementary foods after six months. Milk supplies secretory IgA, immune cells, and a composition that tracks infant age. Completing two years matches the contemporary global health recommendation.",
+      points: [
+        "The ruling is legal and independently salutary.",
+        "46:15 combines gestation and weaning as thirty months."
+      ]
+    }
+  },
+  {
+    id: "hadith-embryo",
+    cat: "embryo",
+    source: "sunnah",
+    icon: "fa-hourglass",
+    ar: {
+      title: "جمع الخلق في أربعين يوماً",
+      verse: "إِنَّ أَحَدَكُمْ يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْمًا، ثُمَّ يَكُونُ عَلَقَةً مِثْلَ ذَلِكَ، ثُمَّ يَكُونُ مُضْغَةً مِثْلَ ذَلِكَ، ثُمَّ يُرْسَلُ إِلَيْهِ الْمَلَكُ...",
+      verseEn: "The creation of each of you is brought together in his mother’s womb for forty days; then he is a clinging form for a like period; then a chewed lump for a like period; then the angel is sent…",
+      ref: "متفق عليه — البخاري ومسلم، عن ابن مسعود",
+      science: "الأربعون الأولى مرحلة جمع وتمايز مبكر (من الزيجوت إلى مضغة ذات قسيمات). روايات أخرى (مسلم عن حذيفة بن أسيد) تجعل التخليق بعد اثنتين وأربعين ليلة: تصوير الوجه والسمع والبصر والجلد. نحو اليوم 42–45 تظهر براعم واضحة للأعضاء. الجمع بين الروايات عند أهل العلم: الأربعون طور تخلق أساسي ثم إرسال الملك.",
+      points: [
+        "الطب الحديث يعد الأسابيع 4–8 فترة التعضّي (organogenesis).",
+        "الحديث يربط الجدول الزمني بأمر شرعي (نفخ الروح) بعد التخليق."
+      ]
+    },
+    en: {
+      title: "Creation ‘gathered’ for forty days",
+      verse: "يُجْمَعُ خَلْقُهُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ يَوْمًا",
+      verseEn: "The creation of each of you is brought together in the mother’s womb for forty days… then ʿalaqah… then muḍghah… then the angel is sent.",
+      ref: "Al-Bukhari & Muslim, Ibn Masʿūd",
+      science: "The first forty days cover assembly and early differentiation (zygote to a somite-bearing embryo). A parallel report (Muslim, Hudhayfa b. Asīd) places morphological decree after forty-two nights: face, hearing, sight, skin. Limb and organ primordia are evident around days 42–45. Classical harmonisation: forty days of foundational formation, then the angelic mission.",
+      points: [
+        "Modern embryology treats weeks 4–8 as organogenesis.",
+        "The hadith links a timeline to a legal–theological event (ensoulment)."
+      ]
+    }
+  },
+  {
+    id: "plague",
+    cat: "hygiene",
+    source: "sunnah",
+    icon: "fa-biohazard",
+    ar: {
+      title: "الحجر الصحي عند الطاعون",
+      verse: "إِذَا سَمِعْتُمْ بِالطَّاعُونِ بِأَرْضٍ فَلَا تَدْخُلُوهَا، وَإِذَا وَقَعَ بِأَرْضٍ وَأَنْتُمْ بِهَا فَلَا تَخْرُجُوا مِنْهَا",
+      verseEn: "If you hear of a plague in a land, do not enter it; if it occurs in a land where you are, do not leave it.",
+      ref: "البخاري ومسلم",
+      science: "هذا ضبط precauionary quarantine وcordon sanitaire: منع الاستيراد والتصدير للعدوى. الطب الوبائي الحديث بناه على عزل البؤر (كما في الطاعون والكوليرا وكوفيد-19). الحديث «لا يورد ممرض على مصح» و«فر من المجذوم فرارك من الأسد» يكملان مبدأ العدوى دون نفي القدر.",
+      points: [
+        "الجمع بين «لا عدوى» و«فر من المجذوم» عند العلماء: نفي العدوى المستقلة عن إذن الله، وإثبات الأسباب.",
+        "عمر بن الخطاب رجع عن دخول الشام لما استشرى الطاعون (طاعون عمواس)."
+      ]
+    },
+    en: {
+      title: "Quarantine in plague",
+      verse: "إِذَا سَمِعْتُمْ بِالطَّاعُونِ بِأَرْضٍ فَلَا تَدْخُلُوهَا",
+      verseEn: "If you hear of plague in a land, do not enter it; if it breaks out where you are, do not leave.",
+      ref: "Al-Bukhari & Muslim",
+      science: "This is quarantine and a sanitary cordon: neither importing nor exporting infection. Modern epidemiology rests on isolating foci (plague, cholera, COVID-19). Complementary texts — ‘a sick camel is not to be watered with a healthy one’, ‘flee the leper as you flee a lion’ — affirm contagion as a created cause without denying providence.",
+      points: [
+        "Classical jurists combined ‘no contagion’ with ‘flee the leper’: no independent causal god, yet real secondary causes.",
+        "ʿUmar turned back from Syria during the Plague of ʿAmwās."
+      ]
+    }
+  },
+  {
+    id: "miswak",
+    cat: "hygiene",
+    source: "sunnah",
+    icon: "fa-tooth",
+    ar: {
+      title: "السواك وصحة الفم",
+      verse: "لَوْلَا أَنْ أَشُقَّ عَلَى أُمَّتِي لَأَمَرْتُهُمْ بِالسِّوَاكِ عِنْدَ كُلِّ صَلَاةٍ",
+      verseEn: "Were it not that I would burden my community, I would have ordered them to use the siwāk at every prayer.",
+      ref: "البخاري ومسلم",
+      science: "عود الأراك (Salvadora persica) يحوي ثيوسيانات، وفلورايد طبيعياً، ومواد trierpenes ذات أثر مضاد للبكتيريا واللويحة السنية. دراسات سريرية أظهرت إنقاصاً في Streptococcus mutans ومؤشرات اللثة. السنة تجعل صحة الفم عبادة يومية متكررة.",
+      points: [
+        "منظمة الصحة العالمية أدرجت عود الأسنان التقليدي ضمن تعزيز صحة الفم في بعض أدبياتها.",
+        "التكرار عند كل صلاة يوافق مبدأ الميكانيكا المتكررة لإزالة البيوفيلم."
+      ]
+    },
+    en: {
+      title: "Siwāk and oral ecology",
+      verse: "لَأَمَرْتُهُمْ بِالسِّوَاكِ عِنْدَ كُلِّ صَلَاةٍ",
+      verseEn: "I would have ordered them to use the siwāk at every prayer.",
+      ref: "Al-Bukhari & Muslim",
+      science: "Salvadora persica (arak) contains thiocyanate, natural fluoride and antibacterial triterpenes. Clinical studies report reductions in Streptococcus mutans and gingival indices. The Sunnah turns oral hygiene into a repeated daily rite.",
+      points: [
+        "WHO literature has discussed traditional chewing-sticks in oral-health promotion.",
+        "Use at every prayer matches repeated mechanical disruption of biofilm."
+      ]
+    }
+  },
+  {
+    id: "honey-hadith",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-jar",
+    ar: {
+      title: "الشفاء في شربة عسل",
+      verse: "الشِّفَاءُ فِي ثَلَاثَةٍ: شَرْطَةِ مِحْجَمٍ، أَوْ شَرْبَةِ عَسَلٍ، أَوْ كَيَّةِ نَارٍ، وَأَنَا أَنْهَى أُمَّتِي عَنِ الْكَيِّ",
+      verseEn: "Healing is in three: a slash of the cupper, a drink of honey, or cauterisation with fire — and I forbid my community cautery.",
+      ref: "البخاري",
+      science: "العسل مفرط الأسموزية، حامض نسبياً، وينتج H₂O₂ بإنزيم نازعة غلوكوز. يُستخدم في بروتوكولات الجروح والحروق الجزئية. الحجامة (cupping) موضع دراسات على الألم المزمن والدورة الموضعية، والنتائج متفاوتة المنهج. الكيّ كان علاجاً قديماً نها النبي عنه إلا لضرورة.",
+      points: [
+        "حديث الرجل الذي سُقي العسل لإسهال بطنه: التكرار حتى زوال السبب (البخاري).",
+        "الاستعمال الطبي تكميلي منضبط، لا يغني عن التشخيص."
+      ]
+    },
+    en: {
+      title: "Healing in a drink of honey",
+      verse: "الشِّفَاءُ فِي ثَلَاثَةٍ: شَرْطَةِ مِحْجَمٍ، أَوْ شَرْبَةِ عَسَلٍ، أَوْ كَيَّةِ نَارٍ",
+      verseEn: "Healing is in three: cupping, a drink of honey, or cautery — and I forbid my community cautery.",
+      ref: "Al-Bukhari",
+      science: "Honey is hyperosmotic, mildly acidic, and generates H₂O₂ via glucose oxidase. It is used in selected wound and partial-thickness burn protocols. Cupping is under study for pain and local perfusion, with mixed methodological quality. Cautery was an ancient last resort which the Prophet discouraged.",
+      points: [
+        "The diarrhoeal case in Bukhari: repeated honey until the cause resolved.",
+        "Medical use is adjunctive and does not replace diagnosis."
+      ]
+    }
+  },
+  {
+    id: "black-seed",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-seedling",
+    ar: {
+      title: "الحبة السوداء",
+      verse: "فِي الْحَبَّةِ السَّوْدَاءِ شِفَاءٌ مِنْ كُلِّ دَاءٍ إِلَّا السَّامَ",
+      verseEn: "In the black seed is healing from every disease except death.",
+      ref: "البخاري ومسلم",
+      science: "الحبة السوداء Nigella sativa، وأبرز مركّباتها الثيموكينون (thymoquinone). أبحاث مخبرية وسريرية أولية تشير إلى آثار مضادة للالتهاب والأكسدة، ودعم مناعي، وتأثير على سكر الدم والدهون. «كل داء» عند الشراح: أجناس من الأدواء لا استغناء عن الطب، أو مبالغة عربية في سعة النفع. الموت مستثنى نصاً.",
+      points: [
+        "لا يقوم الحديث مقام الترخيص بإهمال الأمراض الخطرة.",
+        "المكوّن النشط موضوع أوراق في مجلات دوائية معاصرة."
+      ]
+    },
+    en: {
+      title: "The black seed (Nigella sativa)",
+      verse: "فِي الْحَبَّةِ السَّوْدَاءِ شِفَاءٌ مِنْ كُلِّ دَاءٍ إِلَّا السَّامَ",
+      verseEn: "In the black seed is healing from every disease except death.",
+      ref: "Al-Bukhari & Muslim",
+      science: "Nigella sativa; principal constituent thymoquinone. Laboratory and early clinical work report anti-inflammatory, antioxidant, immunomodulatory and metabolic effects. Commentators read ‘every disease’ as a class of ailments or as Arabic amplitude of benefit — not as a licence to abandon medicine. Death is expressly excepted.",
+      points: [
+        "The hadith does not authorise neglect of serious illness.",
+        "Thymoquinone is discussed in contemporary pharmacological literature."
+      ]
+    }
+  },
+  {
+    id: "olive",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-leaf",
+    ar: {
+      title: "الزيت والزيتون",
+      verse: "كُلُوا الزَّيْتَ وَادَّهِنُوا بِهِ، فَإِنَّهُ مِنْ شَجَرَةٍ مُبَارَكَةٍ",
+      verseEn: "Eat olive oil and anoint with it, for it comes from a blessed tree.",
+      ref: "الترمذي وابن ماجه — ويشهد له النور: 35، والتين: 1",
+      science: "زيت الزيتون البكر غني بحمض الأوليك وبوليفينولات (هيدروكسي تيروسول، أولياءوروباين) ذات أثر مضاد للالتهاب. أنماط البحر المتوسط الغذائية المرتبطة به تُربط بانخفاض أحداث القلب في دراسات جماعية. القرآن يقسم بالتين والزيتون، ويصف الشجرة بأنها تُوقد من غير مساس — إشارة إلى البركة والغنى الطاقي.",
+      points: [
+        "الاستعمال داخلي وخارجي في الحديث.",
+        "ليس بديلاً عن علاج الأمراض المزمنة بل جزءاً من نمط غذائي."
+      ]
+    },
+    en: {
+      title: "Olive oil",
+      verse: "كُلُوا الزَّيْتَ وَادَّهِنُوا بِهِ فَإِنَّهُ مِنْ شَجَرَةٍ مُبَارَكَةٍ",
+      verseEn: "Eat olive oil and anoint with it, for it is from a blessed tree.",
+      ref: "Al-Tirmidhi, Ibn Mājah; cf. Quran 24:35, 95:1",
+      science: "Extra-virgin olive oil is rich in oleic acid and polyphenols (hydroxytyrosol, oleuropein) with anti-inflammatory activity. Mediterranean dietary patterns built around it are associated with fewer coronary events in cohort and trial data. The Quran swears by fig and olive and describes a tree whose oil almost glows un touched — blessing and energy density.",
+      points: [
+        "The hadith names both ingestion and topical use.",
+        "It is a dietary pattern, not a substitute for chronic-disease care."
+      ]
+    }
+  },
+  {
+    id: "ajwa",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-apple-alt",
+    ar: {
+      title: "سبع تمرات من عجوة",
+      verse: "مَنْ تَصَبَّحَ بِسَبْعِ تَمَرَاتٍ عَجْوَةً لَمْ يَضُرَّهُ ذَلِكَ الْيَوْمَ سُمٌّ وَلَا سِحْرٌ",
+      verseEn: "Whoever takes seven Ajwa dates in the morning, no poison or magic will harm him that day.",
+      ref: "البخاري ومسلم",
+      science: "التمر غني بالبوتاسيوم والألياف ومضادات الأكسدة (كاروتينات، فينولات). دراسات صغيرة بحثت أثر عجوة المدينة على بعض مؤشرات السمية والكوليسترول. الشق الغيبي (السحر) إيماني. الشق الغذائي: وجبة فجرية سريعة الامتصاص ذات كثافة معدنية، وهو وجه طبي مساند لا يلغي السموم الجادة التي تحتاج ترياقاً.",
+      points: [
+        "التخصيص بعجوة المدينة وارد في الروايات.",
+        "النفع الغذائي ثابت؛ العصمة المطلقة من كل سم حسي تُفهم في إطار التوكل والبركة."
+      ]
+    },
+    en: {
+      title: "Seven Ajwa dates",
+      verse: "مَنْ تَصَبَّحَ بِسَبْعِ تَمَرَاتٍ عَجْوَةً",
+      verseEn: "Whoever takes seven Ajwa dates in the morning will not be harmed that day by poison or magic.",
+      ref: "Al-Bukhari & Muslim",
+      science: "Dates supply potassium, fibre and antioxidants (carotenoids, phenolics). Small studies have examined Madinah ʿAjwa on selected toxicity and lipid markers. The unseen clause (magic) is a matter of faith. Nutritionally, a pre-dawn, mineral-dense bolus is a supportive habit — not an antidote to clinical poisoning.",
+      points: [
+        "Reports specify ʿAjwa of Madinah.",
+        "Dietary benefit is real; absolute sensory immunity is read under blessing and trust in God."
+      ]
+    }
+  },
+  {
+    id: "truffle",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-eye",
+    ar: {
+      title: "الكمأة وماؤها للعين",
+      verse: "الْكَمْأَةُ مِنَ الْمَنِّ، وَمَاؤُهَا شِفَاءٌ لِلْعَيْنِ",
+      verseEn: "The truffle is from manna, and its water is a healing for the eye.",
+      ref: "البخاري ومسلم",
+      science: "الكمأة فطر باطني غني بالبروتين والمعادن. أبحاث أولية على مستخلصاتها تشير إلى نشاط مضاد للجراثيم ومضاد للالتهاب قد يفيد في بعض التهابات العين السطحية. لا يقوم الحديث مقام قطرة معقمة في الممارسة الحديثة، لكنه سبق إلى ربط هذا الفطر بطب العين.",
+      points: [
+        "المنّ غذاء يسوقه الله بلا زرع معتاد، والكمأة تخرج بلا بذر ظاهر.",
+        "الاستعمال المعاصر يحتاج تعقيماً ومعايير صيدلانية."
+      ]
+    },
+    en: {
+      title: "Truffle water and the eye",
+      verse: "الْكَمْأَةُ مِنَ الْمَنِّ وَمَاؤُهَا شِفَاءٌ لِلْعَيْنِ",
+      verseEn: "The truffle is from manna, and its water is a healing for the eye.",
+      ref: "Al-Bukhari & Muslim",
+      science: "Desert truffles are hypogeous fungi, protein- and mineral-rich. Preliminary extracts show antibacterial and anti-inflammatory activity of possible relevance to superficial eye infection. The hadith is not a licence to replace sterile ophthalmics; it does anticipate a link between this fungus and ocular care.",
+      points: [
+        "Manna is unsown provision; truffles appear without obvious seed.",
+        "Modern use would require pharmaceutical sterilisation."
+      ]
+    }
+  },
+  {
+    id: "fasting",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-utensils",
+    ar: {
+      title: "صوموا تصحوا",
+      verse: "يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ",
+      verseEn: "O you who believe, fasting is prescribed for you as it was prescribed for those before you, that you may become mindful of God.",
+      ref: "البقرة: 183 — وفي الباب أحاديث في فضل الصوم",
+      science: "الصيام المتقطع يُدرس اليوم في تحسين الحساسية للإنسولين، والالتهام الذاتي الخلوي (autophagy)، وضبط الوزن، والالتهاب. رمضان نموذج يومي متكرر لساعات. الحكم تعبّدي، والمآلات الأيضية صارت حقل بحث سريري واسع بعد 2000.",
+      points: [
+        "ليس كل مريض يُنصح بالصوم؛ الشريعة وضعت رخص المرض والسفر.",
+        "الوقاية الأيضية وجه طبي مساند للغاية الأصلية: التقوى."
+      ]
+    },
+    en: {
+      title: "Fasting and metabolic health",
+      verse: "كُتِبَ عَلَيْكُمُ الصِّيَامُ… لَعَلَّكُمْ تَتَّقُونَ",
+      verseEn: "Fasting is prescribed for you… that you may become mindful of God.",
+      ref: "Quran 2:183, with supporting hadiths on the virtue of fasting",
+      science: "Intermittent fasting is now studied for insulin sensitivity, autophagy, weight regulation and inflammation. Ramadan is a repeated dawn-to-sunset protocol. The ruling is devotional; the metabolic sequelae became a large clinical literature after 2000.",
+      points: [
+        "Not every patient should fast; the Law already grants sick and travel licences.",
+        "Metabolic prevention is an ancillary medical face of a spiritual aim."
+      ]
+    }
+  },
+  {
+    id: "alcohol",
+    cat: "medicine",
+    source: "quran",
+    icon: "fa-ban",
+    ar: {
+      title: "تحريم الخمر والميسر",
+      verse: "يَا أَيُّهَا الَّذِينَ آمَنُوا إِنَّمَا الْخَمْرُ وَالْمَيْسِرُ وَالْأَنصَابُ وَالْأَزْلَامُ رِجْسٌ مِّنْ عَمَلِ الشَّيْطَانِ فَاجْتَنِبُوهُ",
+      verseEn: "O you who believe, wine, gambling, standing stones and divining arrows are filth from Satan’s work, so avoid them.",
+      ref: "المائدة: 90 — وانظر «الخمر أم الخبائث»",
+      science: "الإيثانول مسرطن مؤكد (IARC Group 1) للكبد والفم والبلعوم والثدي وغيرها، وسام كبدي وعصبي، وسبب حوادث وإدمان. النفع التجاري المذكور في البقرة 219 لا يوازي الإثم. التحريم القطعي سبق تصنيف منظمة الصحة بمئات السنين.",
+      points: [
+        "التدرج التشريعي (البقرة → النساء → المائدة) يوافق مبدأ فطام المجتمع.",
+        "لا جرعة آمنة تماماً حسب تقارير صحية حديثة متعددة."
+      ]
+    },
+    en: {
+      title: "Prohibition of wine",
+      verse: "إِنَّمَا الْخَمْرُ وَالْمَيْسِرُ… رِجْسٌ مِّنْ عَمَلِ الشَّيْطَانِ فَاجْتَنِبُوهُ",
+      verseEn: "Wine and gambling… are filth from Satan’s work, so avoid them.",
+      ref: "Quran 5:90; cf. 2:219",
+      science: "Ethanol is an IARC Group 1 carcinogen (liver, oral cavity, pharynx, breast and others), a hepatotoxin and neurotoxin, and a driver of injury and dependence. The limited commercial ‘benefit’ of 2:219 is outweighed by the sin. Absolute prohibition preceded WHO classification by centuries.",
+      points: [
+        "Legislative graduation (2:219 → 4:43 → 5:90) matches social weaning.",
+        "Several modern public-health reports find no fully safe dose."
+      ]
+    }
+  },
+  {
+    id: "pork",
+    cat: "medicine",
+    source: "quran",
+    icon: "fa-piggy-bank",
+    ar: {
+      title: "تحريم لحم الخنزير",
+      verse: "حُرِّمَتْ عَلَيْكُمُ الْمَيْتَةُ وَالدَّمُ وَلَحْمُ الْخِنزِيرِ",
+      verseEn: "Forbidden to you are carrion, blood, and the flesh of swine.",
+      ref: "المائدة: 3",
+      science: "الخنزير ناقل محتمل لطفيلات (الشعرينة Trichinella، الشريطية Taenia solium) وفيروسات وفيروس التهاب الكبد E في بعض البيئات. اللحم غني بدهون مشبعة. الحكم تعبدي مستقل عن الإحصاء الوبائي، لكن المخاطر البيولوجية تجعل للتحريم وجهاً وقائياً بَيِّناً في بيئات ما قبل التفتيش الصناعي.",
+      points: [
+        "الدم والميتة يشتركان في الحمل الميكروبي العالي.",
+        "الشريعة أباحت الضرورة: «فَمَنِ اضْطُرَّ غَيْرَ بَاغٍ وَلَا عَادٍ»."
+      ]
+    },
+    en: {
+      title: "Prohibition of swine flesh",
+      verse: "حُرِّمَتْ عَلَيْكُمُ الْمَيْتَةُ وَالدَّمُ وَلَحْمُ الْخِنزِيرِ",
+      verseEn: "Carrion, blood and the flesh of swine are forbidden to you.",
+      ref: "Quran 5:3",
+      science: "Pigs can host Trichinella, Taenia solium and, in some settings, hepatitis E. The meat is often rich in saturated fat. The ruling is devotional, independent of epidemiology; the biological risks nonetheless give it a clear preventive face in pre-industrial inspection regimes.",
+      points: [
+        "Carrion and blood share a high microbial load.",
+        "Necessity is already licensed: ‘whoever is compelled, neither craving nor transgressing’."
+      ]
+    }
+  },
+  {
+    id: "wudu",
+    cat: "hygiene",
+    source: "quran",
+    icon: "fa-hands-wash",
+    ar: {
+      title: "الوضوء والاغتسال",
+      verse: "يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ",
+      verseEn: "When you rise to prayer, wash your faces and your hands to the elbows, wipe your heads, and wash your feet to the ankles.",
+      ref: "المائدة: 6",
+      science: "غسل الوجه واليدين والقدمين المتكرر يقلل الحمولة الميكروبية في أكثر المواضع ملامسة. الغسل من الجنابة والحيض نظافة كاملة. السنة تزيد المضمضة والاستنشاق والسواك وتقليم الأظافر ونتف الإبط وحلق العانة — حزمة hygiene الشخصية صارت توصيات للصحة العامة.",
+      points: [
+        "«الطُّهُورُ شَطْرُ الْإِيمَانِ» (مسلم).",
+        "النهي عن البول في الماء الراكد حماية لموارد الشرب (البخاري ومسلم)."
+      ]
+    },
+    en: {
+      title: "Ablution and washing",
+      verse: "فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ",
+      verseEn: "When you rise to prayer, wash your faces and your hands to the elbows, wipe your heads, and wash your feet to the ankles.",
+      ref: "Quran 5:6",
+      science: "Repeated washing of face, hands and feet reduces microbial load at the most handled sites. Major ritual baths after intercourse and menses are full-body hygiene. The Sunnah adds rinsing the mouth and nose, siwāk, nail-trimming and removal of axillary and pubic hair — a personal-hygiene bundle now echoed in public health.",
+      points: [
+        "‘Purity is half of faith’ (Muslim).",
+        "The ban on urinating in stagnant water protects drinking sources (Bukhari & Muslim)."
+      ]
+    }
+  },
+  {
+    id: "vessels",
+    cat: "hygiene",
+    source: "sunnah",
+    icon: "fa-glass-cheers",
+    ar: {
+      title: "تغطية الأوعية وعدم النفخ في الشراب",
+      verse: "غَطُّوا الْإِنَاءَ، وَأَوْكُوا السِّقَاءَ، فَإِنَّ فِي السَّنَةِ لَيْلَةً يَنْزِلُ فِيهَا وَبَاءٌ، لَا يَمُرُّ بِإِنَاءٍ لَيْسَ عَلَيْهِ غِطَاءٌ… إِلَّا نَزَلَ فِيهِ مِنْ ذَلِكَ الْوَبَاءِ",
+      verseEn: "Cover the vessel and tie the waterskin, for in the year there is a night on which disease descends; it does not pass a vessel without a cover… but that some of that disease falls into it.",
+      ref: "مسلم — والنهي عن النفخ في الشراب في السنن",
+      science: "تغطية الطعام والشراب تمنع نواقل الحشرات والغبار واللعاب. النفخ في الإناء ينقل رذاذاً فموياً (droplets). الوباء في الحديث يُفهم سببياً كعاملٍ ينتقل بالهواء والحشرات. إرشادات السلامة الغذائية المعاصرة تطابق هذه الحزمة.",
+      points: [
+        "إطفاء النار عند النوم حديث آخر في السلامة المنزلية.",
+        "النوم على الجنب الأيمن وعدم الانبطاح عادات فسيولوجية مذكورة في السنة."
+      ]
+    },
+    en: {
+      title: "Covering vessels; not breathing into a drink",
+      verse: "غَطُّوا الْإِنَاءَ وَأَوْكُوا السِّقَاءَ",
+      verseEn: "Cover the vessel and tie the waterskin… a night of pestilence…",
+      ref: "Muslim; prohibition of blowing into a drink in the Sunan",
+      science: "Covering food and drink blocks insect vectors, dust and saliva. Blowing into a vessel sheds oral droplets. ‘Pestilence’ is intelligibly a transmitted agent. Modern food-safety guidance restates the same bundle.",
+      points: [
+        "Extinguishing lamps/fires before sleep is another domestic-safety hadith.",
+        "Sleeping on the right side, not prone, is a physiological habit in the Sunnah."
+      ]
+    }
+  },
+  {
+    id: "arabia-green",
+    cat: "earth",
+    source: "sunnah",
+    icon: "fa-tree",
+    ar: {
+      title: "عودة أرض العرب مروجاً وأنهاراً",
+      verse: "لَا تَقُومُ السَّاعَةُ حَتَّى تَعُودَ أَرْضُ الْعَرَبِ مُرُوجًا وَأَنْهَارًا",
+      verseEn: "The Hour will not come until the land of the Arabs returns to meadows and rivers.",
+      ref: "مسلم",
+      science: "لفظ «تعود» يقتضي أن الجزيرة كانت كذلك. الجيولوجيا وال palynology تؤكدان فترات رطبة في الجزيرة العربية (الصحراء الخضراء / Arabian humid periods) بأنهار وبحيرات قديمة. الحديث نبوءة أخروية–مناخية: عودة طور رطب. مشروعات التشجير المعاصرة والتغير المناخي نوقشت كبدايات محتملة، دون قطع أنها المصداق النهائي.",
+      points: [
+        "الآثار النهرية في الربع الخالي موثّقة بالأقمار الصناعية.",
+        "الإعجاز غيبي (نبوءة) مدعوم بذاكرة جيولوجية للماضي."
+      ]
+    },
+    en: {
+      title: "Arabia returning to meadows and rivers",
+      verse: "حَتَّى تَعُودَ أَرْضُ الْعَرَبِ مُرُوجًا وَأَنْهَارًا",
+      verseEn: "The Hour will not come until the land of the Arabs returns to meadows and rivers.",
+      ref: "Muslim",
+      science: "The verb ‘return’ implies a prior state. Geology and palynology document Arabian humid periods with palaeo-rivers and lakes. The hadith is an eschatological–climatic prophecy of a renewed wet phase. Present greening projects and climate shifts have been discussed as possible preludes, not as a final identification.",
+      points: [
+        "Fossil river systems in the Empty Quarter are mapped from satellite imagery.",
+        "The sign is unseen (prophecy) backed by a geological memory of the past."
+      ]
+    }
+  },
+  {
+    id: "zamzam",
+    cat: "medicine",
+    source: "sunnah",
+    icon: "fa-kaaba",
+    ar: {
+      title: "ماء زمزم",
+      verse: "مَاءُ زَمْزَمَ لِمَا شُرِبَ لَهُ",
+      verseEn: "Zamzam water is for whatever it is drunk for.",
+      ref: "أحمد وابن ماجه، وحسّنه جمع من الأئمة",
+      science: "عين زمزم بئر في الحرم، مياهها معدنية ذات توصيل كهربائي مرتفع نسبياً وغنية ببعض الأيونات (كالكالسيوم والمغنيسيوم) وفق تحاليل مختبرية حديثة متعددة. الثبات التاريخي للعين في بيئة قاحلة ظاهرة هيدرولوجية. البركة الشرعية إيمانية؛ التركيب الكيميائي يجعلها ماءً معدنياً لا ماءً مقطراً. لا يُستغنى بها عن العلاج الطبي.",
+      points: [
+        "حديث «إنها مباركة، إنها طعام طُعم» عند مسلم.",
+        "التحاليل تختلف حسب العينة؛ نثبت المعدنية لا الخوارق الكيميائية."
+      ]
+    },
+    en: {
+      title: "Zamzam water",
+      verse: "مَاءُ زَمْزَمَ لِمَا شُرِبَ لَهُ",
+      verseEn: "Zamzam water is for whatever purpose it is drunk.",
+      ref: "Ahmad, Ibn Mājah (graded ḥasan by a number of imams)",
+      science: "Zamzam is a well in the Sanctuary. Modern assays typically find a mineral water of relatively high conductivity, with notable calcium and magnesium. The well’s persistence in an arid setting is a hydrological given. Blessing is a matter of faith; chemically it is mineral, not distilled, water. It does not replace medical treatment.",
+      points: [
+        "Muslim: ‘It is blessed; it is food that nourishes.’",
+        "Assays vary by sample; we affirm minerality, not chemical marvels."
+      ]
+    }
+  },
+  {
+    id: "circ",
+    cat: "hygiene",
+    source: "sunnah",
+    icon: "fa-plus-square",
+    ar: {
+      title: "الختان من الفطرة",
+      verse: "الْفِطْرَةُ خَمْسٌ: الْخِتَانُ، وَالِاسْتِحْدَادُ، وَقَصُّ الشَّارِبِ، وَتَقْلِيمُ الْأَظْفَارِ، وَنَتْفُ الْإِبْطِ",
+      verseEn: "Five are from the natural disposition: circumcision, shaving the pubic hair, trimming the moustache, clipping the nails, and plucking the armpit hair.",
+      ref: "البخاري ومسلم",
+      science: "الختان يقلل في دراسات واسعة خطر بعض العداوى المنقولة جنسياً بما فيها HIV في سياقات أفريقية، والتهابات المسالك، وسرطان عنق الرحم لدى الشريكة عبر خفض HPV. منظمة الصحة العالمية اعتمدت الختان الطبي الطوعي للبالغين كأداة وقائية في بعض الأوبئة. الحكم شرعي سابق لهذه الإحصاءات.",
+      points: [
+        "بقية خصال الفطرة نظافة تمنع مستعمرات جرثومية في الثنيات.",
+        "الممارسة الطبية الحديثة تشترط التعقيم وتسكين الألم."
+      ]
+    },
+    en: {
+      title: "Circumcision among the fiṭrah",
+      verse: "الْفِطْرَةُ خَمْسٌ: الْخِتَانُ…",
+      verseEn: "Five are of the natural disposition: circumcision, pubic shaving, moustache-trimming, nail-clipping, axillary plucking.",
+      ref: "Al-Bukhari & Muslim",
+      science: "Large trials have shown male circumcision reduces some sexually transmitted infections, including HIV in specified African settings, urinary-tract infection, and, via lower HPV, cervical cancer in partners. WHO has endorsed voluntary medical male circumcision as a preventive tool in some epidemics. The ruling long predates these statistics.",
+      points: [
+        "The other fiṭrah acts are hygiene of folds that harbour flora.",
+        "Modern practice requires sterility and analgesia."
+      ]
+    }
+  },
+  {
+    id: "sleep",
+    cat: "hygiene",
+    source: "sunnah",
+    icon: "fa-bed",
+    ar: {
+      title: "آداب النوم والاستيقاظ",
+      verse: "إِذَا أَتَيْتَ مَضْجَعَكَ فَتَوَضَّأْ وُضُوءَكَ لِلصَّلَاةِ، ثُمَّ اضْطَجِعْ عَلَى شِقِّكَ الْأَيْمَنِ",
+      verseEn: "When you go to your bed, perform ablution as for prayer, then lie on your right side.",
+      ref: "البخاري ومسلم — والنهي عن النوم على البطن في السنن",
+      science: "النوم الجانبي الأيمن يُبحث في ارتجاع المريء (قد يُفضَّل الأيسر لدى بعض المرضى) وفي ميكانيكا التنفس. النهي عن الانبطاح يوافق تحذيرات حديثة من النوم على البطن في الرضّع (SIDS) وصعوبة التنفس عند بعض البالغين. إطفاء المصابيح/النار تقليل لخطر الحريق واستنشاق الدخان.",
+      points: [
+        "الذكر عند النوم أثر نفسي في تهدئة المحور العصبي.",
+        "القيلولة القصيرة (سنة نبوية) موضوع بحث في الأداء المعرفي."
+      ]
+    },
+    en: {
+      title: "Sleep posture and safety",
+      verse: "ثُمَّ اضْطَجِعْ عَلَى شِقِّكَ الْأَيْمَنِ",
+      verseEn: "Perform ablution, then lie on your right side.",
+      ref: "Al-Bukhari & Muslim; lying prone is discouraged in the Sunan",
+      science: "Right-lateral sleep is discussed in reflux (some patients do better on the left) and respiratory mechanics. Discouraging the prone posture aligns with modern cautions for infants (SIDS) and for some adults’ ventilation. Extinguishing lamps/fires lowers burn and smoke risk.",
+      points: [
+        "Night remembrance has a calming autonomic effect.",
+        "A short midday nap (qaylūlah) is studied for cognitive performance."
+      ]
+    }
+  },
+  {
+    id: "fly",
+    cat: "hygiene",
+    source: "sunnah",
+    icon: "fa-fly",
+    ar: {
+      title: "حديث الذباب",
+      verse: "إِذَا وَقَعَ الذُّبَابُ فِي شَرَابِ أَحَدِكُمْ فَلْيَغْمِسْهُ ثُمَّ لِيَنْزِعْهُ، فَإِنَّ فِي أَحَدِ جَنَاحَيْهِ دَاءً وَفِي الْآخَرِ شِفَاءً",
+      verseEn: "If a fly falls into the drink of one of you, let him dip it then remove it, for on one wing is disease and on the other is a cure.",
+      ref: "البخاري",
+      science: "الحديث من أشهر مواضع النقاش. الذباب ناقل ميكروبي معلوم. بعض البحوث على مستخلصات الذباب وخنافس الجيف أظهرت ببتيدات مضادة للجراثيم (antimicrobial peptides) في أجسام الحشرات. لا يُعدّ الغمس بروتوكولاً صحياً معاصراً للماء الملوث، ويُذكر في باب ما أُثر من تقابل الداء والدواء في المخلوق. نعرضه بأمانة مع التواضع العلمي.",
+      points: [
+        "المحدثون صحّحوا الحديث من جهة الإسناد في البخاري.",
+        "التطبيق العملي اليوم: اتقاء النواقل وتعقيم الشراب عند الشك."
+      ]
+    },
+    en: {
+      title: "The fly narration",
+      verse: "فَإِنَّ فِي أَحَدِ جَنَاحَيْهِ دَاءً وَفِي الْآخَرِ شِفَاءً",
+      verseEn: "If a fly falls into one of your drinks, dip it then remove it; on one wing is disease and on the other a cure.",
+      ref: "Al-Bukhari",
+      science: "This is among the most debated reports. Flies are known mechanical vectors. Research on insect and blowfly extracts has identified antimicrobial peptides in insect bodies. Dipping is not a modern protocol for contaminated water; it is recorded as a traditional pairing of pathogen and counter-agent in a creature. We report it honestly and with scientific humility.",
+      points: [
+        "Hadith scholars grade the isnād as sound in Bukhari.",
+        "Practical hygiene today: exclude vectors and sterilise a doubtful drink."
+      ]
+    }
+  },
+  {
+    id: "stars-security",
+    cat: "cosmos",
+    source: "sunnah",
+    icon: "fa-star",
+    ar: {
+      title: "النجوم أمان للسماء",
+      verse: "النُّجُومُ أَمَنَةٌ لِلسَّمَاءِ، فَإِذَا ذَهَبَتِ النُّجُومُ أَتَى السَّمَاءَ مَا تُوعَدُ",
+      verseEn: "The stars are a security for the sky; when the stars go, what the sky has been promised will come to it.",
+      ref: "مسلم",
+      science: "النجوم تمسك بنى المجرات بالجاذبية، وتنتج العناصر الثقيلة، وبدون إشعاعها تختل شروط الكواكب. الحديث يربط بقاء نظام السماء بوجود النجوم، وزوالها بقيام ما وُعدت به من طيّ. الفلك الحديث يعدّ موت النجوم (وتبعثر المجرات في سيناريوهات بعيدة) تحولاً في بنية الكون.",
+      points: [
+        "السياق تمثيل لأمان النبي لأصحابه ثم أصحابه لمن بعدهم.",
+        "الوجه الكوني: النجوم مقوّمات استقرار السماء الدنيا المرئية."
+      ]
+    },
+    en: {
+      title: "Stars as security for the sky",
+      verse: "النُّجُومُ أَمَنَةٌ لِلسَّمَاءِ",
+      verseEn: "The stars are a security for the sky; when they go, what the sky was promised will come.",
+      ref: "Muslim",
+      science: "Stars gravitationally bind galactic structure, forge heavy elements, and irradiate planets. The hadith ties the sky’s order to the presence of stars, and their disappearance to the promised folding. Modern astrophysics treats stellar death (and, in far scenarios, galactic dispersal) as a structural change of the cosmos.",
+      points: [
+        "The literary frame likens the Prophet’s security for his Companions.",
+        "Cosmically, stars underwrite the stability of the visible heaven."
+      ]
+    }
+  },
+  {
+    id: "hearing-sight",
+    cat: "embryo",
+    source: "quran",
+    icon: "fa-ear-listen",
+    ar: {
+      title: "السمع قبل البصر في الخلق",
+      verse: "وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ",
+      verseEn: "He made for you hearing and sight and hearts; little do you give thanks.",
+      ref: "السجدة: 9 — والنحل: 78، والمؤمنون: 78",
+      science: "في القرآن يتقدم السمع على البصر غالباً في آيات الخلق. جنينياً، الجهاز السمعي يبلغ نضجاً وظيفياً داخل الرحم (استجابة للصوت نحو الأسبوع 20–25) قبل الإبصار الذي يحتاج ضوءاً بعد الولادة. الأفئدة: مراكز الإدراك. الترتيب يوافق التسلسل الوظيفي.",
+      points: [
+        "الكهف 101 تقدّم البصر في سياق الغفلة لا الخلق.",
+        "النحل 78: الإخراج من البطون ثم جعل السمع والأبصار والأفئدة."
+      ]
+    },
+    en: {
+      title: "Hearing before sight in creation",
+      verse: "وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ",
+      verseEn: "He made for you hearing, and sight, and hearts.",
+      ref: "Quran 32:9; cf. 16:78, 23:78",
+      science: "In creation verses, hearing typically precedes sight. Embryologically the auditory system becomes functionally responsive in utero (roughly weeks 20–25) before vision, which requires postnatal light. Afʾidah are the seats of understanding. The order matches functional sequence.",
+      points: [
+        "18:101 foregrounds sight in a context of heedlessness, not morphogenesis.",
+        "16:78: extraction from wombs, then hearing, sight and hearts."
+      ]
+    }
+  },
+  {
+    id: "plants-dead-earth",
+    cat: "biology",
+    source: "quran",
+    icon: "fa-seedling",
+    ar: {
+      title: "إحياء الأرض بعد موتها",
+      verse: "وَتَرَى الْأَرْضَ هَامِدَةً فَإِذَا أَنزَلْنَا عَلَيْهَا الْمَاءَ اهْتَزَّتْ وَرَبَتْ وَأَنبَتَتْ مِن كُلِّ زَوْجٍ بَهِيجٍ",
+      verseEn: "You see the earth barren; then when We send down water upon it, it quivers and swells and grows every delightful pair.",
+      ref: "الحج: 5",
+      science: "الاهتزاز والربو: انتفاخ الغرويات الطينية والبذور عند الامتصاص (imbibition) ثم الإنبات. الزوج البهيج: أصناف/ذكور وإناث النبات. الآية تربط المشهد بدليل البعث. علم إنبات البذور يصف تسلسلاً مطابقاً: ماء، انتفاش، نمو.",
+      points: [
+        "فصلت 39: «إِنَّ الَّذِي أَحْيَاهَا لَمُحْيِي الْمَوْتَىٰ».",
+        "الهامدة: سكون فسيولوجي للبذرة لا عدم محض."
+      ]
+    },
+    en: {
+      title: "The barren earth revived",
+      verse: "فَإِذَا أَنزَلْنَا عَلَيْهَا الْمَاءَ اهْتَزَّتْ وَرَبَتْ",
+      verseEn: "You see the earth lifeless; when We send water it quivers and swells and grows every delightful pair.",
+      ref: "Quran 22:5",
+      science: "Quivering and swelling describe clay colloids and seeds during imbibition, then germination. ‘Every delightful pair’ covers kinds and plant sexes. The scene is an analogue of resurrection. Seed biology records the same sequence: water, swelling, growth.",
+      points: [
+        "41:39: He who revives it will revive the dead.",
+        "Barrenness is physiological dormancy, not absolute non-being."
+      ]
+    }
+  },
+  {
+    id: "fire-sea",
+    cat: "ocean",
+    source: "quran",
+    icon: "fa-fire",
+    ar: {
+      title: "البحر المسجور",
+      verse: "وَالْبَحْرِ الْمَسْجُورِ",
+      verseEn: "And by the sea filled/kindled (al-masjūr).",
+      ref: "الطور: 6 — وانظر التكوير: 6",
+      science: "سجر التنور: أوقده. في قيعان المحيطات فتحات حرارية مائية (hydrothermal vents) تقذف ماءً فوق 300°م مع معادن، ونيران بركانية تحت البحر. التكوير: «وَإِذَا الْبِحَارُ سُجِّرَتْ» مشهد أخروي. الجمع بين الماء والوقود الناري في قاع البحر كشف القرن العشرين.",
+      points: [
+        "الرحمن 35 تذكر شواظاً من نار ونحاس.",
+        "نعرض الوجه الجيولوجي كدلالة محتملة للفظ المسجور."
+      ]
+    },
+    en: {
+      title: "The sea that is kindled",
+      verse: "وَالْبَحْرِ الْمَسْجُورِ",
+      verseEn: "By the sea that is filled/kindled (masjūr).",
+      ref: "Quran 52:6; cf. 81:6",
+      science: "Sajara the oven: to stoke it. Mid-ocean hydrothermal vents discharge water above 300 °C with dissolved metals; submarine volcanoes burn beneath the water column. 81:6 (‘when the seas are kindled’) is eschatological. The coexistence of oceanic water and ignition at the seafloor is a twentieth-century discovery.",
+      points: [
+        "55:35 mentions flames of fire and copper.",
+        "The geological reading is offered as a possible sense of masjūr."
+      ]
+    }
+  }
+];
+
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  const state = {
+    lang: localStorage.getItem("ijaz-lang") || "ar",
+    cat: "all",
+    source: "all",
+    q: ""
+  };
+
+  function t(key) {
+    return (I18N[state.lang] && I18N[state.lang][key]) || I18N.ar[key] || key;
+  }
+
+  function applyLang() {
+    const pack = I18N[state.lang];
+    document.documentElement.lang = pack.lang;
+    document.documentElement.dir = pack.dir;
+    document.body.classList.toggle("en", state.lang === "en");
+    document.title = pack.siteTitle;
+
+    $$("[data-i]").forEach((el) => {
+      const key = el.getAttribute("data-i");
+      const val = t(key);
+      if (el.tagName === "INPUT") el.placeholder = val;
+      else el.textContent = val;
+    });
+    $$("[data-i-html]").forEach((el) => {
+      el.innerHTML = t(el.getAttribute("data-i-html")).replace(/\n/g, "<br>");
+    });
+
+    $$(".lang-btn").forEach((b) => {
+      b.classList.toggle("active", b.dataset.lang === state.lang);
+    });
+
+    const search = $("#search");
+    if (search) search.placeholder = t("searchPh");
+
+    renderChips();
+    renderGrid();
+    if (window.__ijazCounts) {
+      paintCounts(window.__ijazCounts.unique, window.__ijazCounts.views);
+    }
+  }
+
+  function setLang(lang) {
+    state.lang = lang;
+    localStorage.setItem("ijaz-lang", lang);
+    applyLang();
+  }
+
+  function cats() {
+    return [
+      { id: "all", label: t("all") },
+      { id: "cosmos", label: t("cosmos") },
+      { id: "earth", label: t("earth") },
+      { id: "ocean", label: t("ocean") },
+      { id: "atmosphere", label: t("atmosphere") },
+      { id: "embryo", label: t("embryo") },
+      { id: "biology", label: t("biology") },
+      { id: "physics", label: t("physics") },
+      { id: "medicine", label: t("medicine") },
+      { id: "hygiene", label: t("hygiene") }
+    ];
+  }
+
+  function renderChips() {
+    const wrap = $("#chips");
+    if (!wrap) return;
+    const src = [
+      { id: "src-all", source: "all", label: t("all"), extra: "" },
+      { id: "src-quran", source: "quran", label: t("quran"), extra: "" },
+      { id: "src-sunnah", source: "sunnah", label: t("sunnah"), extra: "sunnah" }
+    ];
+    const catHtml = cats()
+      .map(
+        (c) =>
+          `<button class="chip ${state.cat === c.id ? "active" : ""}" data-cat="${c.id}">${c.label}</button>`
+      )
+      .join("");
+    const srcHtml = src
+      .map(
+        (c) =>
+          `<button class="chip ${c.extra} ${state.source === c.source ? "active" : ""}" data-source="${c.source}">${c.label}</button>`
+      )
+      .join("");
+    wrap.innerHTML =
+      srcHtml +
+      `<span style="width:1px;background:var(--line);margin:0 6px;align-self:stretch"></span>` +
+      catHtml;
+
+    wrap.onclick = (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      if (btn.dataset.source) state.source = btn.dataset.source;
+      if (btn.dataset.cat) state.cat = btn.dataset.cat;
+      renderChips();
+      renderGrid();
+    };
+  }
+
+  function filtered() {
+    const q = state.q.trim().toLowerCase();
+    return MIRACLES.filter((m) => {
+      if (state.source !== "all" && m.source !== state.source) return false;
+      if (state.cat !== "all" && m.cat !== state.cat) return false;
+      if (!q) return true;
+      const L = m[state.lang] || m.ar;
+      const blob = [
+        L.title,
+        L.verse,
+        L.verseEn,
+        L.ref,
+        L.science,
+        (L.points || []).join(" "),
+        m.id,
+        m.cat
+      ]
+        .join(" ")
+        .toLowerCase();
+      return blob.includes(q);
+    });
+  }
+
+  function card(m) {
+    const L = m[state.lang] || m.ar;
+    const badge = m.source === "sunnah" ? t("sunnahBadge") : t("quranBadge");
+    const points = (L.points || [])
+      .map((p) => `<li><i class="fas fa-check-circle"></i><span>${p}</span></li>`)
+      .join("");
+    return `<article class="miracle ${m.source}" id="${m.id}">
+      <div class="miracle-top">
+        <h3><i class="fas ${m.icon}"></i> ${L.title}</h3>
+        <span class="badge ${m.source}">${badge}</span>
+      </div>
+      <div class="miracle-body">
+        <div class="verse-box">
+          <div class="verse-ar">${L.verse}</div>
+          <div class="verse-en">${L.verseEn}</div>
+          <div class="verse-ref">${L.ref}</div>
+        </div>
+        <p class="science"><strong>${t("science")}:</strong> ${L.science}</p>
+        <ul class="points">${points}</ul>
+      </div>
+    </article>`;
+  }
+
+  function renderGrid() {
+    const grid = $("#grid");
+    const meta = $("#results-meta");
+    if (!grid) return;
+    const list = filtered();
+    if (meta) meta.textContent = `${t("showing")} ${list.length} ${t("item")}`;
+    if (!list.length) {
+      grid.innerHTML = `<div class="empty">${t("empty")}</div>`;
+      return;
+    }
+    grid.innerHTML = list.map(card).join("");
+  }
+
+  function closeDedication() {
+    const el = $("#dedicationOverlay");
+    if (el) el.classList.add("hidden");
+    sessionStorage.setItem("ijaz-entered", "1");
+  }
+
+  function initDedication() {
+    if (sessionStorage.getItem("ijaz-entered") === "1") {
+      closeDedication();
+    }
+  }
+
+  window.setLang = setLang;
+  window.closeDedication = closeDedication;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initDedication();
+    applyLang();
+
+    const n = MIRACLES.length;
+    const countEl = $("[data-count]");
+    if (countEl) countEl.textContent = n + "+";
+
+    $("#search")?.addEventListener("input", (e) => {
+      state.q = e.target.value;
+      renderGrid();
+    });
+
+    $("#menuToggle")?.addEventListener("click", () => {
+      $(".nav-links").classList.toggle("open");
+    });
+
+    $$(".nav-links a").forEach((a) =>
+      a.addEventListener("click", () => $(".nav-links").classList.remove("open"))
+    );
+
+    const back = $("#backToTop");
+    window.addEventListener("scroll", () => {
+      back?.classList.toggle("show", window.scrollY > 400);
+    });
+    back?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDedication();
+    });
+
+    $$(".lang-btn").forEach((b) =>
+      b.addEventListener("click", () => setLang(b.dataset.lang))
+    );
+
+    initVisitorCounter();
+  });
+
+  function formatCount(n) {
+    if (n == null || Number.isNaN(n)) return "—";
+    try {
+      return Number(n).toLocaleString(state.lang === "ar" ? "ar-JO" : "en-US");
+    } catch (e) {
+      return String(n);
+    }
+  }
+
+  function paintCounts(unique, views) {
+    const u = $("#visitorCount");
+    const v = $("#visitCount");
+    if (u && unique != null) u.textContent = formatCount(unique);
+    if (v && views != null) v.textContent = formatCount(views);
+    $$("[data-visitors-num]").forEach((el) => {
+      if (unique != null) el.textContent = formatCount(unique);
+    });
+  }
+
+  async function apiCount(action, key) {
+    const url = `https://countapi.mileshilliard.com/api/v1/${action}/${encodeURIComponent(key)}`;
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error("counter " + res.status);
+    const data = await res.json();
+    const n = Number(data.value);
+    if (Number.isNaN(n)) throw new Error("bad counter");
+    return n;
+  }
+
+  async function initVisitorCounter() {
+    const UNIQUE_KEY = "ijaz-nashwan-unique-visitors";
+    const VIEWS_KEY = "ijaz-nashwan-site-visits";
+    try {
+      const already = localStorage.getItem("ijaz-visitor-id");
+      const unique = already
+        ? await apiCount("get", UNIQUE_KEY)
+        : await apiCount("hit", UNIQUE_KEY);
+      if (!already) localStorage.setItem("ijaz-visitor-id", "1");
+      const views = await apiCount("hit", VIEWS_KEY);
+      window.__ijazCounts = { unique, views };
+      paintCounts(unique, views);
+    } catch (err) {
+      const box = $("#visitorBox");
+      if (box) box.style.opacity = "0.55";
+    }
+  }
+
+  const _applyLang = applyLang;
+  // re-format numbers when language changes
+  window.setLang = function (lang) {
+    state.lang = lang;
+    localStorage.setItem("ijaz-lang", lang);
+    _applyLang();
+    if (window.__ijazCounts) {
+      paintCounts(window.__ijazCounts.unique, window.__ijazCounts.views);
+    }
+  };
+})();
+
+  </script>
+</body>
+</html>
