@@ -2897,8 +2897,14 @@ window.MIRACLES = [
     });
   }
 
-  async function apiCount(action, key) {
-    const url = `https://countapi.mileshilliard.com/api/v1/${action}/${encodeURIComponent(key)}`;
+  async function apiCount(key, increment) {
+    const params = new URLSearchParams({ startNumber: "2974" });
+    if (!increment) params.set("readOnly", "true");
+    const url =
+      "https://counterapi.com/api/myparentsgift.github.io/view/" +
+      encodeURIComponent(key) +
+      "?" +
+      params.toString();
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error("counter " + res.status);
     const data = await res.json();
@@ -2908,15 +2914,15 @@ window.MIRACLES = [
   }
 
   async function initVisitorCounter() {
-    const UNIQUE_KEY = "ijaz-nashwan-unique-visitors";
-    const VIEWS_KEY = "ijaz-nashwan-site-visits";
+    const UNIQUE_KEY = "ijaz-unique-visitors";
+    const VIEWS_KEY = "ijaz-site-visits";
     try {
       const already = localStorage.getItem("ijaz-visitor-id");
       const unique = already
-        ? await apiCount("get", UNIQUE_KEY)
-        : await apiCount("hit", UNIQUE_KEY);
+        ? await apiCount(UNIQUE_KEY, false)
+        : await apiCount(UNIQUE_KEY, true);
       if (!already) localStorage.setItem("ijaz-visitor-id", "1");
-      const views = await apiCount("hit", VIEWS_KEY);
+      const views = await apiCount(VIEWS_KEY, true);
       window.__ijazCounts = { unique, views };
       paintCounts(unique, views);
     } catch (err) {
@@ -2938,5 +2944,5 @@ window.MIRACLES = [
 })();
 
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a32d2b960f3914dd',t:'MTc4ODAyMzQzNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3865cab3ee55409',t:'MTc4ODk1ODY4MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
