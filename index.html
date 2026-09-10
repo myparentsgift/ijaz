@@ -12,10 +12,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>الإعجاز العلمي في القرآن والسنة النبوية</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%230b3d2e' width='64' height='64' rx='12'/><text x='32' y='44' text-anchor='middle' font-size='32' fill='%23c9a227'>ق</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
 :root {
   --primary: #0b3d2e;
@@ -45,11 +41,11 @@ html {
 
 html, body {
   max-width: 100%;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: "Cairo", "Inter", system-ui, sans-serif;
+  font-family: "Cairo", "Tahoma", "Noto Naskh Arabic", "Segoe UI", sans-serif;
   background: var(--paper);
   color: var(--ink);
   line-height: 1.85;
@@ -65,6 +61,12 @@ body.en {
   font-family: "Amiri", "Noto Naskh Arabic", serif;
 }
 
+.fas, .fa {
+  font-style: normal;
+  display: inline-block;
+  width: 1.1em;
+  text-align: center;
+}
 img, svg, video {
   max-width: 100%;
   height: auto;
@@ -681,9 +683,6 @@ footer li { margin: .3rem 0; }
         try { sessionStorage.setItem("ijaz-entered", "1"); } catch (e) {}
       }
       window.closeDedication = closeDedication;
-      try {
-        if (sessionStorage.getItem("ijaz-entered") === "1") closeDedication();
-      } catch (e) {}
     })();
   </script>
 
@@ -699,14 +698,14 @@ footer li { margin: .3rem 0; }
 
   <nav class="main-nav">
     <div class="nav-wrap">
-      <a class="logo" href="#top"><i class="fas fa-book-quran"></i> <span data-i="logo"></span></a>
+      <a class="logo" href="#top"><i class="fas fa-book-quran"></i> <span data-i="logo">الإعجاز العلمي في القرآن والسنة النبوية</span></a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu"><i class="fas fa-bars"></i></button>
       <ul class="nav-links">
-        <li><a href="#method" data-i="navIntro"></a></li>
-        <li><a href="#library" data-i="navLibrary"></a></li>
-        <li><a href="#library" onclick="document.querySelector('[data-source=quran]')?.click()" data-i="navQuran"></a></li>
-        <li><a href="#library" onclick="document.querySelector('[data-source=sunnah]')?.click()" data-i="navSunnah"></a></li>
-        <li><a href="#about" data-i="navAbout"></a></li>
+        <li><a href="#method" data-i="navIntro">المنهج</a></li>
+        <li><a href="#library" data-i="navLibrary">الموسوعة</a></li>
+        <li><a href="#library" onclick="var b=document.querySelector('[data-source=quran]'); if(b) b.click();" data-i="navQuran">القرآن</a></li>
+        <li><a href="#library" onclick="var b=document.querySelector('[data-source=sunnah]'); if(b) b.click();" data-i="navSunnah">السنة</a></li>
+        <li><a href="#about" data-i="navAbout">عن المشروع</a></li>
       </ul>
     </div>
   </nav>
@@ -715,8 +714,8 @@ footer li { margin: .3rem 0; }
     <section class="section" id="method">
       <div class="container">
         <div class="section-head">
-          <h2 data-i="methodTitle"></h2>
-          <p data-i="methodLead"></p>
+          <h2 data-i="methodTitle">منهج العرض العلمي</h2>
+          <p data-i="methodLead">القرآن كتاب هداية، والإعجاز العلمي إخبار الوحي بحقائق ثبتت بالعلم التجريبي.</p>
         </div>
         <div class="method-grid">
           <article class="method-card"><h3><i class="fas fa-flask"></i> <span data-i="m1t"></span></h3><p data-i="m1"></p></article>
@@ -737,8 +736,8 @@ footer li { margin: .3rem 0; }
     <section class="section" id="library" style="padding-top:1.5rem">
       <div class="container">
         <div class="section-head">
-          <h2 data-i="libraryTitle"></h2>
-          <p data-i="libraryLead"></p>
+          <h2 data-i="libraryTitle">مكتبة الإعجاز</h2>
+          <p data-i="libraryLead">تصنيف موضوعي لآيات وأحاديث وافقتها الكشوف العلمية، بالعربية والإنجليزية.</p>
         </div>
         <div class="toolbar">
           <div class="search-row">
@@ -747,7 +746,8 @@ footer li { margin: .3rem 0; }
           <div class="chips" id="chips"></div>
         </div>
         <p class="results-meta" id="results-meta"></p>
-        <div class="grid" id="grid"></div>
+        <div class="grid" id="grid"><div class="empty">تُعرض البطاقات هنا بعد التحميل.</div></div>
+        <noscript><p class="empty">يلزم تشغيل JavaScript لعرض الموسوعة.</p></noscript>
       </div>
     </section>
 
@@ -3987,9 +3987,7 @@ window.MIRACLES = [
   }
 
   function initDedication() {
-    if (ssGet("ijaz-entered") === "1") {
-      closeDedication();
-    }
+    /* Always show the dedication on each load. */
   }
 
   window.setLang = setLang;
@@ -4109,5 +4107,5 @@ window.MIRACLES = [
 })();
 
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a38ed8390c1711c7',t:'MTc4OTA0NzYyNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3910d0aeebdc78a',t:'MTc4OTA3MDc2Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
