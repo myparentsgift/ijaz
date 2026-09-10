@@ -673,6 +673,19 @@ footer li { margin: .3rem 0; }
       <button class="btn-enter" type="button" onclick="closeDedication()" data-i="enter">دخول الموقع</button>
     </div>
   </div>
+  <script>
+    (function () {
+      function closeDedication() {
+        var el = document.getElementById("dedicationOverlay");
+        if (el) el.classList.add("hidden");
+        try { sessionStorage.setItem("ijaz-entered", "1"); } catch (e) {}
+      }
+      window.closeDedication = closeDedication;
+      try {
+        if (sessionStorage.getItem("ijaz-entered") === "1") closeDedication();
+      } catch (e) {}
+    })();
+  </script>
 
   <header class="hero">
     <div class="hero-inner">
@@ -3777,5 +3790,5 @@ window.MIRACLES = [
 })();
 
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a38e9f52f84ac78a',t:'MTc4OTA0NTI5Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a38ea33b0ddcc78a',t:'MTc4OTA0NTQ1Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
