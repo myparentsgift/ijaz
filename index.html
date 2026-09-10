@@ -979,6 +979,331 @@ window.I18N = {
   }
 };
 
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  const state = {
+    lang: localStorage.getItem("ijaz-lang") || "ar",
+    cat: "all",
+    source: "all",
+    q: ""
+  };
+
+  function t(key) {
+    return (I18N[state.lang] && I18N[state.lang][key]) || I18N.ar[key] || key;
+  }
+
+  function applyLang() {
+    const pack = I18N[state.lang];
+    document.documentElement.lang = pack.lang;
+    document.documentElement.dir = pack.dir;
+    document.body.classList.toggle("en", state.lang === "en");
+    document.title = pack.siteTitle;
+
+    $$("[data-i]").forEach((el) => {
+      const key = el.getAttribute("data-i");
+      const val = t(key);
+      if (el.tagName === "INPUT") el.placeholder = val;
+      else el.textContent = val;
+    });
+    $$("[data-i-html]").forEach((el) => {
+      el.innerHTML = t(el.getAttribute("data-i-html")).replace(/\n/g, "<br>");
+    });
+
+    $$(".lang-btn").forEach((b) => {
+      b.classList.toggle("active", b.dataset.lang === state.lang);
+    });
+
+    const search = $("#search");
+    if (search) search.placeholder = t("searchPh");
+
+    renderChips();
+    if (window.MIRACLES && window.MIRACLES.length) {
+      try { renderGrid(); } catch (e) {}
+    }
+    if (window.__ijazCounts) {
+      paintCounts(window.__ijazCounts.unique, window.__ijazCounts.views);
+    }
+  }
+
+  function setLang(lang) {
+    state.lang = lang;
+    localStorage.setItem("ijaz-lang", lang);
+    applyLang();
+  }
+
+  function cats() {
+    return [
+      { id: "all", label: t("all") },
+      { id: "cosmos", label: t("cosmos") },
+      { id: "earth", label: t("earth") },
+      { id: "ocean", label: t("ocean") },
+      { id: "atmosphere", label: t("atmosphere") },
+      { id: "embryo", label: t("embryo") },
+      { id: "biology", label: t("biology") },
+      { id: "physics", label: t("physics") },
+      { id: "medicine", label: t("medicine") },
+      { id: "hygiene", label: t("hygiene") }
+    ];
+  }
+
+  function renderChips() {
+    const wrap = $("#chips");
+    if (!wrap) return;
+    const src = [
+      { id: "src-all", source: "all", label: t("all"), extra: "" },
+      { id: "src-quran", source: "quran", label: t("quran"), extra: "" },
+      { id: "src-sunnah", source: "sunnah", label: t("sunnah"), extra: "sunnah" }
+    ];
+    const catHtml = cats()
+      .map(
+        (c) =>
+          `<button class="chip ${state.cat === c.id ? "active" : ""}" data-cat="${c.id}">${c.label}</button>`
+      )
+      .join("");
+    const srcHtml = src
+      .map(
+        (c) =>
+          `<button class="chip ${c.extra} ${state.source === c.source ? "active" : ""}" data-source="${c.source}">${c.label}</button>`
+      )
+      .join("");
+    wrap.innerHTML =
+      srcHtml +
+      `<span style="width:1px;background:var(--line);margin:0 6px;align-self:stretch"></span>` +
+      catHtml;
+
+    wrap.onclick = (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      if (btn.dataset.source) state.source = btn.dataset.source;
+      if (btn.dataset.cat) state.cat = btn.dataset.cat;
+      renderChips();
+      renderGrid();
+    };
+  }
+
+  function filtered() {
+    const list = window.MIRACLES || [];
+    const q = state.q.trim().toLowerCase();
+    return list.filter((m) => {
+      if (state.source !== "all" && m.source !== state.source) return false;
+      if (state.cat !== "all" && m.cat !== state.cat) return false;
+      if (!q) return true;
+      const L = m[state.lang] || m.ar;
+      const blob = [
+        L.title,
+        L.verse,
+        L.verseEn,
+        L.ref,
+        L.science,
+        (L.points || []).join(" "),
+        m.id,
+        m.cat
+      ]
+        .join(" ")
+        .toLowerCase();
+      return blob.includes(q);
+    });
+  }
+
+  function card(m) {
+    const L = m[state.lang] || m.ar;
+    const badge = m.source === "sunnah" ? t("sunnahBadge") : t("quranBadge");
+    const points = (L.points || [])
+      .map((p) => `<li><i class="fas fa-check-circle"></i><span>${p}</span></li>`)
+      .join("");
+    const img = `<img class="miracle-photo" alt="" data-img="${m.id}" width="960" height="400" decoding="async">`;
+    return `<article class="miracle ${m.source}" id="${m.id}">
+      ${img}
+      <div class="miracle-top">
+        <h3><i class="fas ${m.icon}"></i> ${L.title}</h3>
+        <span class="badge ${m.source}">${badge}</span>
+      </div>
+      <div class="miracle-body">
+        <div class="verse-box">
+          <div class="verse-ar">${L.verse}</div>
+          <div class="verse-en">${L.verseEn}</div>
+          <div class="verse-ref">${L.ref}</div>
+        </div>
+        <p class="science"><strong>${t("science")}:</strong> ${L.science}</p>
+        <ul class="points">${points}</ul>
+      </div>
+    </article>`;
+  }
+
+  function renderGrid() {
+    const grid = $("#grid");
+    const meta = $("#results-meta");
+    if (!grid) return;
+    const list = filtered();
+    if (meta) meta.textContent = `${t("showing")} ${list.length} ${t("item")}`;
+    if (!list.length) {
+      grid.innerHTML = `<div class="empty">${t("empty")}</div>`;
+      return;
+    }
+    grid.innerHTML = list.map(card).join("");
+    hydrateImages();
+  }
+
+  function hydrateImages() {
+    const map = {};
+    (window.MIRACLES || []).forEach((m) => {
+      if (m.img) map[m.id] = m.img;
+    });
+    const imgs = $$("img[data-img]");
+    if (!imgs.length) return;
+    const apply = (el) => {
+      const id = el.getAttribute("data-img");
+      if (id && map[id] && !el.getAttribute("src")) el.src = map[id];
+    };
+    if (!("IntersectionObserver" in window)) {
+      imgs.forEach(apply);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          apply(en.target);
+          io.unobserve(en.target);
+        });
+      },
+      { rootMargin: "240px" }
+    );
+    imgs.forEach((el) => io.observe(el));
+  }
+
+  function closeDedication() {
+    const el = $("#dedicationOverlay");
+    if (el) el.classList.add("hidden");
+    sessionStorage.setItem("ijaz-entered", "1");
+  }
+
+  function initDedication() {
+    if (sessionStorage.getItem("ijaz-entered") === "1") {
+      closeDedication();
+    }
+  }
+
+  window.setLang = setLang;
+  window.closeDedication = closeDedication;
+
+  function paintNow() {
+    initDedication();
+    try { applyLang(); } catch (e) {}
+    var n = (window.MIRACLES || []).length;
+    var countEl = $("[data-count]");
+    if (countEl) countEl.textContent = n + "+";
+  }
+
+  var uiWired = false;
+  function wireUi() {
+    if (uiWired) return;
+    uiWired = true;
+    var search = $("#search");
+    if (search) search.addEventListener("input", function (e) {
+      state.q = e.target.value;
+      renderGrid();
+    });
+    var menu = $("#menuToggle");
+    if (menu) menu.addEventListener("click", function () {
+      var links = $(".nav-links");
+      if (links) links.classList.toggle("open");
+    });
+    $$(".nav-links a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var links = $(".nav-links");
+        if (links) links.classList.remove("open");
+      });
+    });
+    var back = $("#backToTop");
+    window.addEventListener("scroll", function () {
+      if (back) back.classList.toggle("show", window.scrollY > 400);
+    });
+    if (back) back.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeDedication();
+    });
+    $$(".lang-btn").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.lang); });
+    });
+    initVisitorCounter();
+  }
+
+  paintNow();
+  wireUi();
+  window.paintIjaz = paintNow;
+
+  function formatCount(n) {
+    if (n == null || Number.isNaN(n)) return "—";
+    try {
+      return Number(n).toLocaleString(state.lang === "ar" ? "ar-JO" : "en-US");
+    } catch (e) {
+      return String(n);
+    }
+  }
+
+  function paintCounts(unique, views) {
+    const u = $("#visitorCount");
+    const v = $("#visitCount");
+    if (u && unique != null) u.textContent = formatCount(unique);
+    if (v && views != null) v.textContent = formatCount(views);
+    $$("[data-visitors-num]").forEach((el) => {
+      if (unique != null) el.textContent = formatCount(unique);
+    });
+  }
+
+  async function apiCount(key, increment) {
+    const params = new URLSearchParams({ startNumber: "2974" });
+    if (!increment) params.set("readOnly", "true");
+    const url =
+      "https://counterapi.com/api/myparentsgift.github.io/view/" +
+      encodeURIComponent(key) +
+      "?" +
+      params.toString();
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error("counter " + res.status);
+    const data = await res.json();
+    const n = Number(data.value);
+    if (Number.isNaN(n)) throw new Error("bad counter");
+    return n;
+  }
+
+  async function initVisitorCounter() {
+    const UNIQUE_KEY = "ijaz-unique-visitors";
+    const VIEWS_KEY = "ijaz-site-visits";
+    try {
+      const already = localStorage.getItem("ijaz-visitor-id");
+      const unique = already
+        ? await apiCount(UNIQUE_KEY, false)
+        : await apiCount(UNIQUE_KEY, true);
+      if (!already) localStorage.setItem("ijaz-visitor-id", "1");
+      const views = await apiCount(VIEWS_KEY, true);
+      window.__ijazCounts = { unique, views };
+      paintCounts(unique, views);
+    } catch (err) {
+      const box = $("#visitorBox");
+      if (box) box.style.opacity = "0.55";
+    }
+  }
+
+  const _applyLang = applyLang;
+  // re-format numbers when language changes
+  window.setLang = function (lang) {
+    state.lang = lang;
+    localStorage.setItem("ijaz-lang", lang);
+    _applyLang();
+    if (window.__ijazCounts) {
+      paintCounts(window.__ijazCounts.unique, window.__ijazCounts.views);
+    }
+  };
+})();
+
+  </script>
+  <script>
 window.MIRACLES = [
   {
     id: "big-bang",
@@ -3508,287 +3833,7 @@ window.MIRACLES = [
   }
 ]
 
-(function () {
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-
-  const state = {
-    lang: localStorage.getItem("ijaz-lang") || "ar",
-    cat: "all",
-    source: "all",
-    q: ""
-  };
-
-  function t(key) {
-    return (I18N[state.lang] && I18N[state.lang][key]) || I18N.ar[key] || key;
-  }
-
-  function applyLang() {
-    const pack = I18N[state.lang];
-    document.documentElement.lang = pack.lang;
-    document.documentElement.dir = pack.dir;
-    document.body.classList.toggle("en", state.lang === "en");
-    document.title = pack.siteTitle;
-
-    $$("[data-i]").forEach((el) => {
-      const key = el.getAttribute("data-i");
-      const val = t(key);
-      if (el.tagName === "INPUT") el.placeholder = val;
-      else el.textContent = val;
-    });
-    $$("[data-i-html]").forEach((el) => {
-      el.innerHTML = t(el.getAttribute("data-i-html")).replace(/\n/g, "<br>");
-    });
-
-    $$(".lang-btn").forEach((b) => {
-      b.classList.toggle("active", b.dataset.lang === state.lang);
-    });
-
-    const search = $("#search");
-    if (search) search.placeholder = t("searchPh");
-
-    renderChips();
-    renderGrid();
-    if (window.__ijazCounts) {
-      paintCounts(window.__ijazCounts.unique, window.__ijazCounts.views);
-    }
-  }
-
-  function setLang(lang) {
-    state.lang = lang;
-    localStorage.setItem("ijaz-lang", lang);
-    applyLang();
-  }
-
-  function cats() {
-    return [
-      { id: "all", label: t("all") },
-      { id: "cosmos", label: t("cosmos") },
-      { id: "earth", label: t("earth") },
-      { id: "ocean", label: t("ocean") },
-      { id: "atmosphere", label: t("atmosphere") },
-      { id: "embryo", label: t("embryo") },
-      { id: "biology", label: t("biology") },
-      { id: "physics", label: t("physics") },
-      { id: "medicine", label: t("medicine") },
-      { id: "hygiene", label: t("hygiene") }
-    ];
-  }
-
-  function renderChips() {
-    const wrap = $("#chips");
-    if (!wrap) return;
-    const src = [
-      { id: "src-all", source: "all", label: t("all"), extra: "" },
-      { id: "src-quran", source: "quran", label: t("quran"), extra: "" },
-      { id: "src-sunnah", source: "sunnah", label: t("sunnah"), extra: "sunnah" }
-    ];
-    const catHtml = cats()
-      .map(
-        (c) =>
-          `<button class="chip ${state.cat === c.id ? "active" : ""}" data-cat="${c.id}">${c.label}</button>`
-      )
-      .join("");
-    const srcHtml = src
-      .map(
-        (c) =>
-          `<button class="chip ${c.extra} ${state.source === c.source ? "active" : ""}" data-source="${c.source}">${c.label}</button>`
-      )
-      .join("");
-    wrap.innerHTML =
-      srcHtml +
-      `<span style="width:1px;background:var(--line);margin:0 6px;align-self:stretch"></span>` +
-      catHtml;
-
-    wrap.onclick = (e) => {
-      const btn = e.target.closest(".chip");
-      if (!btn) return;
-      if (btn.dataset.source) state.source = btn.dataset.source;
-      if (btn.dataset.cat) state.cat = btn.dataset.cat;
-      renderChips();
-      renderGrid();
-    };
-  }
-
-  function filtered() {
-    const q = state.q.trim().toLowerCase();
-    return MIRACLES.filter((m) => {
-      if (state.source !== "all" && m.source !== state.source) return false;
-      if (state.cat !== "all" && m.cat !== state.cat) return false;
-      if (!q) return true;
-      const L = m[state.lang] || m.ar;
-      const blob = [
-        L.title,
-        L.verse,
-        L.verseEn,
-        L.ref,
-        L.science,
-        (L.points || []).join(" "),
-        m.id,
-        m.cat
-      ]
-        .join(" ")
-        .toLowerCase();
-      return blob.includes(q);
-    });
-  }
-
-  function card(m) {
-    const L = m[state.lang] || m.ar;
-    const badge = m.source === "sunnah" ? t("sunnahBadge") : t("quranBadge");
-    const points = (L.points || [])
-      .map((p) => `<li><i class="fas fa-check-circle"></i><span>${p}</span></li>`)
-      .join("");
-    const img = m.img ? `<img class="miracle-photo" src="${m.img}" alt="" loading="lazy" decoding="async" width="960" height="400">` : "";
-    return `<article class="miracle ${m.source}" id="${m.id}">
-      ${img}
-      <div class="miracle-top">
-        <h3><i class="fas ${m.icon}"></i> ${L.title}</h3>
-        <span class="badge ${m.source}">${badge}</span>
-      </div>
-      <div class="miracle-body">
-        <div class="verse-box">
-          <div class="verse-ar">${L.verse}</div>
-          <div class="verse-en">${L.verseEn}</div>
-          <div class="verse-ref">${L.ref}</div>
-        </div>
-        <p class="science"><strong>${t("science")}:</strong> ${L.science}</p>
-        <ul class="points">${points}</ul>
-      </div>
-    </article>`;
-  }
-
-  function renderGrid() {
-    const grid = $("#grid");
-    const meta = $("#results-meta");
-    if (!grid) return;
-    const list = filtered();
-    if (meta) meta.textContent = `${t("showing")} ${list.length} ${t("item")}`;
-    if (!list.length) {
-      grid.innerHTML = `<div class="empty">${t("empty")}</div>`;
-      return;
-    }
-    grid.innerHTML = list.map(card).join("");
-  }
-
-  function closeDedication() {
-    const el = $("#dedicationOverlay");
-    if (el) el.classList.add("hidden");
-    sessionStorage.setItem("ijaz-entered", "1");
-  }
-
-  function initDedication() {
-    if (sessionStorage.getItem("ijaz-entered") === "1") {
-      closeDedication();
-    }
-  }
-
-  window.setLang = setLang;
-  window.closeDedication = closeDedication;
-
-  document.addEventListener("DOMContentLoaded", () => {
-    initDedication();
-    applyLang();
-
-    const n = MIRACLES.length;
-    const countEl = $("[data-count]");
-    if (countEl) countEl.textContent = n + "+";
-
-    $("#search")?.addEventListener("input", (e) => {
-      state.q = e.target.value;
-      renderGrid();
-    });
-
-    $("#menuToggle")?.addEventListener("click", () => {
-      $(".nav-links").classList.toggle("open");
-    });
-
-    $$(".nav-links a").forEach((a) =>
-      a.addEventListener("click", () => $(".nav-links").classList.remove("open"))
-    );
-
-    const back = $("#backToTop");
-    window.addEventListener("scroll", () => {
-      back?.classList.toggle("show", window.scrollY > 400);
-    });
-    back?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeDedication();
-    });
-
-    $$(".lang-btn").forEach((b) =>
-      b.addEventListener("click", () => setLang(b.dataset.lang))
-    );
-
-    initVisitorCounter();
-  });
-
-  function formatCount(n) {
-    if (n == null || Number.isNaN(n)) return "—";
-    try {
-      return Number(n).toLocaleString(state.lang === "ar" ? "ar-JO" : "en-US");
-    } catch (e) {
-      return String(n);
-    }
-  }
-
-  function paintCounts(unique, views) {
-    const u = $("#visitorCount");
-    const v = $("#visitCount");
-    if (u && unique != null) u.textContent = formatCount(unique);
-    if (v && views != null) v.textContent = formatCount(views);
-    $$("[data-visitors-num]").forEach((el) => {
-      if (unique != null) el.textContent = formatCount(unique);
-    });
-  }
-
-  async function apiCount(key, increment) {
-    const params = new URLSearchParams({ startNumber: "2974" });
-    if (!increment) params.set("readOnly", "true");
-    const url =
-      "https://counterapi.com/api/myparentsgift.github.io/view/" +
-      encodeURIComponent(key) +
-      "?" +
-      params.toString();
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error("counter " + res.status);
-    const data = await res.json();
-    const n = Number(data.value);
-    if (Number.isNaN(n)) throw new Error("bad counter");
-    return n;
-  }
-
-  async function initVisitorCounter() {
-    const UNIQUE_KEY = "ijaz-unique-visitors";
-    const VIEWS_KEY = "ijaz-site-visits";
-    try {
-      const already = localStorage.getItem("ijaz-visitor-id");
-      const unique = already
-        ? await apiCount(UNIQUE_KEY, false)
-        : await apiCount(UNIQUE_KEY, true);
-      if (!already) localStorage.setItem("ijaz-visitor-id", "1");
-      const views = await apiCount(VIEWS_KEY, true);
-      window.__ijazCounts = { unique, views };
-      paintCounts(unique, views);
-    } catch (err) {
-      const box = $("#visitorBox");
-      if (box) box.style.opacity = "0.55";
-    }
-  }
-
-  const _applyLang = applyLang;
-  // re-format numbers when language changes
-  window.setLang = function (lang) {
-    state.lang = lang;
-    localStorage.setItem("ijaz-lang", lang);
-    _applyLang();
-    if (window.__ijazCounts) {
-      paintCounts(window.__ijazCounts.unique, window.__ijazCounts.views);
-    }
-  };
-})();
-
+  if (window.paintIjaz) window.paintIjaz();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a38ea33b0ddcc78a',t:'MTc4OTA0NTQ1Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a38ead6d6cc0c511',t:'MTc4OTA0NTg3NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
